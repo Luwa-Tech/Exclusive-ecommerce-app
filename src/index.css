@@ -3,3 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.layout {
+    display: grid;
+    height: 100vh;
+  
+    grid-template-rows: auto 1fr auto;
+}
+
+.nav-icon {
+    @apply w-[1.5rem] h-[1.5rem] text-buttonColor-400 cursor-pointer
+}
