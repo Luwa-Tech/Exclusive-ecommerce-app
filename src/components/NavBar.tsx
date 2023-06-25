@@ -24,9 +24,9 @@ const NavBar = () => {
                     <h1 className="text-[1.3rem] md:text-[1.5rem] font-bold tracking-[0.045rem] text-textColor-600 leading-6">Exclusive</h1>
                 </section>
                 <section className={`flex flex-col gap-[1rem] column md:flex-row md:gap-[3rem] text-textColor-600 absolute md:static transition-all duration-500 ease-in bg-white left-0 w-full md:w-auto md:z-auto z-[2] px-3 py-10 md:px-0 md:py-0 ${isOpen ? "top-[3rem]" : "top-[-490px]"}`}>
-                    <NavLink to="/">Home</NavLink>
-                    <NavLink to="/contact">Contact</NavLink>
-                    <NavLink to="/about">About</NavLink>
+                    <NavLink to="/" className="nav-link">Home</NavLink>
+                    <NavLink to="/contact" className="nav-link">Contact</NavLink>
+                    <NavLink to="/about" className="nav-link">About</NavLink>
                     {isMobile && <Categories />}
                 </section>
                 <section className="flex items-center gap-[1.5rem]">

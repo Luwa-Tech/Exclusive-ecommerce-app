@@ -14,3 +14,7 @@
 .nav-icon {
     @apply w-[1.5rem] h-[1.5rem] text-buttonColor-400 cursor-pointer
 }
+
+.nav-link {
+    @apply hover:underline hover:decoration-textColor-600 hover:decoration-1
+}
