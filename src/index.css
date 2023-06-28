@@ -11,6 +11,10 @@
     grid-template-rows: auto 1fr auto;
 }
 
+img {
+    max-width: 100%;
+}
+
 .nav-icon {
     @apply w-[1.5rem] h-[1.5rem] text-buttonColor-400 cursor-pointer
 }
