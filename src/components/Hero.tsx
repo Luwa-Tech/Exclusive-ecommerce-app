@@ -5,7 +5,7 @@ import { AiFillApple} from "react-icons/ai"
 import { GoArrowRight } from "react-icons/go"
 
 const HeroCarousel = () => {
-    const isDesktop = useMediaQuery({ maxWidth: 640 })
+    const isDesktop = useMediaQuery({ minWidth: 640 })
     return (
                 <section className="flex gap-[1rem] py-5 md:py-2 px-2 md:gap-[8rem] md:justify-center md:items-center mt-2 md:mt-8 bg-textColor-600">
                     <div className="text-left md:w-[25%]">
