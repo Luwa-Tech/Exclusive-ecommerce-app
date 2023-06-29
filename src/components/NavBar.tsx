@@ -3,19 +3,17 @@ import {NavLink} from "react-router-dom"
 import SearchBar from "./SearchBar"
 import {HiBars3CenterLeft } from "react-icons/hi2"
 import { CiShoppingCart, CiHeart} from "react-icons/ci"
-import { useMediaQuery } from "react-responsive"
+import { useMedia } from "../hooks/UseMedia"
 import Categories from "./Categories"
 
 
 
 const NavBar = () => {
-    const isMobile = useMediaQuery({ maxWidth: 639 })
-    const isDesktop = useMediaQuery({ minWidth: 640 })
-
     const [isOpen, setIsOpen] = React.useState<boolean>(false)
     const handleToggle = () => {
         setIsOpen(prev => !prev)
     }
+    const {isMobile, isDesktop} = useMedia()
     return (
         <nav>
             <div className="flex justify-between items-center md:w-[90%] md:m-auto md:max-w-[1200px] pt-2 px-2 md:pt-[1rem] md:pb-[.5rem] border-b-secondary-500 md:border-b-[1.95px]">
