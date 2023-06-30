@@ -14,7 +14,7 @@ const HeroCarousel = () => {
                         <p className="my-1 text-[1.2rem] md:my-4 md:text-[3rem] md:font-semibold md:leading-[3.75rem] md:tracking-[0.12rem] text-textColor-400 md:flex-wrap">Up to 10% off Voucher</p>
                         <p className="text-[.8rem] md:text-[1rem] md:font-medium md:leading-[1.5rem] flex gap-2 md:items-center hover:underline transition-all ease-in-out cursor-pointer text-textColor-400">Shop Now {isDesktop && <GoArrowRight size={20} className="md:mt-1"/>}</p>
                     </div>
-                    <div className="w-[50%] md:w-auto"><img src="./src/assets/images/hero_endframe__cvklg0xk3w6e_large 2.png"/></div>
+                    <div className="w-[50%] md:w-auto"><img src="./src/assets/images/shop now/hero_endframe__cvklg0xk3w6e_large 2.png"/></div>
                 </section>
             }
         </>
