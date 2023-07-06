@@ -22,3 +22,8 @@ img {
 .nav-link {
     @apply hover:underline hover:decoration-textColor-600 hover:decoration-1
 }
+
+.product-slider-container {
+    margin: 0 auto;
+    
+}

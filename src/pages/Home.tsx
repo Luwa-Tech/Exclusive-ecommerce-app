@@ -4,10 +4,14 @@ import FlashSales from "../components/FlashSales"
 const Home = () => {
 
     return (
-        <section>
+        <main>
+            <section>
             <Hero/>
+            </section>
+            <section >
             <FlashSales />
-        </section>
+            </section>
+        </main>
     )
 }
 

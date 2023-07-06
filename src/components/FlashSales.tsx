@@ -1,9 +1,17 @@
-// import Product from "./Product"
-// import storeData
+// import Product, {ProductType} from "./Product"
+// import data from "../data/data.json"
+// import {useState} from "react"
+import ProductSlider from "./product-slider/ProductSlider"
 
-// const FlashSales = () => {
+const FlashSales = () => {
+    // const [store, _setStore] = useState<ProductType[]>(data)
 
 
-// }
-// // https://dummyjson.com/products/1
-// export default FlashSales
+
+    return (
+      <ProductSlider />
+    )
+
+
+}
+export default FlashSales
