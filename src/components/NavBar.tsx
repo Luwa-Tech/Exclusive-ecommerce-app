@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom"
 import SearchBar from "./SearchBar"
 import {HiBars3CenterLeft } from "react-icons/hi2"
 import { CiShoppingCart, CiHeart} from "react-icons/ci"
-import { useMedia } from "../hooks/UseMedia"
+import { useMedia } from "../hooks/useMedia"
 import Categories from "./Categories"
 
 

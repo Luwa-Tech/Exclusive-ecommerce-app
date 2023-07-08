@@ -1,7 +1,7 @@
 // import { NavLink } from "react-router-dom"
 import { AiFillApple} from "react-icons/ai"
 import { GoArrowRight } from "react-icons/go"
-import { useMedia } from "../hooks/UseMedia"
+import { useMedia } from "../hooks/useMedia"
 
 const HeroCarousel = () => {
     const {isDesktop} = useMedia()

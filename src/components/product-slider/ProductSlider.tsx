@@ -1,40 +1,32 @@
-// import { ProductType } from "../Product"
 import Slider from "react-slick"
-import "./slick.css"
-import "./slick-theme.css"
+import Product from "../Product"
+
+import "slick-carousel/slick/slick.css" 
+import "slick-carousel/slick/slick-theme.css"
+
+import useStoreProducts from "../../hooks/useStoreProducts"
 
 const ProductSlider = () => {
-    const settings = {
+  const {storeProducts} = useStoreProducts()
+  const settings = {
         dots: true,
-        infinite: false,
+        infinite: true,
         speed: 500,
         slidesToShow: 3,
-        slidesToScroll: 1
+        slidesToScroll: 3
       };
     return (
-        <div>
-        <h2> Single Item</h2>
+        <section className="mt-[3rem] border-2">
         <Slider {...settings}>
-          <div>
-            <h3>1</h3>
-          </div>
-          <div>
-            <h3>2</h3>
-          </div>
-          <div>
-            <h3>3</h3>
-          </div>
-          <div>
-            <h3>4</h3>
-          </div>
-          <div>
-            <h3>5</h3>
-          </div>
-          <div>
-            <h3>6</h3>
-          </div>
+          {
+            storeProducts.map(item => {
+              return (
+                <Product {...item} />
+              )
+            })
+          }
         </Slider>
-      </div>
+      </section>
     )
 }
 

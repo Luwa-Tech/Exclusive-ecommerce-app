@@ -9,6 +9,7 @@ import Home from "./pages/Home"
 import Contact from "./pages/Contact"
 import About from "./pages/About"
 import PageNotFound from "./pages/404"
+import StoreProductsProvider from "./context/StoreContext"
 
 const App = () => {
     const router = createBrowserRouter(
@@ -22,7 +23,9 @@ const App = () => {
             </Route>
     ))
     return (
-        <RouterProvider router={router}/>
+        <StoreProductsProvider>
+            <RouterProvider router={router}/>
+        </StoreProductsProvider>
     )
 }
 

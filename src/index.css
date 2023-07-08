@@ -4,12 +4,12 @@
 @tailwind utilities;
 
 
-.layout {
+/* .layout {
     display: grid;
     height: 100vh;
   
     grid-template-rows: auto 1fr auto;
-}
+} */
 
 img {
     max-width: 100%;

@@ -1,5 +1,6 @@
 import Hero from "../components/Hero"
-import FlashSales from "../components/FlashSales"
+import ProductSlider from "../components/product-slider/ProductSlider"
+
 
 const Home = () => {
 
@@ -9,7 +10,7 @@ const Home = () => {
             <Hero/>
             </section>
             <section >
-            <FlashSales />
+            <ProductSlider />
             </section>
         </main>
     )
