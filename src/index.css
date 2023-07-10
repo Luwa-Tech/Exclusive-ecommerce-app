@@ -3,6 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+    display: none;
+  }
+
 
 /* .layout {
     display: grid;
@@ -13,6 +17,7 @@
 
 img {
     max-width: 100%;
+    /* aspect-ratio: 1; */
 }
 
 .nav-icon {
@@ -26,4 +31,15 @@ img {
 .product-slider-container {
     margin: 0 auto;
     
+}
+
+.hero-image {
+    width: 100%;
+    object-fit: cover;
+}
+
+.button {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

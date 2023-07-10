@@ -12,15 +12,19 @@ export type ProductType = {
 
 const Product = ({...items}: ProductType) => {
     return (
-        <div className="md:w-[12rem]">
-           <div className="bg-secondary-500 px-[1.7rem] py-[2.4rem] flex items-center justify-center"> 
-           <img className="md:w-[5.7rem] object-cover" src={items.image} alt="product image" />
-           </div>
-        <div className="flex flex-col ">
-            <p className="md:text-[1rem] font-medium md:leading-[1.5rem] text-textColor-600">{items.name}</p>
-            <span className="md:text-[1rem] font-medium md:leading-[1.5rem] text-secondary-700">${items.price}</span>
-            <span>{items.rating}</span>
-        </div>
+        <div className="w-[8.5rem] md:w-[11rem]">
+              <div className="bg-secondary-700 text-textColor-400 py-[0.25rem] px-[0.75rem] absolute top-[8px]  text-[0.6rem] md:text-[0.75rem] font-normal md:leading-[1.125rem]">{items.discount}%</div>
+                <div className="bg-secondary-500 px-[1.7rem] py-[2.4rem] flex items-center justify-center"> 
+                <img className="w-[5rem] h-[5rem] object-contain" src={items.image} alt="product image" />
+                </div>
+            <div className="flex flex-col ">
+                <p className="mt-[.4rem] text-[.7rem] md:text-[.9rem] font-medium md:leading-[1.5rem] text-textColor-600">{items.name}</p>
+                <div>
+                <span className="text-[.7rem] md:text-[.9rem] font-medium md:leading-[1.5rem] text-secondary-700 mr-[0.4rem]">${items.price}</span>
+                {items.discountPrice && <span className="text-[.7rem] md:text-[.9rem] font-medium text-textColor-600 md:leading-[1.5rem] opacity-[0.5] line-through">${items?.discountPrice}</span>}
+                </div>
+                <span>{items.rating}</span>
+            </div>
         </div>
     )
 }

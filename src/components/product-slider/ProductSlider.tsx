@@ -8,25 +8,47 @@ import useStoreProducts from "../../hooks/useStoreProducts"
 
 const ProductSlider = () => {
   const {storeProducts} = useStoreProducts()
+  const flashSalesProducts = storeProducts.filter(item => item.discount !== "")
+  console.log(flashSalesProducts)
   const settings = {
-        dots: true,
+        dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 3
+        slidesToShow: 6,
+        slidesToScroll: 2,
+        responsive: [
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              initialSlide: 2
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+          
+              slidesToShow: 3,
+              slidesToScroll: 1,
+              infinite: false,
+              dots: false
+
+            }
+          }
+        ]
       };
     return (
-        <section className="mt-[3rem] border-2">
         <Slider {...settings}>
           {
-            storeProducts.map(item => {
+            flashSalesProducts.map(item => {
+
               return (
                 <Product {...item} />
               )
             })
           }
         </Slider>
-      </section>
     )
 }
 

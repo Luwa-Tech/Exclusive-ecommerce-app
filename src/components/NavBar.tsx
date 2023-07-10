@@ -4,9 +4,7 @@ import SearchBar from "./SearchBar"
 import {HiBars3CenterLeft } from "react-icons/hi2"
 import { CiShoppingCart, CiHeart} from "react-icons/ci"
 import { useMedia } from "../hooks/useMedia"
-import Categories from "./Categories"
-
-
+// import Categories from "./Categories"
 
 const NavBar = () => {
     const [isOpen, setIsOpen] = React.useState<boolean>(false)
@@ -15,8 +13,8 @@ const NavBar = () => {
     }
     const {isMobile, isDesktop} = useMedia()
     return (
-        <nav>
-            <div className="flex justify-between items-center md:w-[90%] md:m-auto md:max-w-[1200px] pt-2 px-2 md:pt-[1rem] md:pb-[.5rem] border-b-secondary-500 md:border-b-[1.95px]">
+        <nav className="md:border-b-secondary-500 md:border-b-[2px]">
+            <div className="flex justify-between items-center md:w-[90%] md:m-auto md:max-w-[1200px] pt-2 px-2 md:pt-[1rem] md:pb-[.5rem]">
                 <section className="flex items-center gap-2">
                     <HiBars3CenterLeft className="md:hidden w-[1.6rem] h-[1.6rem]" onClick={handleToggle}/>
                     <h1 className="text-[1.3rem] md:text-[1.5rem] font-bold tracking-[0.045rem] text-textColor-600 leading-6">Exclusive</h1>
@@ -25,7 +23,7 @@ const NavBar = () => {
                     <NavLink to="/" className="nav-link">Home</NavLink>
                     <NavLink to="/contact" className="nav-link">Contact</NavLink>
                     <NavLink to="/about" className="nav-link">About</NavLink>
-                    {isMobile && <Categories />}
+                    {/* {isMobile && <Categories />} */}
                 </section>
                 <section className="flex items-center gap-[1.5rem]">
                     {isDesktop && <SearchBar/>}
