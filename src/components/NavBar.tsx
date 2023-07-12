@@ -4,7 +4,7 @@ import SearchBar from "./SearchBar"
 import {HiBars3CenterLeft } from "react-icons/hi2"
 import { CiShoppingCart, CiHeart} from "react-icons/ci"
 import { useMedia } from "../hooks/useMedia"
-// import Categories from "./Categories"
+
 
 const NavBar = () => {
     const [isOpen, setIsOpen] = React.useState<boolean>(false)
@@ -23,7 +23,6 @@ const NavBar = () => {
                     <NavLink to="/" className="nav-link">Home</NavLink>
                     <NavLink to="/contact" className="nav-link">Contact</NavLink>
                     <NavLink to="/about" className="nav-link">About</NavLink>
-                    {/* {isMobile && <Categories />} */}
                 </section>
                 <section className="flex items-center gap-[1.5rem]">
                     {isDesktop && <SearchBar/>}

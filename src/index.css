@@ -15,6 +15,10 @@
     grid-template-rows: auto 1fr auto;
 } */
 
+.layout {
+    overflow: hidden;
+}
+
 img {
     max-width: 100%;
     /* aspect-ratio: 1; */
@@ -42,4 +46,12 @@ img {
     position: absolute;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.slick-hide-arrow {
+    display: none;
+}
+
+.slick-show-arrow {
+    display: block;
 }
