@@ -1,77 +1,39 @@
-import Slider from "react-slick"
-import Product from "../Product"
+import { useMedia } from "../../hooks/useMedia"
+import { BsArrowRightShort, BsArrowLeftShort } from "react-icons/bs"
 
+type ProductSliderType = {
+  sectionCaption: string,
+  sectionTitle: string,
+  prev: () => void,
+  next: () => void
+}
 
-import "slick-carousel/slick/slick.css" 
-import "slick-carousel/slick/slick-theme.css"
+const ProductSlider = (props: ProductSliderType) => {
+  const {isDesktop} = useMedia()
+ 
 
-import useStoreProducts from "../../hooks/useStoreProducts"
+  return (
+    <>
+    <div className="flex items-center gap-[.7rem]">
+      <span className="w-[1rem] md:w-[1.25rem] h-[2rem] md:h-[2.5rem] bg-secondary-700"></span>
+      <span className=" mr-[1.5rem] md:text-[1rem] font-semibold text-secondary-700 md:leading-[1.25rem]">{props.sectionCaption}</span>
+    </div>
 
-const ProductSlider = () => {
-  const {storeProducts} = useStoreProducts()
-  const flashSalesProducts = storeProducts.filter(item => item.discount !== "")
-
-  // const SampleNextArrow = (props: { onClick: any }) => {
-  //   const { onClick } = props;
-  //   return (
-      // <div className=" md:px-[.2rem] md:py-[.2rem] md:rounded-[1rem] bg-secondary-500" onClick={onClick}>
-      //     <BsChevronRight />
-      // </div>
-  //   );
-  // }
-  
-  // const SamplePrevArrow = (props: { onClick: any }) => {
-  //   const { onClick } = props;
-  //   return (
-      // <span className=" classname md:px-[.2rem] md:ml-[10rem] md:py-[.2rem] md:rounded-[1rem] bg-secondary-500" onClick={onClick}>
-      // <BsChevronLeft />
-      // </span>
-  //   );
-  // }
-
-  const settings = {
-        dots: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 6,
-        slidesToScroll: 2,
-        // nextArrow: <SampleNextArrow onClick={undefined} />,
-        // prevArrow: <SamplePrevArrow onClick={undefined} />,
-        responsive: [
-          {
-            breakpoint: 600,
-            settings: {
-              slidesToShow: 4,
-              slidesToScroll: 1             
-               // initialSlide: 2
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-          
-              slidesToShow: 3,
-              slidesToScroll: 1,
-              infinite: false,
-              dots: false,
-              arrows: false
-
-            }
-          }
-        ]
-      };
-    return (
-        <Slider {...settings}>
-          {
-            flashSalesProducts.map(item => {
-
-              return (
-                <Product {...item} />
-              )
-            })
-          }
-        </Slider>
-    )
+    <div className="md:flex md:justify-between md:items-center"> 
+      <h2 className="text-[1.5rem] md:text-[2.25rem] font-semibold md:leading-[3rem] md:tracking-[0.09rem] text-textColor-600 md:mb-[0.4rem]">{props.sectionTitle}</h2>
+      {   isDesktop &&                 
+      <div className="flex gap-1">
+          <span onClick={() => props.prev()} className="cursor-pointer md:px-[.3rem] text-[1.5rem] md:py-[.3rem] md:rounded-[1rem] bg-secondary-500">
+              <BsArrowLeftShort />
+          </span>
+          <span onClick={() => props.next()} className="cursor-pointer md:px-[.3rem] text-[1.5rem] md:py-[.3rem] md:rounded-[1rem] bg-secondary-500">
+          <BsArrowRightShort />
+          </span>
+      </div>
+      }
+    </div>
+    </>
+  )
 }
 
 export default ProductSlider
