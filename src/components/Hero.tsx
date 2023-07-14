@@ -19,7 +19,7 @@ const HeroCarousel = () => {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        autoplay: true,
+        autoplay: false,
       };
     return (
         <>
@@ -27,7 +27,7 @@ const HeroCarousel = () => {
                 {
                     HeroImages.map(imageUrl => {
                         return (
-                            <div className="h-[16rem] mt-[1.2rem] md:w-[55.75rem] md:h-[21.5rem] hero-div">
+                            <div key={imageUrl} className="h-[16rem] mt-[1.2rem] md:w-[55.75rem] md:h-[21.5rem] hero-div">
                                 <img className="hero-image " src={imageUrl} loading="eager" decoding="async" alt="hero image"/>
                             </div>
                         )

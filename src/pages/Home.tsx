@@ -14,6 +14,7 @@ import "slick-carousel/slick/slick-theme.css"
 
 const Home = () => {
     const sliderRef = useRef(null)
+    console.log(sliderRef.current)
     const prev = sliderRef?.current?.slickPrev
     const next = sliderRef?.current?.slickNext
 
@@ -59,7 +60,7 @@ const Home = () => {
                     {
                         flashSalesProducts.map(items => {
                             return (
-                                <Product {...items}/>
+                                <Product key={items.id} {...items}/>
                             )
                         })
                     }
