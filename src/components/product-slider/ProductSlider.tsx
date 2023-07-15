@@ -1,4 +1,4 @@
-import { useMedia } from "../../hooks/useMedia"
+import useMedia from "../../hooks/useMedia"
 import { BsArrowRightShort, BsArrowLeftShort } from "react-icons/bs"
 
 type ProductSliderType = {
