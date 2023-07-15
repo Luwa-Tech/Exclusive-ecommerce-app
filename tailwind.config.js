@@ -35,9 +35,7 @@ export default {
         'inter': ['Inter', 'sans-serif']
       },
     },
-  },
-  plugins: [
-    require('tailwind-scrollbar-hide')
-  ],
+  }
+
 }
 

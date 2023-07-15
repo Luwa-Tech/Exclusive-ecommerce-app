@@ -23,10 +23,10 @@ const ProductSlider = (props: ProductSliderType) => {
       <h2 className="text-[1.5rem] md:text-[2.25rem] font-semibold md:leading-[3rem] md:tracking-[0.09rem] text-textColor-600 md:mb-[0.4rem]">{props.sectionTitle}</h2>
       {   isDesktop &&                 
       <div className="flex gap-1">
-          <span onClick={() => props.prev()} className="cursor-pointer md:px-[.3rem] text-[1.5rem] md:py-[.3rem] md:rounded-[1rem] bg-secondary-500">
+          <span onClick={props.prev} className="cursor-pointer md:px-[.3rem] text-[1.5rem] md:py-[.3rem] md:rounded-[1rem] bg-secondary-500">
               <BsArrowLeftShort />
           </span>
-          <span onClick={() => props.next()} className="cursor-pointer md:px-[.3rem] text-[1.5rem] md:py-[.3rem] md:rounded-[1rem] bg-secondary-500">
+          <span onClick={props.next} className="cursor-pointer md:px-[.3rem] text-[1.5rem] md:py-[.3rem] md:rounded-[1rem] bg-secondary-500">
           <BsArrowRightShort />
           </span>
       </div>

@@ -13,10 +13,10 @@ import "slick-carousel/slick/slick-theme.css"
 
 
 const Home = () => {
-    const sliderRef = useRef(null)
+    const sliderRef = useRef<Slider | null>(null)
     console.log(sliderRef.current)
-    const prev = sliderRef?.current?.slickPrev
-    const next = sliderRef?.current?.slickNext
+    const prev = sliderRef.current?.slickPrev!
+    const next = sliderRef.current?.slickNext!
 
     const {storeProducts} = useStoreProducts()
     const flashSalesProducts = storeProducts.filter(item => item.discount !== "")
@@ -55,7 +55,7 @@ const Home = () => {
             <Hero/>
             </section>
             <section className="mt-[.7rem] pl-[.5rem] md:pl-0 md:mt-[2rem] md:w-[90%] md:mx-auto">
-                <ProductSlider sectionCaption="Today's" sectionTitle="Flashsales" prev={prev} next={next}/>
+                <ProductSlider sectionCaption="Today's" sectionTitle="Flashsales" prev={() =>prev()} next={() =>next()}/>
                 <Slider ref={sliderRef} {...settings}>
                     {
                         flashSalesProducts.map(items => {
