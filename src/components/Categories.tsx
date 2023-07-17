@@ -1,5 +1,6 @@
 export type CategoriesType = {
-    image: string,
+    id: number,
+    imageIcon: string,
     categoryName: string
 }
 
@@ -7,7 +8,7 @@ export type CategoriesType = {
 const Categories = ({...items}: CategoriesType) => {
     return (
         <div>
-            <img src={items.image} alt="category image" /> 
+            <img src={items.imageIcon} alt="category image" /> 
             <p>{items.categoryName}</p> 
         </div>  
     )
