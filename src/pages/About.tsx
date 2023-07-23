@@ -1,4 +1,4 @@
-import aboutImagePortrait from "..first:/assets/images/about/portrait-two-african-females-holding-shopping-bags-while-reacting-something-their-smartphone 1.png"
+import aboutImagePortrait from "../assets/images/about/portrait-two-african-females-holding-shopping-bags-while-reacting-something-their-smartphone 1.png"
 
 const About = () => {
     return (
