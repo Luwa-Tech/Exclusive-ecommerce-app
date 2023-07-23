@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom"
 import SearchBar from "./SearchBar"
 import {HiBars3CenterLeft } from "react-icons/hi2"
 import { CiShoppingCart, CiHeart} from "react-icons/ci"
-import useMedia from "../hooks/useMedia"
+import useRenderHook from "../hooks/useRenderHook"
 
 
 const NavBar = () => {
@@ -11,7 +11,7 @@ const NavBar = () => {
     const handleToggle = () => {
         setIsOpen(prev => !prev)
     }
-    const {isMobile, isDesktop} = useMedia()
+    const {isMobile, isDesktop} = useRenderHook()
     return (
         <nav className="md:border-b-secondary-500 md:border-b-[2px]">
             <div className="flex justify-between items-center md:w-[90%] md:m-auto md:max-w-[1200px] pt-2 px-2 md:pt-[1rem] md:pb-[.5rem]">

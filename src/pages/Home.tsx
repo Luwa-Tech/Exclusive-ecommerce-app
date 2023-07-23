@@ -3,7 +3,7 @@ import ProductSlider from "../components/product-slider/ProductSlider"
 import useStoreProducts from "../hooks/useStoreProducts"
 import Product, { ProductType } from "../components/Product"
 import Services from "../components/Categories"
-import useMedia from "../hooks/useMedia"
+import useRenderHook from "../hooks/useRenderHook"
 
 import { useRef } from "react"
 import { JSX } from "react/jsx-runtime"
@@ -16,7 +16,7 @@ import "slick-carousel/slick/slick-theme.css"
 
 
 const Home = () => {
-    const {isDesktop} = useMedia()
+    const {isDesktop} = useRenderHook()
     const sliderRef = useRef<Slider | null>(null)
     console.log(sliderRef.current)
     const prev = sliderRef.current?.slickPrev!
