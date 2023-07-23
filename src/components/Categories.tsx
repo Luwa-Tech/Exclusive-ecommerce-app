@@ -1,14 +1,14 @@
-import { GrSecure } from "react-icons/gr"
-import { TbTruckDelivery } from "react-icons/tb"
-import {AiOutlineCustomerService} from "react-icons/ai"
+import customerService from "../assets/icons/Icon-Customer service.png"
+import deliveryTruck from "../assets/icons/icon-delivery.png"
+import secure from "../assets/icons/Icon-secure.png"
 
 const Services = () => {
     return (
         <>
         <div className="flex flex-col items-center justify-center">
             <div className="bg-secondary-500 px-[.7rem] py-[.7rem] rounded-[1.8rem]">
-                <div className="bg-buttonColor-400 text-textColor-400 px-[.65rem] py-[.65rem] rounded-[1.4rem]">
-                    <TbTruckDelivery  />
+                <div className="bg-buttonColor-400 px-[.65rem] py-[.65rem] rounded-[1.4rem]">
+                    <img className="w-[1.4rem]" src={deliveryTruck} />
                 </div>
             </div>
             <p className="text-[.8rem] md:text-[1.25rem] font-semibold leading-[1.75rem] uppercase text-textColor-600">free and fast delivery</p>
@@ -17,8 +17,8 @@ const Services = () => {
 
         <div className="flex flex-col items-center justify-center">
             <div className="bg-secondary-500 px-[.7rem] py-[.7rem] rounded-[1.8rem]">
-                <div className="bg-buttonColor-400 text-textColor-400 px-[.65rem] py-[.65rem] rounded-[1.4rem]">
-                    <AiOutlineCustomerService/>
+                <div className="bg-buttonColor-400 px-[.65rem] py-[.65rem] rounded-[1.4rem]">
+                    <img className="w-[1.4rem]" src={customerService} />
                 </div>
             </div>
             <p className="text-[.8rem] md:text-[1.25rem] font-semibold leading-[1.75rem] uppercase text-textColor-600">24/7 customer service</p>
@@ -27,8 +27,8 @@ const Services = () => {
 
         <div className="flex flex-col items-center justify-center">
             <div className="bg-secondary-500 px-[.7rem] py-[.7rem] rounded-[1.8rem]">
-                <div className="bg-buttonColor-400 text-textColor-400 px-[.65rem] py-[.65rem] rounded-[1.4rem]">
-                    <GrSecure/>
+                <div className="bg-buttonColor-400 px-[.65rem] py-[.65rem] rounded-[1.4rem]">
+                    <img className="w-[1.4rem]" src={secure} />
                 </div>
             </div>
             <p className="text-[.8rem] md:text-[1.25rem] font-semibold leading-[1.75rem] uppercase text-textColor-600">money back guarantee</p>

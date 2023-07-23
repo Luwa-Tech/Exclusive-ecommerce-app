@@ -1,5 +1,21 @@
 import { createContext, ReactElement, useState } from "react";
 
+import gamepad from "../assets/images/store-images/g92-2-500x500 1.png"
+import wiredKeyboard from "../assets/images/store-images/ak-900-01-500x500 1.png"
+import gamingMonitor from "../assets/images/store-images/g27cq4-500x500 1.png"
+import comfortChair from "../assets/images/store-images/sam-moghadam-khamseh-kvmdsTrGOBM-unsplash 1.png"
+import northCoat from "../assets/images/store-images/672462_ZAH9D_5626_002_100_0000_Light-The-North-Face-x-Gucci-coat 1.png"
+import gucciDuffleBag from "../assets/images/store-images/547953_9C2ST_8746_001_082_0000_Light-Gucci-Savoy-medium-duffle-bag 1.png"
+import rgbCooler from "../assets/images/store-images/gammaxx-l240-argb-1-500x500 1.png"
+import bookshelf from "../assets/images/store-images/sam-moghadam-khamseh-L_7MQsHl_aU-unsplash 1.png"
+import dogFood from "../assets/images/store-images/71RdoeXxtrL 1.png"
+import canonCamera from "../assets/images/store-images/eos-250d-03-500x500 1.png"
+import gamingLaptop from "../assets/images/store-images/ideapad-gaming-3i-01-500x500 1.png"
+import productSet from "../assets/images/store-images/curology-j7pKVQrTUsM-unsplash 1.png"
+import kidsElectricCar from "../assets/images/store-images/New-Mercedes-Benz-Gtr-Licensed-Ride-on-Car-Kids-Electric-Toy-Car 1.png"
+import soccerCleats from "../assets/images/store-images/Copa_Sense 1.png"
+import usbGamepad from "../assets/images/store-images/GP11_PRD3 1.png"
+import satinJacket from "../assets/images/store-images/698717_Z8A1X_3475_001_100_0000_Light-Reversible-quilted-satin-jacket 1.png"
 
 export type StoreProductType = {
     "id": number,
@@ -19,7 +35,7 @@ const initState: StoreProductType[] = [
             "price": 160,
             "discount": "-30",
             "discountPrice": "120",
-            "image": "./src/assets/images/store-images/g92-2-500x500 1.png",
+            "image": gamepad,
             "rating": 5.0,
             "category": ""
         },
@@ -29,7 +45,7 @@ const initState: StoreProductType[] = [
             "price": 1160,
             "discount": "-35",
             "discountPrice": "960",
-            "image": "./src/assets/images/store-images/ak-900-01-500x500 1.png",
+            "image": wiredKeyboard,
             "rating": 4.0,
             "category": ""
         },
@@ -39,7 +55,7 @@ const initState: StoreProductType[] = [
             "price": 400,
             "discount": "-30",
             "discountPrice": "360",
-            "image": "./src/assets/images/store-images/g27cq4-500x500 1.png",
+            "image": gamingMonitor,
             "rating": 5.0,
             "category": ""
         },
@@ -49,7 +65,7 @@ const initState: StoreProductType[] = [
             "price": 400,
             "discount": "-30",
             "discountPrice": "375",
-            "image": "./src/assets/images/store-images/sam-moghadam-khamseh-kvmdsTrGOBM-unsplash 1.png",
+            "image": comfortChair,
             "rating": 4.5,
             "category": ""
         },
@@ -59,7 +75,7 @@ const initState: StoreProductType[] = [
             "price": 360,
             "discount": "",
             "discountPrice": "",
-            "image": "./src/assets/images/store-images/672462_ZAH9D_5626_002_100_0000_Light-The-North-Face-x-Gucci-coat 1.png",
+            "image": northCoat,
             "rating": 5.0,
             "category": ""
         },
@@ -69,7 +85,7 @@ const initState: StoreProductType[] = [
             "price": 1160,
             "discount": "-35",
             "discountPrice": "960",
-            "image": "./src/assets/images/store-images/547953_9C2ST_8746_001_082_0000_Light-Gucci-Savoy-medium-duffle-bag 1.png",
+            "image": gucciDuffleBag,
             "rating": 4.5,
             "category": ""
         },
@@ -79,7 +95,7 @@ const initState: StoreProductType[] = [
             "price": 170,
             "discount": "-15",
             "discountPrice": "160",
-            "image": "./src/assets/images/store-images/gammaxx-l240-argb-1-500x500 1.png",
+            "image": rgbCooler,
             "rating": 4.5,
             "category": ""
         },
@@ -89,7 +105,7 @@ const initState: StoreProductType[] = [
             "price": 360,
             "discount": "",
             "discountPrice": "",
-            "image": "./src/assets/images/store-images/sam-moghadam-khamseh-L_7MQsHl_aU-unsplash 1.png",
+            "image": bookshelf,
             "rating": 5.0,
             "category": ""
         },
@@ -99,7 +115,7 @@ const initState: StoreProductType[] = [
             "price": 100,
             "discount": "",
             "discountPrice": "",
-            "image": "./src/assets/images/store-images/71RdoeXxtrL 1.png",
+            "image": dogFood,
             "rating": 3.0,
             "category": ""
         },
@@ -109,7 +125,7 @@ const initState: StoreProductType[] = [
             "price": 360,
             "discount": "-25",
             "discountPrice": "280",
-            "image": "./src/assets/images/store-images/eos-250d-03-500x500 1.png",
+            "image": canonCamera,
             "rating": 4.0,
             "category": ""
         },
@@ -119,7 +135,7 @@ const initState: StoreProductType[] = [
             "price": 700,
             "discount": "",
             "discountPrice": "",
-            "image": "./src/assets/images/store-images/ideapad-gaming-3i-01-500x500 1.png",
+            "image": gamingLaptop,
             "rating": 5.0,
             "category": ""
         },
@@ -129,7 +145,7 @@ const initState: StoreProductType[] = [
             "price": 500,
             "discount": "",
             "discountPrice": "",
-            "image": "./src/assets/images/store-images/curology-j7pKVQrTUsM-unsplash 1.png",
+            "image": productSet,
             "rating": 4.0,
             "category": ""
         },
@@ -139,7 +155,7 @@ const initState: StoreProductType[] = [
             "price": 960,
             "discount": "",
             "discountPrice": "",
-            "image": "./src/assets/images/store-images/New-Mercedes-Benz-Gtr-Licensed-Ride-on-Car-Kids-Electric-Toy-Car 1.png",
+            "image": kidsElectricCar,
             "rating": 5.0,
             "category": ""
         },
@@ -149,7 +165,7 @@ const initState: StoreProductType[] = [
             "price": 1160,
             "discount": "-35",
             "discountPrice": "960",
-            "image": "./src/assets/images/store-images/Copa_Sense 1.png",
+            "image": soccerCleats,
             "rating": 4.5,
             "category": ""
         },
@@ -159,7 +175,7 @@ const initState: StoreProductType[] = [
             "price": 660,
             "discount": "",
             "discountPrice": "",
-            "image": "./src/assets/images/store-images/GP11_PRD3 1.png",
+            "image": usbGamepad,
             "rating": 4.5,
             "category": ""
         },
@@ -169,7 +185,7 @@ const initState: StoreProductType[] = [
             "price": 660,
             "discount": "",
             "discountPrice": "",
-            "image": "src/assets/images/store-images/698717_Z8A1X_3475_001_100_0000_Light-Reversible-quilted-satin-jacket 1.png",
+            "image": satinJacket,
             "rating": 4.5,
             "category": ""
         }

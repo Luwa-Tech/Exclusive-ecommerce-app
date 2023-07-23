@@ -12,6 +12,12 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css" 
 import "slick-carousel/slick/slick-theme.css"
 
+import boombox from "../assets/images/shop now/JBL_BOOMBOX_2_HERO_020_x1 (1) 1.png"
+import playstation from "../assets/images/shop now/ps5-slim-goedkope-playstation_large 1.png"
+import attractiveWoman from "../assets/images/shop now/attractive-woman-wearing-hat-posing-black-background 1.png"
+import amazonEcho from "../assets/images/shop now/69-694768_amazon-echo-png-clipart-transparent-amazon-echo-png 1.png"
+import perfume from "../assets/images/shop now/652e82cd70aa6522dd785109a455904c.png"
+
 
 
 
@@ -106,7 +112,7 @@ const Home = () => {
                       <button className="cursor-pointer rounded-[0.25rem] bg-buttonColor-500 text-textColor-400 text-[.7rem] md:text-[1rem] font-medium md:leading-[1.5rem] md:max-w-[20%] max-w-[35%] py-[.4rem] px-[.5rem] md:py-[.7rem] md:px-[1.2rem]">Buy Now!</button>
                     </div>
                     <div className="ml-[10rem] md:ml-auto w-[15rem] md:w-auto ">
-                      <img src="./src/assets/images/shop now/JBL_BOOMBOX_2_HERO_020_x1 (1) 1.png" decoding="async" loading="eager"/>
+                      <img src={boombox} decoding="async" loading="eager"/>
                     </div>
             </section>
 
@@ -142,7 +148,7 @@ const Home = () => {
                     <button className="text-textColor-400 text-[1rem] font-medium leading-[1.5rem] hover:underline">Shop Now</button>
                   </div>
                     <div className="max-w-[33rem]">
-                      <img className="object-cover" src="./src/assets/images/shop now/ps5-slim-goedkope-playstation_large 1.png" decoding="async" loading="eager"/>
+                      <img className="object-cover" src={playstation} decoding="async" loading="eager"/>
                     </div>
                 </div>
 
@@ -153,7 +159,7 @@ const Home = () => {
                     <button className="text-textColor-400 text-[1rem] font-medium leading-[1.5rem] hover:underline">Shop Now</button>
                   </div>
                     <div className="max-w-[100%]">
-                      <img src="./src/assets/images/shop now/attractive-woman-wearing-hat-posing-black-background 1.png" decoding="async" loading="eager"/>
+                      <img src={attractiveWoman} decoding="async" loading="eager"/>
                     </div>
                 </div>
 
@@ -164,7 +170,7 @@ const Home = () => {
                     <button className="text-textColor-400 text-[1rem] font-medium leading-[1.5rem] hover:underline">Shop Now</button>
                   </div>
                     <div>
-                      <img src="./src/assets/images/shop now/69-694768_amazon-echo-png-clipart-transparent-amazon-echo-png 1.png" decoding="async" loading="eager"/>
+                      <img src={amazonEcho} decoding="async" loading="eager"/>
                     </div>
                 </div>
 
@@ -175,7 +181,7 @@ const Home = () => {
                     <button className="text-textColor-400 text-[1rem] font-medium leading-[1.5rem] hover:underline">Shop Now</button>
                   </div>
                     <div>
-                      <img src="./src/assets/images/shop now/652e82cd70aa6522dd785109a455904c.png" decoding="async" loading="eager"/>
+                      <img src={perfume} decoding="async" loading="eager"/>
                     </div>
                 </div>
               </section>
