@@ -48,10 +48,18 @@ img {
     transform: translate(-50%, -50%);
 }
 
-.slick-hide-arrow {
+/* .slick-hide-arrow {
     display: none;
 }
 
 .slick-show-arrow {
     display: block;
+} */
+
+.darkGray {
+    background-color: rgb(11, 11, 11);
+}
+
+.lightGray {
+    background-color: rgb(41, 40, 40);
 }

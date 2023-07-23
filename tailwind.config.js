@@ -10,7 +10,8 @@ export default {
       colors: {
         primary: {
           500: '#FFFFFF',
-          600: '#363738'
+          600: '#363738',
+          // 700: 'rgb(41, 40, 40)'
         },
         secondary: {
           500: '#F5F5F5',
