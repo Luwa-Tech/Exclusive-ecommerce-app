@@ -15,7 +15,7 @@ const Footer = () => {
                     <p className="text-[1.1rem] md:text-[1.25rem] font-medium leading-[1.75rem] text-textColor-400 mb-[.6rem]">Subscribe</p>
                     <p className="text-textColor-400 text-[1rem] font-normal leading-[1.5rem] mb-[.3rem]">Get 10% off your first order</p>
                     <div className="border-[1.5px] text-textColor-400 flex items-center py-[.4rem] px-[.6rem] gap-[.4rem] md:gap-0 rounded-[0.25rem] max-w-[65%] md:max-w-[100%]">
-                        <input className="bg-transparent w-full" type="text" placeholder="Enter your email"/>
+                        <input className="bg-transparent w-full outline-none" type="text" placeholder="Enter your email"/>
                         <div className="cursor-pointer">
                         <AiOutlineSend />
                         </div>
