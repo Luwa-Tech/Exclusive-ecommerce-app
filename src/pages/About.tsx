@@ -35,7 +35,6 @@ const About = () => {
             breakpoint: 480,
             settings: {
               slidesToShow: 2,
-              centerMode: true,
               slidesToScroll: 1,
               dots: false
             }
@@ -97,7 +96,7 @@ const About = () => {
             </div>
         </section>
 
-        <section className="md:w-[90%] md:mx-auto mb-[3rem] md:mb-[6rem]">
+        <section className="md:w-[90%] md:mx-auto mb-[3rem] md:mb-[6rem] pl-[.77rem] md:pl-0"> 
             <Slider {...settings}>
                 {
                     employeeData.map(employee => {

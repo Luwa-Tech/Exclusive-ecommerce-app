@@ -11,7 +11,7 @@ type EmployeeCardType = {
 const EmployeeCard = (props: EmployeeCardType) => {
     return (
         <div className="w-[8.5rem] md:w-[23.125rem]">
-            <div className="bg-secondary-500 px-[1.5rem] py-[2.4rem] flex items-center w-[8rem] h-[13rem] justify-center mb-[1rem]"> 
+            <div className="bg-secondary-500 px-[1.5rem] py-[2.4rem] flex items-center w-[10.5rem] h-[13rem] md:w-auto md:h-auto justify-center mb-[1rem]"> 
             <img className="md:w-[18.375rem] md:h-[24.8125rem] object-contain" src={props.image} loading="eager" decoding="async" alt="product image" />
             </div>
            <div className="text-textColor-600">

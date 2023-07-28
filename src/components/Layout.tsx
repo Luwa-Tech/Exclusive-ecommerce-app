@@ -1,18 +1,22 @@
 import { Outlet } from "react-router-dom"
 import NavBar from "./NavBar"
 import Footer from "./Footer"
+import BreadCrumbs from "./BreadCrumbs"
 
 const Layout = () => {
     return (
         <div className="layout">
             <header>
-            <NavBar />
+                <NavBar />
+                <BreadCrumbs />
             </header>
+
             <main>  
-            <Outlet />
+                <Outlet />
             </main> 
+
             <footer>
-            <Footer />
+                <Footer />
             </footer>
         </div>
     )
