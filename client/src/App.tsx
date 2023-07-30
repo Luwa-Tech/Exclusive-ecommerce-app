@@ -10,6 +10,7 @@ import Contact from "./pages/Contact"
 import About from "./pages/About"
 import PageNotFound from "./pages/404"
 import StoreProductsProvider from "./context/StoreContext"
+import { CartContextProvider } from "./context/CartContext"
 
 const App = () => {
     const router = createBrowserRouter(
@@ -24,7 +25,9 @@ const App = () => {
     ))
     return (
         <StoreProductsProvider>
-            <RouterProvider router={router}/>
+            <CartContextProvider>
+                <RouterProvider router={router}/>
+            </CartContextProvider>
         </StoreProductsProvider>
     )
 }
