@@ -25,6 +25,7 @@ const Home = () => {
     const {isDesktop} = useRenderHook()
     const sliderRef = useRef<Slider | null>(null)
     console.log(sliderRef.current)
+  
     const prev = sliderRef.current?.slickPrev!
     const next = sliderRef.current?.slickNext!
     

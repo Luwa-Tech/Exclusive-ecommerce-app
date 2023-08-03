@@ -18,7 +18,7 @@ import usbGamepad from "../assets/images/store-images/GP11_PRD3 1.png"
 import satinJacket from "../assets/images/store-images/698717_Z8A1X_3475_001_100_0000_Light-Reversible-quilted-satin-jacket 1.png"
 
 export type StoreProductType = {
-    "id": number,
+    "id": string,
     "name": string,
     "price": number,
     "discount": string,
@@ -30,7 +30,7 @@ export type StoreProductType = {
 
 const initState: StoreProductType[] = [
         {
-            "id": 1,
+            "id": "1",
             "name": "HAVIT HV-G92 Gamepad",
             "price": 160,
             "discount": "-30",
@@ -40,7 +40,7 @@ const initState: StoreProductType[] = [
             "category": ""
         },
         {
-            "id": 2,
+            "id": "2",
             "name": "AK 900 Wired Keyboard",
             "price": 1160,
             "discount": "-35",
@@ -50,7 +50,7 @@ const initState: StoreProductType[] = [
             "category": ""
         },
         {
-            "id": 3,
+            "id": "3",
             "name": "IPS LCD Gaming Monitor",
             "price": 400,
             "discount": "-30",
@@ -60,7 +60,7 @@ const initState: StoreProductType[] = [
             "category": ""
         },
         {
-            "id": 4,
+            "id": "4",
             "name": "S-Series Comfort Chair",
             "price": 400,
             "discount": "-30",
@@ -70,7 +70,7 @@ const initState: StoreProductType[] = [
             "category": ""
         },
         {
-            "id": 5,
+            "id": "5",
             "name": "The north coat",
             "price": 360,
             "discount": "",
@@ -80,7 +80,7 @@ const initState: StoreProductType[] = [
             "category": ""
         },
         {
-            "id": 6,
+            "id": "6",
             "name": "Gucci duffle bag",
             "price": 1160,
             "discount": "-35",
@@ -90,7 +90,7 @@ const initState: StoreProductType[] = [
             "category": ""
         },
         {
-            "id": 7,
+            "id": "7",
             "name": "RGB liquid CPU Cooler",
             "price": 170,
             "discount": "-15",
@@ -100,7 +100,7 @@ const initState: StoreProductType[] = [
             "category": ""
         },
         {
-            "id": 8,
+            "id": "8",
             "name": "Small BookShelf",
             "price": 360,
             "discount": "",
@@ -110,7 +110,7 @@ const initState: StoreProductType[] = [
             "category": ""
         },
         {
-            "id": 9,
+            "id": "9",
             "name": "Breed Dry Dog Food",
             "price": 100,
             "discount": "",
@@ -120,7 +120,7 @@ const initState: StoreProductType[] = [
             "category": ""
         },
         {
-            "id": 10,
+            "id": "10",
             "name": "CANON E0S DSLR Camera",
             "price": 360,
             "discount": "-25",
@@ -130,7 +130,7 @@ const initState: StoreProductType[] = [
             "category": ""
         },
         {
-            "id": 11,
+            "id": "11",
             "name": "ASUS FHD Gaming Laptop",
             "price": 700,
             "discount": "",
@@ -140,7 +140,7 @@ const initState: StoreProductType[] = [
             "category": ""
         },
         {
-            "id": 12,
+            "id": "12",
             "name": "Curology Product Set",
             "price": 500,
             "discount": "",
@@ -150,7 +150,7 @@ const initState: StoreProductType[] = [
             "category": ""
         },
         {
-            "id": 13,
+            "id": "13",
             "name": "Kids Electric Car",
             "price": 960,
             "discount": "",
@@ -160,7 +160,7 @@ const initState: StoreProductType[] = [
             "category": ""
         },
         {
-            "id": 14,
+            "id": "14",
             "name": "Jr Zoom Soccer Cleats",
             "price": 1160,
             "discount": "-35",
@@ -170,7 +170,7 @@ const initState: StoreProductType[] = [
             "category": ""
         },
         {
-            "id": 15,
+            "id": "15",
             "name": "GPII Shooter USB Gamepad",
             "price": 660,
             "discount": "",
@@ -180,7 +180,7 @@ const initState: StoreProductType[] = [
             "category": ""
         },
         {
-            "id": 16,
+            "id": "16",
             "name": "Quilted Satin Jacket",
             "price": 660,
             "discount": "",

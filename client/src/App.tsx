@@ -9,8 +9,11 @@ import Home from "./pages/Home"
 import Contact from "./pages/Contact"
 import About from "./pages/About"
 import PageNotFound from "./pages/404"
+import CartPage from "./pages/CartPage"
+import ProductDetail from "./pages/ProductDetail"
 import StoreProductsProvider from "./context/StoreContext"
 import { CartContextProvider } from "./context/CartContext"
+import { WishListContextProvider } from "./context/WishListContext"
 
 const App = () => {
     const router = createBrowserRouter(
@@ -19,6 +22,8 @@ const App = () => {
                 <Route index element={<Home />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/cart" element={<CartPage />} />
+                <Route path=":id" element={<ProductDetail />} />
 
                 <Route path="*" element={<PageNotFound />} />
             </Route>
@@ -26,7 +31,9 @@ const App = () => {
     return (
         <StoreProductsProvider>
             <CartContextProvider>
-                <RouterProvider router={router}/>
+                <WishListContextProvider>
+                    <RouterProvider router={router}/>
+                </WishListContextProvider>
             </CartContextProvider>
         </StoreProductsProvider>
     )

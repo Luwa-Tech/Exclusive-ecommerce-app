@@ -7,9 +7,8 @@ import {
 
 
 type Cart = {
-    id: number,
-    qty: number,
-
+    id: string,
+    qty: number 
 }
 
 type ChildrenType = {
@@ -17,11 +16,10 @@ type ChildrenType = {
 }
 
 type CartContextInitType = {
-    AddToCart: (id: number) => void,
-    RemoveFromCart: (id: number) => void,
-    SubmitCart: () => void,
-    IncreaseItemQuantity: (id: number) => void,
-    DecreaseItemQuantity: (id: number) => void,
+    removeFromCart: (id: string) => void,
+    increaseItemQuantity: (id: string) => void,
+    decreaseItemQuantity: (id: string) => void,
+    getItemQuantity: (id: string) => number,
     cart: Cart[]
 }
 
@@ -30,25 +28,15 @@ export const CartContext = createContext({} as CartContextInitType)
 export const CartContextProvider = ({children}: ChildrenType) => {
     const [cart, setCart] = useState<Cart[]>([])
 
-    const AddToCart = (id: number) => {
+    const getItemQuantity = (id: string) => {
+        return cart.find(item => item.id === id)?.qty || 0
+    }
+
+    const increaseItemQuantity = (id: string) => {
         setCart(currItems => {
-            if(currItems.find(item => item.id === id) == null) {
-                return [...currItems, {id, qty: 1,}]
+            if(!currItems.find(item => item.id === id)){
+                return [...currItems, {id, qty: 1}]
             } else {
-                return [...currItems]
-            }
-        })   
-    }
-
-    const RemoveFromCart = (id: number) => {
-        setCart(currItems => {
-            return currItems.filter(item => item.id !== id)
-        })
-    }
-
-    const IncreaseItemQuantity = (id: number) => {
-        setCart(currItems => {
-            if(currItems.find(item => item.id === id)) {
                 return currItems.map(item => {
                     if(item.id === id) {
                         return {...item, qty: item.qty + 1}
@@ -56,19 +44,18 @@ export const CartContextProvider = ({children}: ChildrenType) => {
                         return item
                     }
                 })
-            } else {
-                return [...currItems]
             }
-        }) 
+        })
     }
 
-    const DecreaseItemQuantity = (id: number) => {
+        const decreaseItemQuantity = (id: string) => {
         setCart(currItems => {
             if(currItems.find(item => item.id === id)?.qty === 1){
                 return currItems.filter(item => item.id !== id)
             } else {
                 return currItems.map(item => {
                     if (item.id === id) {
+                        
                         return {...item, qty: item.qty - 1}
                     }else {
                         return item
@@ -77,18 +64,21 @@ export const CartContextProvider = ({children}: ChildrenType) => {
             }
         })
     } 
-    
-    const SubmitCart = () => {
-        setCart([])
+
+    const removeFromCart = (id: string) => {
+        setCart(currItems => {
+            return currItems.filter(item => item.id !== id)
+        })
     }
+
+    
 
     return (
         <CartContext.Provider value={{
-            RemoveFromCart,
-            SubmitCart,
-            AddToCart,
-            IncreaseItemQuantity,
-            DecreaseItemQuantity,
+            removeFromCart,
+            increaseItemQuantity,
+            decreaseItemQuantity,
+            getItemQuantity,
             cart
         }}>
             {children}
