@@ -32,7 +32,7 @@ const Home = () => {
     const {storeProducts} = useStoreProducts()
     const flashSalesProducts = storeProducts.filter(item => item.discount !== "")
 
-    const bestSellingProducts = storeProducts.filter(item => item.discount === "" && (item.id > 7 && item.id <= 15))
+    const bestSellingProducts = storeProducts.filter(item => item.discount === "" && (parseInt(item.id) > 7 && parseInt(item.id) <= 15))
     console.log(bestSellingProducts)
 
     const settings = {

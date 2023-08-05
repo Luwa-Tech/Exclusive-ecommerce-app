@@ -4,7 +4,7 @@ import useRenderHook from "../hooks/useRenderHook"
 import { NavLink } from "react-router-dom"
 
 export type ProductType = {
-    id: number
+    id: string,
     name: string,
     image: string,
     price: number,
