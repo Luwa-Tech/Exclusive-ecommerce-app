@@ -20,6 +20,7 @@ type CartContextInitType = {
     increaseItemQuantity: (id: string) => void,
     decreaseItemQuantity: (id: string) => void,
     getItemQuantity: (id: string) => number,
+    cartQuantity: number,
     cart: Cart[]
 }
 
@@ -27,6 +28,11 @@ export const CartContext = createContext({} as CartContextInitType)
 
 export const CartContextProvider = ({children}: ChildrenType) => {
     const [cart, setCart] = useState<Cart[]>([])
+
+    const cartQuantity = cart.reduce(
+        (quantity, item) => item.qty + quantity,
+        0
+    )
 
     const getItemQuantity = (id: string) => {
         return cart.find(item => item.id === id)?.qty || 0
@@ -71,6 +77,17 @@ export const CartContextProvider = ({children}: ChildrenType) => {
         })
     }
 
+    // const totalItems: number = cart.reduce((prevValue, cartItem) => {
+    //     return prevValue + cartItem.qty
+    // }, 0) 
+    
+    // const totalPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
+    //     cart.reduce((previousValue, cartItem) => {
+    //         return previousValue + (cartItem.qty * cartItem.price)
+    //     }, 0)
+    // )
+    
+
     
 
     return (
@@ -79,6 +96,7 @@ export const CartContextProvider = ({children}: ChildrenType) => {
             increaseItemQuantity,
             decreaseItemQuantity,
             getItemQuantity,
+            cartQuantity,
             cart
         }}>
             {children}

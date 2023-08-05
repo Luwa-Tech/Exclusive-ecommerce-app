@@ -5,11 +5,13 @@ import {HiBars3CenterLeft } from "react-icons/hi2"
 import { CiShoppingCart, CiHeart} from "react-icons/ci"
 import useRenderHook from "../hooks/useRenderHook"
 import { CartContext } from "../context/CartContext"
+import { WishListContext } from "../context/WishListContext"
 import { useContext } from "react"
 
 
 const NavBar = () => {
-    const {cart} = useContext(CartContext)
+    const {cart, cartQuantity} = useContext(CartContext)
+    const {wishList} = useContext(WishListContext)
 
     const [isOpen, setIsOpen] = React.useState<boolean>(false)
     const handleOpenToggle = () => {
@@ -34,13 +36,20 @@ const NavBar = () => {
                 </section>
                 <section className="flex items-center gap-[1.5rem]">
                     {isDesktop && <SearchBar/>}
-                    <div className="flex items-center gap-[0.45rem]">
-                        <CiHeart className="nav-icon"/>
+                    <div className="flex items-center gap-[0.45rem]">                     
+                        <NavLink to="/wishlist">                           
+                            <div className="relative">
+                            <CiHeart className="nav-icon"/>
+                            {
+                                wishList.length !== 0 && <div className="absolute text-textColor-400 bg-secondary-700 text-[.7rem] md:text-[.9rem] px-[.5rem] py-[.1rem] rounded-[1.9rem] md:rounded-[1.9rem] top-[-7px] md:top-[-13px] right-[-12px] md:right-[-14px]">{wishList.length}</div>
+                            }
+                            </div>
+                        </NavLink>
                         <NavLink to="/cart">
                             <div className="relative">
                             <CiShoppingCart className="nav-icon"/>
                             {
-                                cart.length !== 0 &&                             <div className="absolute text-textColor-400 bg-secondary-700 text-[.7rem] md:text-[.9rem] px-[.5rem] py-[.1rem] rounded-[1.9rem] md:rounded-[1.9rem] top-[-7px] md:top-[-13px] right-[-12px] md:right-[-14px]">{cart.length}</div>
+                                cart.length !== 0 && <div className="absolute text-textColor-400 bg-secondary-700 text-[.7rem] md:text-[.9rem] px-[.5rem] py-[.1rem] rounded-[1.9rem] md:rounded-[1.9rem] top-[-7px] md:top-[-13px] right-[-12px] md:right-[-14px]">{cartQuantity}</div>
                             }
                             </div>
                         </NavLink>

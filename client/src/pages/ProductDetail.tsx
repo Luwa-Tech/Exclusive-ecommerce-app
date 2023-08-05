@@ -5,17 +5,15 @@ import {TbTruckDelivery} from "react-icons/tb"
 import {GiReturnArrow} from "react-icons/gi"
 import { CartContext } from "../context/CartContext"
 import { useContext } from "react"
+import { WishListContext } from "../context/WishListContext"
 // import { formatCurrency } from "../utils"
-
-// type itemParamType = {
-//     id?: string
-// }
 
 
 const ProductDetail = () => {
     const {id} = useParams()
     const {storeProducts} = useStoreProducts()
-    console.log(id)
+
+    const {AddToWishList} = useContext(WishListContext)
 
     const {            
         increaseItemQuantity,
@@ -43,7 +41,7 @@ const ProductDetail = () => {
                 <section>
                     <div className="border-b-[.1rem] border-textColor-600 pb-2">
                         <h2 className="text-textColor-600 md:text-[1.5rem] mt-[1.2rem] md:mt-[1.5rem] font-semibold md:leading-[1.5rem] md:tracking-[0.045rem]">{product?.name}</h2>
-                        <p className="text-textColor-600 md:text-[1.5rem] mt-[1.2rem] font-normal md:leading-[1.5rem] md:tracking-[0.045rem]">{product?.price}</p>
+                        <p className="text-textColor-600 md:text-[1.5rem] mt-[1.2rem] font-normal md:leading-[1.5rem] md:tracking-[0.045rem]">${product?.price}.00</p>
                     </div>
                     <div className="flex items-center gap-2 mt-[1.2rem]">
                         {
@@ -58,9 +56,9 @@ const ProductDetail = () => {
                         </div>
                         }
 
-                        <div className="hover:bg-secondary-700 border-[.1rem] border-textColor-600 px-[.65rem] py-[.4rem] hover:text-textColor-400">
+                        <button onClick={() => AddToWishList(id)} className="hover:bg-secondary-700 border-[.1rem] border-textColor-600 px-[.65rem] py-[.4rem] hover:text-textColor-400">
                             <CiHeart className="w-[1.2rem] h-[1.6rem]"/>
-                        </div>
+                        </button>
                     </div>
 
                     <div className="border-textColor-600 border-[.1rem] mt-[1.2rem] w-[60%] md:w-auto rounded-[.2rem] py-[.6rem] pl-[.5rem] md:px-[.6rem] md:py-[.7rem]">

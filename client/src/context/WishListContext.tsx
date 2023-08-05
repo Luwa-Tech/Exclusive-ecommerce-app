@@ -1,12 +1,12 @@
 import { ReactElement, ReactNode, createContext, useState } from "react"
 
 type WishListType = {
-    id: number,
+    id: string,
 }
 
 type WishListContextType = {
-    AddToWishList: (id:number) => void,
-    RemoveFromWishList: (id: number) => void,
+    AddToWishList: (id: string) => void,
+    RemoveFromWishList: (id: string) => void,
     wishList: WishListType[]
 }
 
@@ -19,18 +19,17 @@ export const WishListContext = createContext({} as WishListContextType)
 export const WishListContextProvider = ({children}: ChildrenType) => {
     const [wishList, setWishList] = useState<WishListType[]>([])
 
-    const AddToWishList = (id:number) => {
-        //check if item exist in wishlist
-        const itemExist = wishList.find(item => item.id === id)
-        if(itemExist) {
-            // setWishList(currItems => [...currItems])
-            return
-        }else {
-            setWishList(currItems => [...currItems, {id}])
-        }
+    const AddToWishList = (id: string) => {
+        setWishList(currItems => {
+            if(currItems.find(item => item.id === id)) {
+                return [...currItems]
+            }else {
+                return [...currItems, {id}]
+            }
+        })
     }
 
-    const RemoveFromWishList = (id:number) => {
+    const RemoveFromWishList = (id:string) => {
         setWishList(currItems => {
             return currItems.filter(item => item.id !== id)
         })
