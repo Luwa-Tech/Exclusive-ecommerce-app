@@ -25,8 +25,28 @@ export type StoreProductType = {
     "discountPrice": string,
     "image": string,
     "rating": number,
-    "category": string 
+    "category": string,
+    "stripeID": string
 }
+
+//change price to discount price for each item except soccercleats
+
+//gamepad: price_1Nc463EQoG2EqoC4WgLge1nq
+//wiredKeyboard: price_1Nc47DEQoG2EqoC42cYxPVD8
+//gamingMonitor: price_1Nc48uEQoG2EqoC4JdC3fhBL
+//comfortChair: price_1Nc4AnEQoG2EqoC4Lq9QWMof
+//northCoat: price_1Nc3YuEQoG2EqoC48JipyBWD
+//gucciduffelbag: price_1Nc4ByEQoG2EqoC4EWqJly96
+//rgbCooler: price_1Nc4DNEQoG2EqoC4gMA2UUGp
+//bookShelf: price_1Nc3eaEQoG2EqoC4L0ZeGeFP
+//dogFood: price_1Nc3gWEQoG2EqoC4YXtrt4Tq
+//canonCamera: price_1Nc4F2EQoG2EqoC49JsNE0Ig
+//gamingLaptop: price_1Nc3jzEQoG2EqoC4wwKcvUw7
+//productSet: price_1Nc3llEQoG2EqoC4L7TocHTO
+//kidsElectricCar: price_1Nc3nKEQoG2EqoC4fvxeeXrp
+//soccerCleats: price_1Nc3tWEQoG2EqoC4RxDSCgU3
+//usbGamepad: price_1Nc3yvEQoG2EqoC4MXnq7Af8
+//satinJacket: price_1Nc40mEQoG2EqoC4q2kI7bpi
 
 const initState: StoreProductType[] = [
         {
@@ -37,7 +57,8 @@ const initState: StoreProductType[] = [
             "discountPrice": "120",
             "image": gamepad,
             "rating": 5.0,
-            "category": ""
+            "category": "",
+            "stripeID": "price_1Nc463EQoG2EqoC4WgLge1nq"
         },
         {
             "id": "2",
@@ -47,7 +68,8 @@ const initState: StoreProductType[] = [
             "discountPrice": "960",
             "image": wiredKeyboard,
             "rating": 4.0,
-            "category": ""
+            "category": "",
+            "stripeID": "price_1Nc47DEQoG2EqoC42cYxPVD8"
         },
         {
             "id": "3",
@@ -57,17 +79,19 @@ const initState: StoreProductType[] = [
             "discountPrice": "360",
             "image": gamingMonitor,
             "rating": 5.0,
-            "category": ""
+            "category": "",
+            "stripeID": "price_1Nc48uEQoG2EqoC4JdC3fhBL"
         },
         {
             "id": "4",
             "name": "S-Series Comfort Chair",
             "price": 400,
             "discount": "-30",
-            "discountPrice": "375",
+            "discountPrice": "360",
             "image": comfortChair,
             "rating": 4.5,
-            "category": ""
+            "category": "",
+            "stripeID": "price_1Nc4AnEQoG2EqoC4Lq9QWMof"
         },
         {
             "id": "5",
@@ -77,7 +101,8 @@ const initState: StoreProductType[] = [
             "discountPrice": "",
             "image": northCoat,
             "rating": 5.0,
-            "category": ""
+            "category": "",
+            "stripeID": "price_1Nc3YuEQoG2EqoC48JipyBWD"
         },
         {
             "id": "6",
@@ -87,17 +112,19 @@ const initState: StoreProductType[] = [
             "discountPrice": "960",
             "image": gucciDuffleBag,
             "rating": 4.5,
-            "category": ""
+            "category": "",
+            "stripeID": "price_1Nc4ByEQoG2EqoC4EWqJly96"
         },
         {
             "id": "7",
             "name": "RGB liquid CPU Cooler",
             "price": 170,
             "discount": "-15",
-            "discountPrice": "160",
+            "discountPrice": "155",
             "image": rgbCooler,
             "rating": 4.5,
-            "category": ""
+            "category": "",
+            "stripeID": "price_1Nc4DNEQoG2EqoC4gMA2UUGp"
         },
         {
             "id": "8",
@@ -107,7 +134,8 @@ const initState: StoreProductType[] = [
             "discountPrice": "",
             "image": bookshelf,
             "rating": 5.0,
-            "category": ""
+            "category": "",
+            "stripeID": "price_1Nc3eaEQoG2EqoC4L0ZeGeFP"
         },
         {
             "id": "9",
@@ -117,7 +145,8 @@ const initState: StoreProductType[] = [
             "discountPrice": "",
             "image": dogFood,
             "rating": 3.0,
-            "category": ""
+            "category": "",
+            "stripeID": "price_1Nc3gWEQoG2EqoC4YXtrt4Tq"
         },
         {
             "id": "10",
@@ -127,7 +156,8 @@ const initState: StoreProductType[] = [
             "discountPrice": "280",
             "image": canonCamera,
             "rating": 4.0,
-            "category": ""
+            "category": "",
+            "stripeID": "price_1Nc4F2EQoG2EqoC49JsNE0Ig"
         },
         {
             "id": "11",
@@ -137,7 +167,8 @@ const initState: StoreProductType[] = [
             "discountPrice": "",
             "image": gamingLaptop,
             "rating": 5.0,
-            "category": ""
+            "category": "",
+            "stripeID": "price_1Nc3jzEQoG2EqoC4wwKcvUw7"
         },
         {
             "id": "12",
@@ -147,7 +178,8 @@ const initState: StoreProductType[] = [
             "discountPrice": "",
             "image": productSet,
             "rating": 4.0,
-            "category": ""
+            "category": "",
+            "stripeID": "price_1Nc3llEQoG2EqoC4L7TocHTO"
         },
         {
             "id": "13",
@@ -157,7 +189,8 @@ const initState: StoreProductType[] = [
             "discountPrice": "",
             "image": kidsElectricCar,
             "rating": 5.0,
-            "category": ""
+            "category": "",
+            "stripeID": "price_1Nc3nKEQoG2EqoC4fvxeeXrp"
         },
         {
             "id": "14",
@@ -167,7 +200,8 @@ const initState: StoreProductType[] = [
             "discountPrice": "960",
             "image": soccerCleats,
             "rating": 4.5,
-            "category": ""
+            "category": "",
+            "stripeID": "price_1Nc3tWEQoG2EqoC4RxDSCgU3"
         },
         {
             "id": "15",
@@ -177,7 +211,8 @@ const initState: StoreProductType[] = [
             "discountPrice": "",
             "image": usbGamepad,
             "rating": 4.5,
-            "category": ""
+            "category": "",
+            "stripeID": "price_1Nc3yvEQoG2EqoC4MXnq7Af8"
         },
         {
             "id": "16",
@@ -187,7 +222,8 @@ const initState: StoreProductType[] = [
             "discountPrice": "",
             "image": satinJacket,
             "rating": 4.5,
-            "category": ""
+            "category": "",
+            "stripeID": "price_1Nc40mEQoG2EqoC4q2kI7bpi"
         }
 ]
 

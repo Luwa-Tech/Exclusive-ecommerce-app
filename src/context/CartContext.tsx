@@ -8,7 +8,8 @@ import {
 
 type Cart = {
     id: string,
-    qty: number 
+    qty: number,
+    stripeID: string
 }
 
 type ChildrenType = {
@@ -17,7 +18,7 @@ type ChildrenType = {
 
 type CartContextInitType = {
     removeFromCart: (id: string) => void,
-    increaseItemQuantity: (id: string) => void,
+    increaseItemQuantity: (id: string, stripeID: string) => void,
     decreaseItemQuantity: (id: string) => void,
     getItemQuantity: (id: string) => number,
     cartQuantity: number,
@@ -38,10 +39,10 @@ export const CartContextProvider = ({children}: ChildrenType) => {
         return cart.find(item => item.id === id)?.qty || 0
     }
 
-    const increaseItemQuantity = (id: string) => {
+    const increaseItemQuantity = (id: string, stripeID: string) => {
         setCart(currItems => {
             if(!currItems.find(item => item.id === id)){
-                return [...currItems, {id, qty: 1}]
+                return [...currItems, {id, qty: 1, stripeID: stripeID}]
             } else {
                 return currItems.map(item => {
                     if(item.id === id) {
@@ -76,18 +77,6 @@ export const CartContextProvider = ({children}: ChildrenType) => {
             return currItems.filter(item => item.id !== id)
         })
     }
-
-    // const totalItems: number = cart.reduce((prevValue, cartItem) => {
-    //     return prevValue + cartItem.qty
-    // }, 0) 
-    
-    // const totalPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
-    //     cart.reduce((previousValue, cartItem) => {
-    //         return previousValue + (cartItem.qty * cartItem.price)
-    //     }, 0)
-    // )
-    
-
     
 
     return (
