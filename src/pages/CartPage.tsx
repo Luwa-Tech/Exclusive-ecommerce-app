@@ -24,19 +24,6 @@ const CartPage = () => {
         return total + (item?.price || 0) * cartItem.qty
     }, 0)
 
-    // const client = axios.create({
-    //     baseURL: "https://localhost:3500/checkout" 
-    //   });
-
-    // const checkoutHandler = async () => {
-    //     const response = await client.post("", {
-    //         cart
-    //     })
-    //     if(response) {
-    //         window.location.assign(response.url)
-    //     }
-    //     console.log(response)
-    // }
 
     const checkoutHandler = async () => {
         await fetch("https://exclusive-ecommerce-api.glitch.me/checkout", {
@@ -44,8 +31,8 @@ const CartPage = () => {
             headers: {
                 "Content-Type": "application/json"
             },
-            credentials: "include",
-            body: JSON.stringify(cart)
+            credentials: "same-origin",
+            body: JSON.stringify({items: cart})
         }).then(response => {
             return response.json();
         }).then(response => {
