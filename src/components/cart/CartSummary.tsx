@@ -1,7 +1,8 @@
 import { formatCurrency } from "../../utils"
 
 type CartSummaryType = {
-    totalPrice: number
+    totalPrice: number,
+    checkoutHandler?: () => void
 }
 
 export const MobileCartSummary = (props: CartSummaryType) => {
@@ -30,7 +31,7 @@ export const DesktopCartSummary = (props: CartSummaryType) => {
                 </div>
                 <p className="text-textColor-500 text-[.8rem]">Delivery fees not included yet</p>
             </div>
-            <button className="bg-secondary-700 text-textColor-400 px-[.5rem] py-[.4rem] rounded-[.2rem] uppercase mt-2 w-[100%] hover:opacity-[0.6]">Checkout {formatCurrency(props.totalPrice)}</button>
+            <button onClick={props.checkoutHandler} className="bg-secondary-700 text-textColor-400 px-[.5rem] py-[.4rem] rounded-[.2rem] uppercase mt-2 w-[100%] hover:opacity-[0.6]">Checkout {formatCurrency(props.totalPrice)}</button>
         </div>
     )
 }
