@@ -4,9 +4,11 @@ import useStoreProducts from "../hooks/useStoreProducts"
 import Product, { ProductType } from "../components/Product"
 import Services from "../components/Categories"
 import useRenderHook from "../hooks/useRenderHook"
+import { MobileScroll, DesktopScroll } from "../components/ScrollToTop"
 
 import { useRef } from "react"
 import { JSX } from "react/jsx-runtime"
+import { BsArrowRightShort, BsArrowLeftShort } from "react-icons/bs"
 
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css" 
@@ -22,7 +24,7 @@ import perfume from "../assets/images/shop now/652e82cd70aa6522dd785109a455904c.
 
 
 const Home = () => {
-    const {isDesktop} = useRenderHook()
+    const {isDesktop, isMobile} = useRenderHook()
     const sliderRef = useRef<Slider | null>(null)
     console.log(sliderRef.current)
   
@@ -30,9 +32,9 @@ const Home = () => {
     const next = sliderRef.current?.slickNext!
     
     const {storeProducts} = useStoreProducts()
-    const flashSalesProducts = storeProducts.filter(item => item.discount !== "")
+    const flashSalesProducts = storeProducts.filter((item: { discount: string }) => item.discount !== "")
 
-    const bestSellingProducts = storeProducts.filter(item => item.discount === "" && (parseInt(item.id) > 7 && parseInt(item.id) <= 15))
+    const bestSellingProducts = storeProducts.filter((item: { discount: string; id: string }) => item.discount === "" && (parseInt(item.id) > 7 && parseInt(item.id) <= 15))
     console.log(bestSellingProducts)
 
     const settings = {
@@ -59,7 +61,9 @@ const Home = () => {
               slidesToScroll: 1,
               infinite: false,
               arrows: false,
-              rows: 1
+              rows: 1,
+            
+            
             }
           }
         ]
@@ -70,11 +74,21 @@ const Home = () => {
             <section>
             <Hero/>
             </section>
-            <section className="mt-[.7rem] pl-[.5rem] md:pl-0 md:mt-[2rem] md:w-[90%] md:mx-auto">
-                <ProductSlider sectionCaption="Today's" sectionTitle="Flashsales" prev={() =>prev()} next={() =>next()}/>
+            <section className="mt-[.7rem] pl-[.5rem] md:pl-0 md:mt-[2rem] md:w-[90%] md:mx-auto relative">
+              {
+                isMobile && <div className="absolute z-[2] flex gap-[20rem] top-[160px]">
+              <span onClick={prev} className="cursor-pointer text-[1.5rem] bg-secondary-500 px-[.4rem] py-[.4rem] rounded-[.9rem]">
+                  <BsArrowLeftShort />
+              </span>
+              <span onClick={next} className="cursor-pointer text-[1.5rem]   bg-secondary-500 px-[.4rem] py-[.4rem] rounded-[.9rem]">
+              <BsArrowRightShort />
+              </span>
+            </div>
+            }
+                <ProductSlider sectionCaption="Today's" sectionTitle="Flashsales" prev={() => prev()} next={() => next()}/>
                 <Slider ref={sliderRef} {...settings}>
                     {
-                        flashSalesProducts.map(items => {
+                        flashSalesProducts.map((items: JSX.IntrinsicAttributes & ProductType) => {
                             return (
                                 <Product key={items.id} {...items}/>
                             )
@@ -106,7 +120,7 @@ const Home = () => {
                 </div>
             </section>
 
-            <section className="flex flex-row justify-between bg-buttonColor-400 py-[2rem] px-[1.4rem] md:py-[3rem] md:px-[3rem] md:h-[28rem] md:mt-[2rem] md:w-[90%] md:mx-auto mt-[2rem] relative">
+            <section className="flex flex-row justify-between bg-buttonColor-400 py-[2.5rem] px-[1.4rem] md:py-[3rem] md:px-[3rem] md:h-[28rem] md:mt-[2rem] md:w-[90%] md:mx-auto mt-[2rem] relative">
                     <div className="absolute md:static flex flex-col gap-[.8rem] md:gap-[1.2rem] md:w-[60%]">
                       <p className="text-buttonColor-500 md:text-[1rem] md:leading-[1.25rem] font-semiBold">Categories</p>
                       <h2 className="text-textColor-400 text-[1.4rem] max-w-[60%] md:text-[3rem] font-semibold leading-[1.7rem] md:leading-[3.75rem] md:tracking-[0.12rem] md:max-w-[90%]">Enhance Your Music Experience</h2>
@@ -117,11 +131,21 @@ const Home = () => {
                     </div>
             </section>
 
-            <section className="md:mt-[2rem] md:w-[90%] md:mx-auto mt-[2rem]">
+            <section className="pl-[.4rem] mb-[3rem] md:mb-0 md:pl-0 md:mt-[2rem] md:w-[90%] md:mx-auto mt-[2rem] relative">
+            {
+                isMobile && <div className="absolute z-[2] flex gap-[20rem] top-[160px]">
+                <span onClick={prev} className="cursor-pointer text-[1.5rem] bg-secondary-500 px-[.4rem] py-[.4rem] rounded-[.9rem]">
+                    <BsArrowLeftShort />
+                </span>
+                <span onClick={next} className="cursor-pointer text-[1.5rem]   bg-secondary-500 px-[.4rem] py-[.4rem] rounded-[.9rem]">
+                <BsArrowRightShort />
+                </span>
+              </div>
+            }
             <ProductSlider sectionCaption="Our Products" sectionTitle="Explore Our Products" prev={() =>prev()} next={() =>next()}/>
             <Slider ref={sliderRef} {...{...settings, rows: 2}}>
                     {
-                        storeProducts.map(items => {
+                        storeProducts.map((items: JSX.IntrinsicAttributes & ProductType) => {
                             return (
                                 <Product key={items.id} {...items}/>
                             )
@@ -189,8 +213,15 @@ const Home = () => {
               </section>
             }
 
-            <section className="flex flex-col gap-8 md:gap-0 md:flex-row justify-between md:mt-[3rem] mb-[2.2rem] md:mb-[2.5rem] md:w-[70%] md:mx-auto mt-[2.2rem]">
+            {
+              isDesktop && <section className="flex flex-col gap-8 md:gap-0 md:flex-row justify-between md:mt-[3rem] mb-[2.2rem] md:mb-[2.5rem] md:w-[70%] md:mx-auto mt-[2.2rem]">
                 <Services />
+            </section>
+            }
+
+            <section className="relative md:mt-[4rem] md:mb-[6rem]">
+              {isMobile && <MobileScroll />}
+              {isDesktop && <DesktopScroll />}
             </section>
 
         </main>

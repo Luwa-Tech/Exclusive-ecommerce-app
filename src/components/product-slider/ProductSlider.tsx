@@ -1,4 +1,4 @@
-// import useMedia from "../../hooks/useMedia"
+import useRenderHook from "../../hooks/useRenderHook"
 import { BsArrowRightShort, BsArrowLeftShort } from "react-icons/bs"
 
 type ProductSliderType = {
@@ -9,7 +9,7 @@ type ProductSliderType = {
 }
 
 const ProductSlider = (props: ProductSliderType) => {
-  // const {isDesktop} = useMedia()
+  const {isDesktop} = useRenderHook()
  
 
   return (
@@ -21,8 +21,9 @@ const ProductSlider = (props: ProductSliderType) => {
 
     <div className="flex justify-between items-center mb:mb-[2.2rem] mb-[1.5rem]"> 
       <h2 className="text-[1.2rem] md:text-[2rem] font-semibold md:leading-[3rem] md:tracking-[0.09rem] text-textColor-600 md:mb-[0.4rem]">{props.sectionTitle}</h2>
-                   
-      <div className="flex gap-1 pr-3">
+
+       {
+          isDesktop && <div className="flex gap-1 pr-3">
           <span onClick={props.prev} className="cursor-pointer md:px-[.3rem] text-[1.5rem] md:py-[.3rem] md:rounded-[1rem] bg-secondary-500">
               <BsArrowLeftShort />
           </span>
@@ -30,6 +31,7 @@ const ProductSlider = (props: ProductSliderType) => {
           <BsArrowRightShort />
           </span>
       </div>
+      }
     </div>
     </>
   )

@@ -22,6 +22,11 @@ const NavBar = () => {
         setIsOpen(prev => !prev)
     }
     const {isMobile, isDesktop} = useRenderHook()
+
+    const isActiveStyles = {
+        textDecoration: "underline",
+
+    }
     return (
         <nav className="md:border-b-textColor-600 md:border-b-[.03rem]">
             <div className="flex justify-between items-center md:w-[90%] md:m-auto md:max-w-[1200px] pt-4 px-4 md:pt-[1rem] md:pb-[.5rem]">
@@ -31,8 +36,8 @@ const NavBar = () => {
                 </section>
                 <section className={`flex flex-col gap-[1rem] column md:flex-row md:gap-[3rem] text-textColor-600 absolute md:static transition-all duration-500 ease-in bg-white left-0 w-full md:w-auto md:z-auto z-[2] px-3 py-10 md:px-0 md:py-0 ${isOpen ? "top-[3rem]" : "top-[-490px]"}`}>
                     <NavLink to="/" className="nav-link" onClick={handleCloseToggle}>Home</NavLink>
-                    <NavLink to="/contact" className="nav-link" onClick={handleCloseToggle}>Contact</NavLink>
-                    <NavLink to="/about" className="nav-link" onClick={handleCloseToggle}>About</NavLink>
+                    <NavLink to="/contact" className="nav-link" style={({isActive}) => isActive ? isActiveStyles : undefined} onClick={handleCloseToggle}>Contact</NavLink>
+                    <NavLink to="/about" className="nav-link" style={({isActive}) => isActive ? isActiveStyles : undefined} onClick={handleCloseToggle}>About</NavLink>
                 </section>
                 <section className="flex items-center gap-[1.5rem]">
                     {isDesktop && <SearchBar/>}
