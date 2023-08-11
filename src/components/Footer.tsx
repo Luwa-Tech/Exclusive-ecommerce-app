@@ -1,6 +1,7 @@
 import {FaFacebookF} from "react-icons/fa"
 import {AiOutlineTwitter, AiOutlineInstagram, AiOutlineSend} from "react-icons/ai"
 import {BiLogoLinkedin} from "react-icons/bi"
+import { NavLink } from "react-router-dom"
 
 import qrCode from "../assets/icons/Qr Code.png"
 import googlePlayStore from "../assets/icons/png-transparent-google-play-store-logo-google-play-app-store-android-wallets-text-label-logo.png"
@@ -24,16 +25,16 @@ const Footer = () => {
 
                 <section className="mb-[1rem] md:mb-0">
                     <h2 className="text-[1.1rem] md:text-[1.25rem] mb-[.3rem] md:mb-[1rem] font-medium leading-[1.75rem] text-textColor-400">Support</h2>
-                    <p className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem] w-[50%]md:w-[53%]">111 Bijoy sarani, Dhaka,  DH 1515, Bangladesh.</p>
+                    <p className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem] w-[50%]md:w-[53%]">No 6, Hayin Na-iya igabi local government Kaduna, Nigeria</p>
                     <p className="text-textColor-400 text-[1rem] font-normal leading-[1.5rem]">exclusive@gmail.com</p>
                     <p className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem]">+88015-88888-9999</p>
                 </section>
 
                 <section className="mb-[1rem] md:mb-0">
                     <h2 className="text-[1.1rem] md:text-[1.25rem] mb-[.3rem] md:mb-[1rem] font-medium leading-[1.75rem] text-textColor-400">Account</h2>
-                    <p className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem]">Cart</p>
-                    <p className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem]">Wishlist</p>
-                    <p className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem]">Shop</p>
+                    <NavLink to="/cart" className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem]">Cart</NavLink>
+                    <NavLink to="/wishlist" className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem]">Wishlist</NavLink>
+                    <NavLink to="/" className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem]">Shop</NavLink>
                 </section>
 
                 <section className="mb-[1rem] md:mb-0">

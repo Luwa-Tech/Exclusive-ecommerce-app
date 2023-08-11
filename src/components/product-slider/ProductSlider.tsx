@@ -2,8 +2,8 @@ import useRenderHook from "../../hooks/useRenderHook"
 import { BsArrowRightShort, BsArrowLeftShort } from "react-icons/bs"
 
 type ProductSliderType = {
-  sectionCaption: string,
-  sectionTitle: string,
+  sectionCaption?: string,
+  sectionTitle?: string,
   prev: () => void,
   next: () => void
 }

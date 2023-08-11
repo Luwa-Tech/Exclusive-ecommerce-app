@@ -3,7 +3,7 @@ import { BsArrowUp } from "react-icons/bs"
 
 export const MobileScroll = () => {
     return (
-        <div className="flex justify-center items-center w-[100%] bg-secondary-500 py-[.2rem]">
+        <div className="flex justify-center items-center w-[100%] bg-secondary-500 py-[.4rem]">
         <NavLink to="/" onClick={() => {
             window.scroll({
                 top: 0,

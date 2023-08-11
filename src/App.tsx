@@ -23,11 +23,12 @@ const App = () => {
         createRoutesFromElements(
             <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
-                <Route path=":id" element={<ProductDetail />} />
+                <Route path="/:id" element={<ProductDetail />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/cart" element={<CartPage />} />
                 <Route path="/wishlist" element={<WishlistPage />} />
+                <Route path="/wishlist/:id" element={<ProductDetail/>} />
                 <Route path="/success" element={<Success />} />
                 <Route path="/cancel" element={<Cancel />} />
                 

@@ -8,7 +8,6 @@ import { MobileScroll, DesktopScroll } from "../components/ScrollToTop"
 
 import { useRef } from "react"
 import { JSX } from "react/jsx-runtime"
-import { BsArrowRightShort, BsArrowLeftShort } from "react-icons/bs"
 
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css" 
@@ -74,17 +73,7 @@ const Home = () => {
             <section>
             <Hero/>
             </section>
-            <section className="mt-[.7rem] pl-[.5rem] md:pl-0 md:mt-[2rem] md:w-[90%] md:mx-auto relative">
-              {
-                isMobile && <div className="absolute z-[2] flex gap-[20rem] top-[160px]">
-              <span onClick={prev} className="cursor-pointer text-[1.5rem] bg-secondary-500 px-[.4rem] py-[.4rem] rounded-[.9rem]">
-                  <BsArrowLeftShort />
-              </span>
-              <span onClick={next} className="cursor-pointer text-[1.5rem]   bg-secondary-500 px-[.4rem] py-[.4rem] rounded-[.9rem]">
-              <BsArrowRightShort />
-              </span>
-            </div>
-            }
+            <section className="mt-[.7rem] flex flex-col pl-[.5rem] md:pl-0 mb-[3rem] md:mt-[2rem] md:w-[90%] md:mx-auto">
                 <ProductSlider sectionCaption="Today's" sectionTitle="Flashsales" prev={() => prev()} next={() => next()}/>
                 <Slider ref={sliderRef} {...settings}>
                     {
@@ -95,7 +84,7 @@ const Home = () => {
                         })
                     }
                 </Slider>
-                <button className="ml-[8.5rem] md:ml-[31rem] mt-[2rem] md:mt-[2.5rem] rounded-[0.25rem] bg-secondary-700 py-[.5rem]  md:py-[1rem] px-[1.5rem] text-[.8rem] md:text-[1rem] font-medium md:leading-[1.5rem] md:px-[3rem] text-textColor-400">View All Products</button>
+                <button className="w-[40%] md:w-[20%] mx-auto hover:opacity-[0.6] mt-[2rem] md:mt-[2.5rem] rounded-[0.25rem] bg-secondary-700 py-[.5rem]  md:py-[1rem] px-[1.5rem] text-[.8rem] md:text-[1rem] font-medium md:leading-[1.5rem] md:px-[3rem] text-textColor-400">View All Products</button>
             </section>
 
             <section className=" pl-[.5rem] pr-[.5rem] md:p-auto md:pl-0 md:w-[90%] md:mx-auto mt-[2rem]">
@@ -131,17 +120,7 @@ const Home = () => {
                     </div>
             </section>
 
-            <section className="pl-[.4rem] mb-[3rem] md:mb-0 md:pl-0 md:mt-[2rem] md:w-[90%] md:mx-auto mt-[2rem] relative">
-            {
-                isMobile && <div className="absolute z-[2] flex gap-[20rem] top-[160px]">
-                <span onClick={prev} className="cursor-pointer text-[1.5rem] bg-secondary-500 px-[.4rem] py-[.4rem] rounded-[.9rem]">
-                    <BsArrowLeftShort />
-                </span>
-                <span onClick={next} className="cursor-pointer text-[1.5rem]   bg-secondary-500 px-[.4rem] py-[.4rem] rounded-[.9rem]">
-                <BsArrowRightShort />
-                </span>
-              </div>
-            }
+            <section className="pl-[.4rem] flex flex-col mb-[3rem] md:mb-0 md:pl-0 md:mt-[2rem] md:w-[90%] md:mx-auto mt-[2rem] relative">
             <ProductSlider sectionCaption="Our Products" sectionTitle="Explore Our Products" prev={() =>prev()} next={() =>next()}/>
             <Slider ref={sliderRef} {...{...settings, rows: 2}}>
                     {
@@ -153,7 +132,7 @@ const Home = () => {
                     }
 
                 </Slider>
-                <button className="ml-[8.5rem] md:ml-[31rem] mt-[2rem] md:mt-[2.5rem] rounded-[0.25rem] bg-secondary-700 py-[.5rem]  md:py-[1rem] px-[1.5rem] text-[.8rem] md:text-[1rem] font-medium md:leading-[1.5rem] md:px-[3rem] text-textColor-400">View All Products</button>
+                <button className="w-[40%] md:w-[20%] mx-auto mt-[2rem] md:mt-[2.5rem] rounded-[0.25rem] bg-secondary-700 py-[.5rem]  md:py-[1rem] px-[1.5rem] text-[.8rem] md:text-[1rem] font-medium md:leading-[1.5rem] md:px-[3rem] text-textColor-400">View All Products</button>
             </section>
 
             {  
