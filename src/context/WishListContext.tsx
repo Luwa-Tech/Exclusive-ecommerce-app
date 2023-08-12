@@ -1,4 +1,5 @@
-import { ReactElement, ReactNode, createContext, useState } from "react"
+import { ReactElement, ReactNode, createContext } from "react"
+import { useLocalStorage } from "../hooks/useLocalStorage"
 
 type WishListType = {
     id: string,
@@ -17,7 +18,7 @@ type ChildrenType = {
 export const WishListContext = createContext({} as WishListContextType)
 
 export const WishListContextProvider = ({children}: ChildrenType) => {
-    const [wishList, setWishList] = useState<WishListType[]>([])
+    const [wishList, setWishList] = useLocalStorage<WishListType[]>("wishlist-items", [])
 
     const AddToWishList = (id: string) => {
         setWishList(currItems => {
