@@ -7,6 +7,7 @@ import useRenderHook from "../hooks/useRenderHook"
 import { MobileScroll, DesktopScroll } from "../components/ScrollToTop"
 
 import { useRef } from "react"
+import { Link } from "react-router-dom"
 import { JSX } from "react/jsx-runtime"
 
 import Slider from "react-slick"
@@ -84,7 +85,9 @@ const Home = () => {
                         })
                     }
                 </Slider>
-                <button className="w-[40%] md:w-[20%] mx-auto hover:opacity-[0.6] mt-[2rem] md:mt-[2.5rem] rounded-[0.25rem] bg-secondary-700 py-[.5rem]  md:py-[1rem] px-[1.5rem] text-[.8rem] md:text-[1rem] font-medium md:leading-[1.5rem] md:px-[3rem] text-textColor-400">View All Products</button>
+                <Link to="allProducts" state={{data: flashSalesProducts}} className="mx-auto w-[40%] md:w-[20%]">
+                <button className="w-full mx-auto hover:opacity-[0.6] mt-[2rem] md:mt-[2.5rem] rounded-[0.25rem] bg-secondary-700 py-[.5rem]  md:py-[1rem] px-[1.5rem] text-[.8rem] md:text-[1rem] font-medium md:leading-[1.5rem] md:px-[3rem] text-textColor-400">View All Products</button>
+                </Link>
             </section>
 
             <section className=" pl-[.5rem] pr-[.5rem] md:p-auto md:pl-0 md:w-[90%] md:mx-auto mt-[2rem]">
@@ -95,7 +98,9 @@ const Home = () => {
 
               <div className="flex justify-between md:items-center mb-[1.5rem] md:mb-[2.2rem]"> 
                 <h2 className="text-[1.2rem] md:text-[2rem] font-semibold md:leading-[3rem] md:tracking-[0.09rem] text-textColor-600 md:mb-[0.4rem]">Best Selling Products</h2>
-                    <button  className="rounded-[0.25rem] bg-secondary-700 py-[.5rem]  md:py-[.8rem] px-[1.5rem] text-[.8rem] md:text-[1rem] font-medium md:leading-[1.5rem] md:px-[3rem] text-textColor-400">View All</button>
+                <Link to="allProducts" state={{data: bestSellingProducts}}>
+                    <button  className="rounded-[0.25rem] bg-secondary-700 py-[.5rem]  md:py-[.8rem] px-[1.5rem] text-[.8rem] md:text-[1rem] font-medium md:leading-[1.5rem] md:px-[3rem] text-textColor-400 hover:opacity-[0.6]">View All</button>
+                </Link>
                 </div>
 
                 <div className="grid grid-cols-3 gap-3 md:flex md:flex-row md:justify-between">
@@ -132,7 +137,9 @@ const Home = () => {
                     }
 
                 </Slider>
-                <button className="w-[40%] md:w-[20%] mx-auto mt-[2rem] md:mt-[2.5rem] rounded-[0.25rem] bg-secondary-700 py-[.5rem]  md:py-[1rem] px-[1.5rem] text-[.8rem] md:text-[1rem] font-medium md:leading-[1.5rem] md:px-[3rem] text-textColor-400">View All Products</button>
+                <Link to="allProducts" state={{data: storeProducts}} className="mx-auto w-[40%] md:w-[20%]">
+                <button className="w-full mt-[2rem] md:mt-[2.5rem] rounded-[0.25rem] bg-secondary-700 py-[.5rem]  md:py-[1rem] px-[1.5rem] text-[.8rem] md:text-[1rem] font-medium md:leading-[1.5rem] md:px-[3rem] text-textColor-400 hover:opacity-[0.6]">View All Products</button>
+                </Link>
             </section>
 
             {  
