@@ -28,8 +28,16 @@ const Product = ({...items}: ProductType) => {
                                 }
                             </p>
                             <div>
-                            <span className="text-[.7rem] md:text-[.9rem] font-medium md:leading-[1.5rem] text-secondary-700 mr-[0.4rem]">${items.price}</span>
-                            {items.discountPrice && <span className="text-[.7rem] md:text-[.9rem] font-medium text-textColor-600 md:leading-[1.5rem] opacity-[0.5] line-through">${items?.discountPrice}</span>}
+                                {/* REFACTOR THIS SECTION WHEN DONE */}
+                                {
+                                items.discountPrice ? (
+                                    <span className="text-[.7rem] md:text-[.9rem] font-medium md:leading-[1.5rem] text-textColor-600 line-through mr-[0.4rem] opacity-[0.5]">${items.price}</span>
+                                ) : (
+                                    <span className="text-[.7rem] md:text-[.9rem] font-medium md:leading-[1.5rem] text-secondary-700 mr-[0.4rem]">${items.price}</span>
+                                )
+                                }
+                            
+                                {items.discountPrice && <span className="text-secondary-700 text-[.7rem] md:text-[.9rem] font-medium  md:leading-[1.5rem] ">${items?.discountPrice}</span>}
                             </div>
                             
                         </div>

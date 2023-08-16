@@ -68,7 +68,7 @@ const About = () => {
             <div className="flex flex-col items-center justify-center border-[.1rem] gap-[.4rem]  rounded-[.3rem] px-[1.2rem] py-[1.3rem]">
                 <div className="bg-secondary-500 px-[.7rem] py-[.7rem] rounded-[1.8rem]">
                     <div className="bg-buttonColor-400 px-[.65rem] py-[.65rem] rounded-[1.4rem]">
-                        <img className="w-[1.4rem] invert-1" src={iconSale} />
+                        <img className="w-[1.4rem] filter-image" src={iconSale} />
                     </div>
                 </div>
                 <p className="text-textColor-600 md:text-[2rem] font-bold md:leading-[1.875rem] md:tracking-[0.08rem]">33k</p>

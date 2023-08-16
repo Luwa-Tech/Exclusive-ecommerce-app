@@ -81,13 +81,13 @@ img {
 }
 
 .activeStyles {
-    color: #000
+    color: #000;
 }
 
 .notActiveStyles {
-    color: #ddd
+    color: #ddd;
 }
 
-/* .breadcrumbs .crumb a {
-    color: #ddd
-} */
+.filter-image {
+    filter: invert(100%);
+}
