@@ -4,9 +4,10 @@ import useStoreProducts from "../hooks/useStoreProducts"
 import Product, { ProductType } from "../components/Product"
 import Services from "../components/Categories"
 import useRenderHook from "../hooks/useRenderHook"
+import usePreventMobileScroll from "../hooks/usePreventMobileScroll"
 import { MobileScroll, DesktopScroll } from "../components/ScrollToTop"
 
-import { useRef } from "react"
+import { useRef, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { JSX } from "react/jsx-runtime"
 
@@ -21,10 +22,15 @@ import amazonEcho from "../assets/images/shop now/69-694768_amazon-echo-png-clip
 import perfume from "../assets/images/shop now/652e82cd70aa6522dd785109a455904c.png"
 
 
-
+type CustomEventListenerOptions = {
+  capture?: boolean,
+  passive?: boolean,
+  once?: boolean
+}
 
 const Home = () => {
     const {isDesktop, isMobile} = useRenderHook()
+    const {touchStart, preventTouch} = usePreventMobileScroll()
     const sliderRef = useRef<Slider | null>(null)
     console.log(sliderRef.current)
   
@@ -36,6 +42,16 @@ const Home = () => {
 
     const bestSellingProducts = storeProducts.filter((item: { discount: string; id: string }) => item.discount === "" && (parseInt(item.id) > 7 && parseInt(item.id) <= 15))
     console.log(bestSellingProducts)
+
+    useEffect(() => {
+      window.addEventListener("touchstart", touchStart)
+      window.addEventListener("touchmove", preventTouch, {passive: false} as CustomEventListenerOptions )
+
+      return () => {
+        window.removeEventListener("touchstart", touchStart)
+        window.removeEventListener("touchmove", preventTouch, {passive: false} as CustomEventListenerOptions )
+      }
+    }, [preventTouch, touchStart])
 
     const settings = {
         dots: false,
