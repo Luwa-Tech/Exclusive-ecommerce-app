@@ -1,20 +1,16 @@
 const usePreventMobileScroll = () => {
     let firstClientX = 0;
-    let firstClientY = 0;
-    const clientX = 0;
-    const clientY = 0;
+    let clientX = 0; //used for horizontal swiping detection
 
     //fix any parameter type
     const touchStart = (e: TouchEvent) => {
         firstClientX = e.touches[0].clientX;
-        firstClientY = e.touches[0].clientY;
     }
 
     const preventTouch = (e: TouchEvent) => {
         const minValue = 5; //threshold
 
-        firstClientX = e.touches[0].clientX - firstClientX;
-        firstClientY = e.touches[0].clientY - firstClientY;
+        clientX = e.touches[0].clientX - firstClientX;
 
         //prevent vertival scroll when swiping horizontally
         if (Math.abs(clientX) > minValue) {
