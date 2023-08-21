@@ -21,7 +21,7 @@ const NavBar = () => {
     const handleCloseToggle = () => {
         setIsOpen(prev => !prev)
     }
-    const {isMobile, isDesktop} = useRenderHook()
+    const {isDesktop} = useRenderHook()
 
     const isActiveStyles = {
         textDecoration: "underline",
@@ -61,7 +61,6 @@ const NavBar = () => {
                     </div>
                 </section>
             </div>
-            {isMobile && <SearchBar />}
         </nav>
     )
 }

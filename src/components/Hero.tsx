@@ -53,7 +53,7 @@ const HeroCarousel = () => {
                 {
                     HeroImages.map(imageUrl => {
                         return (
-                            <div key={imageUrl.id} className="h-[16rem] mt-[.4rem] md:w-[55.75rem] md:h-[21.5rem] hero-div">
+                            <div key={imageUrl.id} className="h-[16rem] mt-[.2rem] md:w-[55.75rem] md:h-[21.5rem] hero-div">
                                 <img className="hero-image " src={imageUrl.image} loading="lazy" alt="hero image"/>
                             </div>
                         )

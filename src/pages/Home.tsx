@@ -6,6 +6,7 @@ import Services from "../components/Categories"
 import useRenderHook from "../hooks/useRenderHook"
 import usePreventMobileScroll from "../hooks/usePreventMobileScroll"
 import { MobileScroll, DesktopScroll } from "../components/ScrollToTop"
+import SearchBar from "../components/SearchBar"
 
 import { useRef, useEffect } from "react"
 import { Link } from "react-router-dom"
@@ -32,7 +33,6 @@ const Home = () => {
     const {isDesktop, isMobile} = useRenderHook()
     const {touchStart, preventTouch} = usePreventMobileScroll()
     const sliderRef = useRef<Slider | null>(null)
-    console.log(sliderRef.current)
   
     const prev = sliderRef.current?.slickPrev!
     const next = sliderRef.current?.slickNext!
@@ -41,7 +41,6 @@ const Home = () => {
     const flashSalesProducts = storeProducts.filter((item: { discount: string }) => item.discount !== "")
 
     const bestSellingProducts = storeProducts.filter((item: { discount: string; id: string }) => item.discount === "" && (parseInt(item.id) > 7 && parseInt(item.id) <= 15))
-    console.log(bestSellingProducts)
 
     useEffect(() => {
       window.addEventListener("touchstart", touchStart)
@@ -88,6 +87,7 @@ const Home = () => {
     return (
         <main>
             <section>
+              {isMobile && <SearchBar />}
             <Hero/>
             </section>
             <section className="mt-[.7rem] flex flex-col pl-[.5rem] md:pl-0 mb-[3rem] md:mt-[2rem] md:w-[90%] md:mx-auto">
