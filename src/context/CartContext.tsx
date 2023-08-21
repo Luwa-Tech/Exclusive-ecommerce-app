@@ -5,6 +5,8 @@ import {
 } from "react"
 import { useLocalStorage } from "../hooks/useLocalStorage"
 
+import { toast } from 'react-toastify'
+
 
 type Cart = {
     id: string,
@@ -42,10 +44,15 @@ export const CartContextProvider = ({children}: ChildrenType) => {
     const increaseItemQuantity = (id: string, stripeID: string) => {
         setCart(currItems => {
             if(!currItems.find(item => item.id === id)){
-                return [...currItems, {id, qty: 1, stripeID: stripeID}]
+                try {
+                    return [...currItems, {id, qty: 1, stripeID: stripeID}]  
+                } finally {
+                    toast.success("Product added to cart!")
+                } 
             } else {
                 return currItems.map(item => {
                     if(item.id === id) {
+                        toast.info("Product quantity updated!")
                         return {...item, qty: item.qty + 1}
                     } else {
                         return item
@@ -62,8 +69,12 @@ export const CartContextProvider = ({children}: ChildrenType) => {
             } else {
                 return currItems.map(item => {
                     if (item.id === id) {
+                        try { 
+                            return {...item, qty: item.qty - 1}
+                        } finally {
+                            toast.info("Product quantity updated!")
+                        }
                         
-                        return {...item, qty: item.qty - 1}
                     }else {
                         return item
                     }
@@ -74,7 +85,11 @@ export const CartContextProvider = ({children}: ChildrenType) => {
 
     const removeFromCart = (id: string) => {
         setCart(currItems => {
-            return currItems.filter(item => item.id !== id)
+            try {
+                return currItems.filter(item => item.id !== id)
+            } finally {
+                toast.success("Product removed from cart!")
+            }
         })
     }
     

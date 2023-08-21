@@ -1,5 +1,6 @@
 import { ReactElement, ReactNode, createContext } from "react"
 import { useLocalStorage } from "../hooks/useLocalStorage"
+import { toast } from 'react-toastify'
 
 type WishListType = {
     id: string,
@@ -25,14 +26,23 @@ export const WishListContextProvider = ({children}: ChildrenType) => {
             if(currItems.find(item => item.id === id)) {
                 return [...currItems]
             }else {
-                return [...currItems, {id}]
+                try {
+                    return [...currItems, {id}]
+                } finally {
+                    toast.success("Product added to wishlist!")
+                }
+                
             }
         })
     }
 
     const RemoveFromWishList = (id:string) => {
         setWishList(currItems => {
-            return currItems.filter(item => item.id !== id)
+            try {
+                return currItems.filter(item => item.id !== id)
+            } finally {
+                toast.success("Product removed from wishlist!")
+            }
         })
     }
 
