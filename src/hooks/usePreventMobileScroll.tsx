@@ -2,7 +2,6 @@ const usePreventMobileScroll = () => {
     let firstClientX = 0;
     let clientX = 0; //used for horizontal swiping detection
 
-    //fix any parameter type
     const touchStart = (e: TouchEvent) => {
         firstClientX = e.touches[0].clientX;
     }
