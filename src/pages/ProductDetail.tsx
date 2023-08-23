@@ -13,7 +13,7 @@ const ProductDetail = () => {
     const {id} = useParams()
     const {storeProducts} = useStoreProducts()
 
-    const {AddToWishList} = useContext(WishListContext)
+    const {AddToWishList, wishList} = useContext(WishListContext)
 
     const {            
         increaseItemQuantity,
@@ -29,14 +29,13 @@ const ProductDetail = () => {
     }
     const quantity = getItemQuantity(id)
     const product = storeProducts.find(item => item.id === id)
+    const itemInList = wishList.find(item => item.id === id)
     if(product === undefined) {
         return (
             <h1>An Error occured when fetching product details</h1>
         )
     }
-    //add stripeID property to each store items data
-    //pass property to increaseItemQuantity function
-    //receive in function and add to cart 
+
 
     return (
         <main className="mt-[3rem] md:mt-[5rem] mb-[4rem] md:mb-[5rem] md:w-[90%] md:mx-auto">
@@ -47,7 +46,7 @@ const ProductDetail = () => {
                 </div>
 
                 <section>
-                    <div className="border-b-[.1rem] border-textColor-600 pb-2">
+                    <div className="border-b-[.1rem] pb-2">
                         <h2 className="text-textColor-600 md:text-[1.5rem] mt-[1.2rem] md:mt-[1.5rem] font-semibold md:leading-[1.5rem] md:tracking-[0.045rem]">{product.name}</h2>
                         <p className="text-textColor-600 md:text-[1.5rem] mt-[1.2rem] font-normal md:leading-[1.5rem] md:tracking-[0.045rem]">${product.price}.00</p>
                     </div>
@@ -57,19 +56,19 @@ const ProductDetail = () => {
                         }
                         
                         { 
-                            quantity > 0 && <div className="border-textColor-600 border-[.1rem] items-center flex justify-between w-[8rem]">
-                            <button onClick={() => decreaseItemQuantity(id)} className="hover:bg-secondary-700 hover:text-textColor-400 px-[.65rem] py-[.1rem] border-textColor-600 border-r-[.1rem] md:px-[.9rem] md:py-[.1rem] text-[1.3rem]">-</button>
+                            quantity > 0 && <div className="items-center flex justify-between w-[8rem]">
+                            <button onClick={() => decreaseItemQuantity(id)} className="bg-secondary-700 text-textColor-400 px-[.75rem] py-[.1rem] text-[1.3rem] hover:opacity-[0.6]">-</button>
                             <span className="px-[1.1rem] md:px-[1.4rem]">{quantity}</span>
-                            <button onClick={() => increaseItemQuantity(id, product.stripeID)} className="hover:bg-secondary-700 hover:text-textColor-400 px-[.65rem] py-[.1rem] border-textColor-600 border-l-[.1rem] md:px-[.9rem] md:py-[.1rem] text-[1.3rem]">+</button>
+                            <button onClick={() => increaseItemQuantity(id, product.stripeID)} className="bg-secondary-700 text-textColor-400 px-[.65rem] py-[.1rem] text-[1.3rem] hover:opacity-[0.6]">+</button>
                         </div>
                         }
 
-                        <button onClick={() => AddToWishList(id)} className="hover:bg-secondary-700 border-[.1rem] border-textColor-600 px-[.65rem] py-[.4rem] hover:text-textColor-400">
+                        <button onClick={() => AddToWishList(id)} className={`focus:bg-secondary-700 border-[.1rem] px-[.65rem] py-[.3rem] hover:opacity-[0.6] focus:text-textColor-400 ${itemInList ? "bg-secondary-700 text-textColor-400" : ""}`}>
                             <CiHeart className="w-[1.2rem] h-[1.6rem]"/>
                         </button>
                     </div>
 
-                    <div className="border-textColor-600 border-[.1rem] mt-[1.2rem] w-[60%] md:w-auto rounded-[.2rem] py-[.6rem] pl-[.5rem] md:px-[.6rem] md:py-[.7rem]">
+                    <div className="border-[.1rem] mt-[1.2rem] w-[100%] md:w-auto rounded-[.2rem] py-[.6rem] pl-[.5rem] md:px-[.6rem] md:py-[.7rem]">
                         <div className="flex items-center gap-4 pb-2 border-b-[.1rem]">
                             <TbTruckDelivery />
                             <div className="text-textColor-600">
