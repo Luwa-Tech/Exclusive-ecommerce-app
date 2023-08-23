@@ -68,9 +68,9 @@ const CartPage = () => {
                 {
                     isDesktop && <DesktopCartSummary totalPrice={totalPrice} checkoutHandler={checkoutHandler} />
                 }
-                <div className="bg-slate-400 px-[.2rem] py-[.3rem]">
+                <div className="border-[.1rem] mt-[.7rem] md:mt-0 px-[.3rem] py-[.3rem]">
                     <p>Returns are easy</p>
-                    <p className="text-[.8rem]">Free return within 15 days for Official Store items and 7 days for other eligible items See more</p>
+                    <p className="text-[.8rem] max-w-[80%] md:max-w-[100%]">Free return within 15 days for Official Store items and 7 days for other eligible items See more</p>
                 </div>
             </div>
 

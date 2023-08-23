@@ -27,7 +27,7 @@ const CartLineItem = ({id, qty}: CartLineItemType) => {
     }
     
     return (
-        <li className="mt-[.7rem] md:items-left">
+        <li className="mt-[1.2rem] md:items-left">
 
             <section className="flex gap-6">
                 <div >
@@ -48,10 +48,10 @@ const CartLineItem = ({id, qty}: CartLineItemType) => {
                     <MdOutlineDelete className="w-[1.5rem] h-[1.6rem]"/>
                     <button onClick={() => removeFromCart(id)} className="uppercase border-none">remove</button>
                 </div>
-                <div className="border-textColor-600 border-[.1rem] items-center flex justify-between w-[8rem]">
-                    <button onClick={() => decreaseItemQuantity(id)} className="hover:bg-secondary-700 hover:text-textColor-400 px-[.65rem] py-[.1rem] border-textColor-600 border-r-[.1rem] md:px-[.9rem] md:py-[.1rem] text-[1.3rem]">-</button>
+                <div className="overflow-hidden items-center flex justify-between w-[8rem]">
+                    <button onClick={() => decreaseItemQuantity(id)} className="bg-secondary-700 text-textColor-400 px-[.75rem] py-[.1rem] text-[1.3rem] hover:opacity-[0.6]">-</button>
                     <span className="px-[1.1rem] md:px-[1.4rem]">{qty}</span>
-                    <button onClick={() => increaseItemQuantity(id, item.stripeID)} className="hover:bg-secondary-700 hover:text-textColor-400 px-[.65rem] py-[.1rem] border-textColor-600 border-l-[.1rem] md:pl-[.9rem] md:pr-[1.1rem] md:py-[.1rem] text-[1.3rem]">+</button>
+                    <button onClick={() => increaseItemQuantity(id, item.stripeID)} className="bg-secondary-700 text-textColor-400 hover:opacity-[0.6] px-[.65rem] py-[.1rem] text-[1.3rem]">+</button>
                 </div>
             </section>
         </li>

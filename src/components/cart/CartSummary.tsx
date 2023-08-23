@@ -7,8 +7,8 @@ type CartSummaryType = {
 
 export const MobileCartSummary = (props: CartSummaryType) => {
     return (
-        <div>
-            <p className="uppercase text-[.8rem] text-textColor-500">cart summary</p>
+        <div className="border-[.1rem] py-3 px-2 mb-3">
+            <p className="uppercase text-[.8rem] text-textColor-500 border-b-[.1rem] mb-2">cart summary</p>
             <div className="flex justify-between">
                 <p>Subtotal</p>
                 <p>{formatCurrency(props.totalPrice)}</p>
@@ -19,7 +19,7 @@ export const MobileCartSummary = (props: CartSummaryType) => {
 
 export const DesktopCartSummary = (props: CartSummaryType) => {
     return (
-        <div className="px-[.7rem] py-[.4rem] md:h-[11rem] bg-slate-400">
+        <div className="px-[.7rem] py-[.4rem] md:h-[11rem] border-[.1rem]">
             <div className="py-2 border-b-[.1rem]">
             <h2 className="uppercase">cart summary</h2>
             </div>
