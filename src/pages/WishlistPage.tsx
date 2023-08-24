@@ -16,10 +16,21 @@ const WishlistPage = () => {
 
     const {storeProducts} = useStoreProducts()
     const sliderRef = useRef<Slider | null>(null)
-    console.log(sliderRef.current)
   
-    const prev = sliderRef.current?.slickPrev!
-    const next = sliderRef.current?.slickNext!
+    // const prev = sliderRef.current?.slickPrev!
+    // const next = sliderRef.current?.slickNext!
+
+    const prev = () => {
+      if (sliderRef.current) {
+        sliderRef.current.slickPrev()
+      }
+    }
+
+    const next = () => {
+      if (sliderRef.current) {
+        sliderRef.current.slickNext()
+      }
+    }
 
 
     if(wishList.length === 0) {

@@ -34,8 +34,20 @@ const Home = () => {
     const {touchStart, preventTouch} = usePreventMobileScroll()
     const sliderRef = useRef<Slider | null>(null)
   
-    const prev = sliderRef.current?.slickPrev!
-    const next = sliderRef.current?.slickNext!
+    // const prev = sliderRef.current?.slickPrev!
+    // const next = sliderRef.current?.slickNext!
+
+    const prev = () => {
+      if (sliderRef.current) {
+        sliderRef.current.slickPrev()
+      }
+    }
+
+    const next = () => {
+      if (sliderRef.current) {
+        sliderRef.current.slickNext()
+      }
+    }
     
     const {storeProducts} = useStoreProducts()
     const flashSalesProducts = storeProducts.filter((item: { discount: string }) => item.discount !== "")
