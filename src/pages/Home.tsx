@@ -63,9 +63,12 @@ const Home = () => {
           {
             breakpoint: 600,
             settings: {
-              slidesToShow: 4,
-              slidesToScroll: 1             
-               // initialSlide: 2
+              slidesToShow: 3,
+              slidesToScroll: 1 ,            
+              arrows: false,
+              className: "center",
+              centerMode: true,
+              rows: 1
             }
           },
           {
@@ -74,8 +77,9 @@ const Home = () => {
           
               slidesToShow: 3,
               slidesToScroll: 1,
-              infinite: false,
               arrows: false,
+              className: "center",
+              centerMode: true,
               rows: 1,
             
             
@@ -102,7 +106,7 @@ const Home = () => {
                     }
                 </Slider>
                 <Link to="allProducts" state={{data: flashSalesProducts}} className="mx-auto w-[40%] md:w-[20%]">
-                <button className="w-full mx-auto hover:opacity-[0.6] mt-[2rem] md:mt-[2.5rem] rounded-[0.25rem] bg-secondary-700 py-[.5rem]  md:py-[1rem] px-[1.5rem] text-[.8rem] md:text-[1rem] font-medium md:leading-[1.5rem] md:px-[3rem] text-textColor-400">View All Products</button>
+                <button className="w-full hover:opacity-[0.6] mt-[2rem] md:mt-[2.5rem] rounded-[0.25rem] bg-secondary-700 py-[.5rem]  md:py-[1rem] px-[1.5rem] text-[.8rem] md:text-[1rem] font-medium md:leading-[1.5rem] md:px-[3rem] text-textColor-400">View All Products</button>
                 </Link>
             </section>
 
