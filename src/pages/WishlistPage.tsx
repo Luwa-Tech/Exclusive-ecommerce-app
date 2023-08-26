@@ -58,9 +58,11 @@ const WishlistPage = () => {
           {
             breakpoint: 600,
             settings: {
-              slidesToShow: 4,
-              slidesToScroll: 1             
-               // initialSlide: 2
+              slidesToShow: 2,
+              slidesToScroll: 1,             
+              arrows: false,
+              className: "center",
+              centerMode: true
             }
           },
           {

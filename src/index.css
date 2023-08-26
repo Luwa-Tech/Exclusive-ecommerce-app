@@ -7,21 +7,12 @@
     display: none;
   }
 
-
-/* .layout {
-    display: grid;
-    height: 100vh;
-  
-    grid-template-rows: auto 1fr auto;
-} */
-
 .layout {
     overflow: hidden;
 }
 
 img {
     max-width: 100%;
-    /* aspect-ratio: 1; */
 }
 
 .nav-icon {
@@ -39,11 +30,6 @@ img {
 .product-slider-container {
     margin: 0 auto;
     
-}
-
-.hero-image {
-    width: 100%;
-    object-fit: cover;
 }
 
 .button {

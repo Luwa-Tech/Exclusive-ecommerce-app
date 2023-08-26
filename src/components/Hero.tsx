@@ -41,7 +41,6 @@ const HeroCarousel = () => {
     const settings = {
         dots: false,
         infinite: true,
-        fade: true,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -54,7 +53,7 @@ const HeroCarousel = () => {
                     HeroImages.map(imageUrl => {
                         return (
                             <div key={imageUrl.id} className="h-[16rem] mt-[.2rem] md:w-[55.75rem] md:h-[21.5rem] hero-div">
-                                <img className="hero-image " src={imageUrl.image} loading="lazy" alt="hero image"/>
+                                <img className="object-contain md:w-[50rem] md:h-[30rem] md:mx-auto" src={imageUrl.image} loading="lazy" alt="hero image"/>
                             </div>
                         )
                     })
