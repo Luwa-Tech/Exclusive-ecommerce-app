@@ -37,20 +37,31 @@ type CustomEventListenerOptions = {
 const Home = () => {
     const {isDesktop, isMobile} = useRenderHook()
     const {touchStart, preventTouch} = usePreventMobileScroll()
-    const sliderRef = useRef<Slider | null>(null)
-  
-    // const prev = sliderRef.current?.slickPrev!
-    // const next = sliderRef.current?.slickNext!
 
-    const prev = () => {
-      if (sliderRef.current) {
-        sliderRef.current.slickPrev()
+    const sliderRef1 = useRef<Slider | null>(null)
+    const sliderRef2 = useRef<Slider | null>(null)
+
+    const goToPrev1 = () => {
+      if (sliderRef1.current) {
+        sliderRef1.current.slickPrev()
       }
     }
 
-    const next = () => {
-      if (sliderRef.current) {
-        sliderRef.current.slickNext()
+    const goToNext1 = () => {
+      if (sliderRef1.current) {
+        sliderRef1.current.slickNext()
+      }
+    }
+
+    const goToPrev2 = () => {
+      if (sliderRef2.current) {
+        sliderRef2.current.slickPrev()
+      }
+    }
+
+    const goToNext2 = () => {
+      if (sliderRef2.current) {
+        sliderRef2.current.slickNext()
       }
     }
     
@@ -59,6 +70,7 @@ const Home = () => {
 
     const bestSellingProducts = storeProducts.filter((item: { discount: string; id: string }) => item.discount === "" && (parseInt(item.id) > 7 && parseInt(item.id) <= 15))
 
+    
     useEffect(() => {
       window.addEventListener("touchstart", touchStart)
       window.addEventListener("touchmove", preventTouch, {passive: false} as CustomEventListenerOptions )
@@ -81,7 +93,7 @@ const Home = () => {
             breakpoint: 600,
             settings: {
               slidesToShow: 3,
-              slidesToScroll: 3,            
+              slidesToScroll: 1,            
               arrows: false,
               className: "center",
               centerMode: true,
@@ -93,7 +105,7 @@ const Home = () => {
             settings: {
           
               slidesToShow: 2,
-              slidesToScroll: 3,
+              slidesToScroll: 1,
               arrows: false,
               className: "center",
               centerMode: true,
@@ -124,8 +136,8 @@ const Home = () => {
             </div> 
             </section>
             <section className="mt-[.7rem] flex flex-col pl-[.5rem] md:pl-0 mb-[3rem] md:mt-[2rem] md:w-[90%] md:mx-auto">
-                <ProductSlider sectionCaption="Today's" sectionTitle="Flashsales" prev={() => prev()} next={() => next()}/>
-                <Slider ref={sliderRef} {...settings}>
+                <ProductSlider sectionCaption="Today's" sectionTitle="Flashsales" prev={() => goToPrev1()} next={() => goToNext1()}/>
+                <Slider ref={sliderRef1} {...settings}>
                     {
                         flashSalesProducts.map((items: JSX.IntrinsicAttributes & ProductType) => {
                             return (
@@ -175,8 +187,8 @@ const Home = () => {
             </section>
 
             <section className="pl-[.4rem] flex flex-col mb-[3rem] md:mb-0 md:pl-0 md:mt-[2rem] md:w-[90%] md:mx-auto mt-[2rem] relative">
-            <ProductSlider sectionCaption="Our Products" sectionTitle="Explore Our Products" prev={() =>prev()} next={() =>next()}/>
-            <Slider ref={sliderRef} {...{...settings, rows: 2}}>
+            <ProductSlider sectionCaption="Our Products" sectionTitle="Explore Our Products" prev={() => goToPrev2()} next={() => goToNext2()}/>
+            <Slider ref={sliderRef2} {...{...settings, rows: 2}}>
                     {
                         storeProducts.map((items: JSX.IntrinsicAttributes & ProductType) => {
                             return (
