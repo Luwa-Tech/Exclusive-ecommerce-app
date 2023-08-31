@@ -18,6 +18,7 @@ import Cancel from "./pages/Cancel"
 import StoreProductsProvider from "./context/StoreContext"
 import { CartContextProvider } from "./context/CartContext"
 import { WishListContextProvider } from "./context/WishListContext"
+import ResetScroll from "./components/ResetScroll"
 
 const App = () => {
     const router = createBrowserRouter(
@@ -44,6 +45,7 @@ const App = () => {
         <StoreProductsProvider>
             <CartContextProvider>
                 <WishListContextProvider>
+                    <ResetScroll />
                     <RouterProvider router={router}/>
                 </WishListContextProvider>
             </CartContextProvider>
