@@ -1,24 +1,23 @@
 import { WishListContext } from "../context/WishListContext"
-import {useContext, useRef} from "react"
+import {useContext, useEffect, useRef} from "react"
 import WishListItem from "../components/wishlist/WishListItem"
 
 import Slider from "react-slick"
-import "slick-carousel/slick/slick.css" 
-import "slick-carousel/slick/slick-theme.css"
+
 import useStoreProducts from "../hooks/useStoreProducts"
 import Product from "../components/Product"
 import ProductSlider from "../components/product-slider/ProductSlider"
 import { NavLink } from "react-router-dom"
+import usePreventMobileScroll, {CustomEventListenerOptions} from "../hooks/usePreventMobileScroll"
 
 
 const WishlistPage = () => {
     const { wishList } = useContext(WishListContext)
+    const {touchStart, preventTouch} = usePreventMobileScroll()
 
     const {storeProducts} = useStoreProducts()
     const sliderRef = useRef<Slider | null>(null)
-  
-    // const prev = sliderRef.current?.slickPrev!
-    // const next = sliderRef.current?.slickNext!
+
 
     const prev = () => {
       if (sliderRef.current) {
@@ -31,6 +30,16 @@ const WishlistPage = () => {
         sliderRef.current.slickNext()
       }
     }
+
+    useEffect(() => {
+      window.addEventListener("touchstart", touchStart)
+      window.addEventListener("touchmove", preventTouch, {passive: false} as CustomEventListenerOptions )
+
+      return () => {
+        window.removeEventListener("touchstart", touchStart)
+        window.removeEventListener("touchmove", preventTouch, {passive: false} as CustomEventListenerOptions )
+      }
+    }, [preventTouch, touchStart])
 
 
     if(wishList.length === 0) {

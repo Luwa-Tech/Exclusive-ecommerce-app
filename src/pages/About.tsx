@@ -9,8 +9,6 @@ import EmployeeCard from "../components/EmployeeCard"
 import Services from "../components/Categories"
 
 import Slider from "react-slick"
-import "slick-carousel/slick/slick.css" 
-import "slick-carousel/slick/slick-theme.css"
 
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import "react-lazy-load-image-component/src/effects/blur.css"
@@ -52,9 +50,8 @@ const About = () => {
                 <p className="text-textColor-600 text-[1rem] font-normal md:leading-[1.625rem] text-justify md:text-left  mb-[1rem]">Launched in 2015, Exclusive is South Asia’s premier online shopping makterplace with an active presense in Bangladesh. Supported by wide range of tailored marketing, data and service solutions, Exclusive has 10,500 sellers and 300 brands and serves 3 millions customers across the region.</p>
                 <p className="text-textColor-600 text-[1rem] font-normal md:leading-[1.625rem] text-justify md:text-left">Exclusive has more than 1 Million products to offer, growing at a very fast. Exclusive offers a diverse assotment in categories ranging from consumer.</p>
             </article>
-            <div className="md:w-[37rem] md:h-[30rem]">
-                <LazyLoadImage src={aboutImagePortrait} alt="about image" effect="blur"/>
-            </div>
+         
+                <LazyLoadImage className="w-full h-[21rem] md:w-[37rem] md:h-[30rem]" src={aboutImagePortrait} alt="about image" effect="blur"/>
         </section>
 
         <section className="px-[.55rem] md:px-0 mt-[.7rem] mb-[3rem] md:mb-[5rem] md:mt-[2.4rem] md:w-[90%] md:mx-auto grid grid-cols-2 md:grid-cols-4 md:gap-[2.5rem] gap-[.4rem]">

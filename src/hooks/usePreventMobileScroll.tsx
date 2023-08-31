@@ -1,3 +1,9 @@
+export type CustomEventListenerOptions = {
+    capture?: boolean,
+    passive?: boolean,
+    once?: boolean
+  }
+
 const usePreventMobileScroll = () => {
     let firstClientX = 0;
     let clientX = 0; //used for horizontal swiping detection

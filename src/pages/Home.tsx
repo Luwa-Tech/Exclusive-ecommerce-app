@@ -3,7 +3,7 @@ import useStoreProducts from "../hooks/useStoreProducts"
 import Product, { ProductType } from "../components/Product"
 import Services from "../components/Categories"
 import useRenderHook from "../hooks/useRenderHook"
-import usePreventMobileScroll from "../hooks/usePreventMobileScroll"
+import usePreventMobileScroll, {CustomEventListenerOptions} from "../hooks/usePreventMobileScroll"
 import { MobileScroll, DesktopScroll } from "../components/ScrollToTop"
 import SearchBar from "../components/SearchBar"
 
@@ -12,8 +12,6 @@ import { Link } from "react-router-dom"
 import { JSX } from "react/jsx-runtime"
 
 import Slider from "react-slick"
-import "slick-carousel/slick/slick.css" 
-import "slick-carousel/slick/slick-theme.css"
 
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import "react-lazy-load-image-component/src/effects/blur.css"
@@ -28,11 +26,6 @@ import amazonEcho from "../assets/images/shop now/69-694768_amazon-echo-png-clip
 import perfume from "../assets/images/shop now/652e82cd70aa6522dd785109a455904c.png"
 
 
-type CustomEventListenerOptions = {
-  capture?: boolean,
-  passive?: boolean,
-  once?: boolean
-}
 
 const Home = () => {
     const {isDesktop, isMobile} = useRenderHook()
@@ -70,7 +63,7 @@ const Home = () => {
 
     const bestSellingProducts = storeProducts.filter((item: { discount: string; id: string }) => item.discount === "" && (parseInt(item.id) > 7 && parseInt(item.id) <= 15))
 
-    
+
     useEffect(() => {
       window.addEventListener("touchstart", touchStart)
       window.addEventListener("touchmove", preventTouch, {passive: false} as CustomEventListenerOptions )
