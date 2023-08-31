@@ -15,6 +15,9 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css" 
 import "slick-carousel/slick/slick-theme.css"
 
+import { LazyLoadImage } from "react-lazy-load-image-component"
+import "react-lazy-load-image-component/src/effects/blur.css"
+
 import HeroImage from "../assets/images/hero/hero_endframe__cvklg0xk3w6e_large 2.png"
 
 import { AiFillApple } from "react-icons/ai"
@@ -116,7 +119,7 @@ const Home = () => {
                 </article>
 
                 <div className="md:mt-auto ml-[8rem] md:ml-auto w-[20rem] md:w-auto">
-                    <img className="md:w-[40rem]" src={HeroImage} loading="lazy" alt="hero image"/>
+                    <LazyLoadImage className="md:w-[40rem]" src={HeroImage} effect="blur" alt="hero image"/>
                 </div>
             </div> 
             </section>
@@ -167,7 +170,7 @@ const Home = () => {
                       <button className="cursor-pointer rounded-[0.25rem] bg-buttonColor-500 text-textColor-400 text-[.7rem] md:text-[1rem] font-medium md:leading-[1.5rem] md:max-w-[20%] max-w-[35%] py-[.4rem] px-[.5rem] md:py-[.7rem] md:px-[1.2rem]">Buy Now!</button>
                     </article>
                     <div className="ml-[10rem] md:ml-auto w-[15rem] md:w-auto ">
-                      <img src={boombox} decoding="async" loading="eager"/>
+                      <LazyLoadImage src={boombox} effect="blur"/>
                     </div>
             </section>
 
@@ -198,47 +201,47 @@ const Home = () => {
               <h2 className="text-[1.2rem] md:text-[2rem] font-semibold md:leading-[3rem] md:tracking-[0.09rem] text-textColor-600 md:mb-[0.4rem]">New Arrival</h2>
 
               <section className="grid grid-cols-4 grid-rows-2 gap-4">
-                <div className="bg-buttonColor-400 pl-[1.2rem]  pt-[5.4rem] relative col-span-2 row-span-2">
-                  <div className="absolute bottom-[20px] flex flex-col gap-[.7rem] items-start">
+                <div className="bg-buttonColor-400 pl-[1.2rem]  pt-[6.6rem] relative col-span-2 row-span-2">
+                  <div className="absolute z-[10] bottom-[20px] flex flex-col gap-[.7rem] items-start">
                     <h2 className="text-[1.5rem] font-semiBold leading-[1.5rem] tracking-[0.045rem] text-textColor-400">Playstation 5</h2>
                     <p className="text-[0.875rem] font-normal leading=[1.3125rem] text-textColor-400 max-w-[15rem]">Black and White version of the PS5 coming out on sale.</p>
                     <button className="text-textColor-400 text-[1rem] font-medium leading-[1.5rem] hover:underline">Shop Now</button>
                   </div>
                     <div className="max-w-[33rem]">
-                      <img className="object-cover" src={playstation} decoding="async" loading="eager"/>
+                      <LazyLoadImage className="object-cover" src={playstation} effect="blur"/>
                     </div>
                 </div>
 
                 <div className="darkGray relative col-span-2 pl-[5.5rem] pt-[.4rem]">
-                  <div className="absolute bottom-[20px] flex flex-col gap-[.7rem] items-start left-[10px]">
+                  <div className="absolute z-[10] bottom-[20px] flex flex-col gap-[.7rem] items-start left-[10px]">
                     <h2 className="text-[1.5rem] font-semiBold leading-[1.5rem] tracking-[0.045rem] text-textColor-400">Women's Collection</h2>
                     <p className="text-[0.875rem] font-normal leading=[1.3125rem] text-textColor-400 max-w-[15rem]">Featured women collections that give you another vibe.</p>
                     <button className="text-textColor-400 text-[1rem] font-medium leading-[1.5rem] hover:underline">Shop Now</button>
                   </div>
                     <div className="max-w-[100%]">
-                      <img src={attractiveWoman} decoding="async" loading="eager"/>
+                      <LazyLoadImage src={attractiveWoman} effect="blur"/>
                     </div>
                 </div>
 
                 <div className="lightGray relative pl-[3.4rem] py-[1.4rem]">
-                  <div className="absolute bottom-[20px] flex flex-col gap-[.2rem] items-start left-[10px]">
+                  <div className="absolute z-[10] bottom-[20px] flex flex-col gap-[.2rem] items-start left-[10px]">
                     <h2 className="text-[1.5rem] font-semiBold leading-[1.5rem] tracking-[0.045rem] text-textColor-400">Speakers</h2>
                     <p className="text-[0.875rem] font-normal leading=[1.3125rem] text-textColor-400">Amazing wireless speakers</p>
                     <button className="text-textColor-400 text-[1rem] font-medium leading-[1.5rem] hover:underline">Shop Now</button>
                   </div>
                     <div>
-                      <img src={amazonEcho} decoding="async" loading="eager"/>
+                      <LazyLoadImage src={amazonEcho} effect="blur"/>
                     </div>
                 </div>
 
                 <div className="lightGray relative pl-[3.2rem] py-[1.4rem]">
-                  <div className="absolute bottom-[20px] flex flex-col gap-[.2rem] items-start left-[10px]">
+                  <div className="absolute z-[10] bottom-[20px] flex flex-col gap-[.2rem] items-start left-[10px]">
                     <h2 className="text-[1.5rem] font-semiBold leading-[1.5rem] tracking-[0.045rem] text-textColor-400">Perfume</h2>
                     <p className="text-[0.875rem] font-normal leading=[1.3125rem] text-textColor-400">GUCCI INTENSE OUD EDP</p>
                     <button className="text-textColor-400 text-[1rem] font-medium leading-[1.5rem] hover:underline">Shop Now</button>
                   </div>
                     <div>
-                      <img src={perfume} decoding="async" loading="eager"/>
+                      <LazyLoadImage src={perfume} effect="blur"/>
                     </div>
                 </div>
               </section>

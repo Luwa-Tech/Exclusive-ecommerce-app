@@ -12,6 +12,9 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css" 
 import "slick-carousel/slick/slick-theme.css"
 
+import { LazyLoadImage } from "react-lazy-load-image-component"
+import "react-lazy-load-image-component/src/effects/blur.css"
+
 const About = () => {
 
     const settings = {
@@ -43,14 +46,14 @@ const About = () => {
   };
     return (
        <main className="mt-[2rem]">
-        <section className="flex flex-col-reverse md:flex-row md:gap-[2.5rem] mb-[5rem] gap-[1rem] items-center">
+        <section className="flex flex-col-reverse md:flex-row md:gap-[2.5rem] mb-[5rem] gap-[1rem] items-center md:justify-between">
             <article className="pl-[.8rem] pr-[.85rem] md:pl-[5.5rem] md:pr-0 md:w-[50%]">
                 <h1 className="text-textColor-600 md:text-[3.375rem] text-[2rem] font-semibold md:leading-[4rem] md:tracking-[.2025rem] mb-[.7rem] md:mb-[1.2rem] text-center md:text-left">Our Story</h1>
                 <p className="text-textColor-600 text-[1rem] font-normal md:leading-[1.625rem] text-justify md:text-left  mb-[1rem]">Launched in 2015, Exclusive is South Asia’s premier online shopping makterplace with an active presense in Bangladesh. Supported by wide range of tailored marketing, data and service solutions, Exclusive has 10,500 sellers and 300 brands and serves 3 millions customers across the region.</p>
                 <p className="text-textColor-600 text-[1rem] font-normal md:leading-[1.625rem] text-justify md:text-left">Exclusive has more than 1 Million products to offer, growing at a very fast. Exclusive offers a diverse assotment in categories ranging from consumer.</p>
             </article>
-            <div>
-                <img src={aboutImagePortrait} alt="about image"/>
+            <div className="md:w-[37rem] md:h-[30rem]">
+                <LazyLoadImage src={aboutImagePortrait} alt="about image" effect="blur"/>
             </div>
         </section>
 
@@ -58,7 +61,7 @@ const About = () => {
             <div className="flex flex-col items-center justify-center gap-[.4rem] border-[.1rem] rounded-[.3rem] px-[1.2rem] py-[1.3rem]">
                 <div className="bg-secondary-500 px-[.7rem] py-[.7rem] rounded-[1.8rem]">
                     <div className="bg-buttonColor-400 px-[.65rem] py-[.65rem] rounded-[1.4rem]">
-                        <img className="w-[1.4rem]" src={iconShop} />
+                        <LazyLoadImage className="w-[1.4rem]" src={iconShop} effect="blur"/>
                     </div>
                 </div>
                 <p className="text-textColor-600 md:text-[2rem] font-bold md:leading-[1.875rem] md:tracking-[0.08rem]">10.5k</p>
@@ -68,7 +71,7 @@ const About = () => {
             <div className="flex flex-col items-center justify-center border-[.1rem] gap-[.4rem]  rounded-[.3rem] px-[1.2rem] py-[1.3rem]">
                 <div className="bg-secondary-500 px-[.7rem] py-[.7rem] rounded-[1.8rem]">
                     <div className="bg-buttonColor-400 px-[.65rem] py-[.65rem] rounded-[1.4rem]">
-                        <img className="w-[1.4rem] filter-image" src={iconSale} />
+                        <LazyLoadImage className="w-[1.4rem] filter-image" src={iconSale} effect="blur"/>
                     </div>
                 </div>
                 <p className="text-textColor-600 md:text-[2rem] font-bold md:leading-[1.875rem] md:tracking-[0.08rem]">33k</p>
@@ -78,7 +81,7 @@ const About = () => {
             <div className="flex flex-col items-center justify-center border-[.1rem] gap-[.4rem]  rounded-[.3rem] px-[1.2rem] py-[1.3rem]">
                 <div className="bg-secondary-500 px-[.7rem] py-[.7rem] rounded-[1.8rem]">
                     <div className="bg-buttonColor-400 px-[.65rem] py-[.65rem] rounded-[1.4rem]">
-                        <img className="w-[1.4rem]" src={iconShopping} />
+                        <LazyLoadImage className="w-[1.4rem]" src={iconShopping} effect="blur"/>
                     </div>
                 </div>
                 <p className="text-textColor-600 md:text-[2rem] font-bold md:leading-[1.875rem] md:tracking-[0.08rem]">45.5k</p>
@@ -88,7 +91,7 @@ const About = () => {
             <div className="flex flex-col items-center justify-center border-[.1rem] gap-[.4rem] rounded-[.3rem] px-[1.2rem] py-[1.3rem]">
                 <div className="bg-secondary-500 px-[.74rem] py-[.7rem] rounded-[1.8rem]">
                     <div className="bg-buttonColor-400 px-[.65rem] py-[.65rem] rounded-[1.4rem]">
-                        <img className="w-[1.4rem]" src={iconMoneyBag} />
+                        <LazyLoadImage className="w-[1.4rem]" src={iconMoneyBag} effect="blur" />
                     </div>
                 </div>
                 <p className="text-textColor-600 md:text-[2rem] font-bold md:leading-[1.875rem] md:tracking-[0.08rem]">25k</p>

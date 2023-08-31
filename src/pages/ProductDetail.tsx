@@ -8,6 +8,9 @@ import { useContext } from "react"
 import { WishListContext } from "../context/WishListContext"
 // import { formatCurrency } from "../utils"
 
+import { LazyLoadImage } from "react-lazy-load-image-component"
+import "react-lazy-load-image-component/src/effects/blur.css"
+
 
 const ProductDetail = () => {
     const {id} = useParams()
@@ -42,7 +45,7 @@ const ProductDetail = () => {
             <section className="flex flex-col md:items-start md:flex-row gap-4 md:gap-[6rem] md:w-[60%] md:mx-auto px-[.5rem] md:px-auto">
 
                 <div className="bg-secondary-500 px-[1.5rem] py-[2.4rem] md:px-[3rem] md:py-[4rem] flex items-center justify-center">
-                    <img className="w-[10rem] h-[10rem] md:w-[14rem] md:h-[14rem] object-contain"  src={product.image} />
+                    <LazyLoadImage className="w-[10rem] h-[10rem] md:w-[14rem] md:h-[14rem] object-contain"  src={product.image} />
                 </div>
 
                 <section>

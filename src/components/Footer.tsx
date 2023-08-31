@@ -3,6 +3,9 @@ import {AiOutlineTwitter, AiOutlineInstagram, AiOutlineSend} from "react-icons/a
 import {BiLogoLinkedin} from "react-icons/bi"
 import { NavLink } from "react-router-dom"
 
+import { LazyLoadImage } from "react-lazy-load-image-component"
+import "react-lazy-load-image-component/src/effects/blur.css"
+
 import qrCode from "../assets/icons/Qr Code.png"
 import googlePlayStore from "../assets/icons/png-transparent-google-play-store-logo-google-play-app-store-android-wallets-text-label-logo.png"
 import appStore from "../assets/icons/AppStore.png"
@@ -25,16 +28,18 @@ const Footer = () => {
 
                 <section className="mb-[1rem] md:mb-0">
                     <h2 className="text-[1.1rem] md:text-[1.25rem] mb-[.3rem] md:mb-[1rem] font-medium leading-[1.75rem] text-textColor-400">Support</h2>
-                    <p className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem] w-[50%]md:w-[53%]">No 6, Hayin Na-iya igabi local government Kaduna, Nigeria</p>
+                    <p className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem] w-[50%] md:w-[80%]">No 6, Hayin Na-iya igabi local government Kaduna, Nigeria</p>
                     <p className="text-textColor-400 text-[1rem] font-normal leading-[1.5rem]">exclusive@gmail.com</p>
-                    <p className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem]">+88015-88888-9999</p>
+                    <p className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem]">09035804351</p>
                 </section>
 
                 <section className="mb-[1rem] md:mb-0">
                     <h2 className="text-[1.1rem] md:text-[1.25rem] mb-[.3rem] md:mb-[1rem] font-medium leading-[1.75rem] text-textColor-400">Account</h2>
-                    <NavLink to="/cart" className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem]">Cart</NavLink>
-                    <NavLink to="/wishlist" className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem]">Wishlist</NavLink>
-                    <NavLink to="/" className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem]">Shop</NavLink>
+                    <div className="flex flex-col gap-1">
+                        <NavLink to="/cart" className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem] hover:underline">Cart</NavLink>
+                        <NavLink to="/wishlist" className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem] hover:underline">Wishlist</NavLink>
+                        <NavLink to="/" className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem] hover:underline">Shop</NavLink>
+                    </div>
                 </section>
 
                 <section className="mb-[1rem] md:mb-0">
@@ -49,10 +54,10 @@ const Footer = () => {
                     <h2 className="md:text-[1.25rem] mb-[.3rem] md:mb-[1rem] font-medium leading-[1.75rem] text-textColor-400">Download App</h2>
                     <p className="text-[0.75rem] font-medium leading-[1.125rem] text-textColor-400">Save $3 with App New User Only</p>
                     <div className="flex gap-1 mt-[.4rem] items-center">
-                        <img src={qrCode} />
+                        <LazyLoadImage src={qrCode} />
                         <div>
-                            <img src={googlePlayStore} />
-                            <img src={appStore} />
+                            <LazyLoadImage src={googlePlayStore} />
+                            <LazyLoadImage src={appStore} />
                         </div>
                     </div>
                     <div className="text-textColor-400 flex gap-[1.7rem] items-center mt-[.7rem]">
