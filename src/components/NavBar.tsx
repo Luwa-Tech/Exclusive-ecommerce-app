@@ -29,7 +29,7 @@ const NavBar = () => {
     }
     return (
         <nav className="md:border-b-textColor-600 md:border-b-[.03rem]">
-            <div className="flex justify-between items-center md:w-[90%] md:m-auto md:max-w-[1200px] pt-4 px-4 md:pt-[1rem] md:pb-[.5rem]">
+            <div className="flex justify-between items-center md:w-[90%] md:m-auto md:max-w-[1200px] pt-4 px-2 md:pt-[1rem] md:pb-[.5rem]">
                 <section className="flex items-center gap-2">
                     <HiBars3CenterLeft className="md:hidden w-[1.6rem] h-[1.6rem]" onClick={handleOpenToggle}/>
                     <h1 className="text-[1.3rem] md:text-[1.5rem] font-bold tracking-[0.045rem] text-textColor-600 leading-6">Exclusive</h1>
@@ -39,9 +39,9 @@ const NavBar = () => {
                     <NavLink to="/contact" className="nav-link" style={({isActive}) => isActive ? isActiveStyles : undefined} onClick={handleCloseToggle}>Contact</NavLink>
                     <NavLink to="/about" className="nav-link" style={({isActive}) => isActive ? isActiveStyles : undefined} onClick={handleCloseToggle}>About</NavLink>
                 </section>
-                <section className="flex items-center gap-[1.5rem]">
+                <section className="flex items-center gap-[1.8rem]">
                     {isDesktop && <SearchBar/>}
-                    <div className="flex items-center gap-[0.45rem]">                     
+                    <div className="flex items-center gap-[0.8rem]">                     
                         <NavLink to="/wishlist">                           
                             <div className="relative">
                             <CiHeart className="nav-icon"/>
