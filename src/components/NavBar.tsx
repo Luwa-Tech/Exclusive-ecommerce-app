@@ -28,7 +28,7 @@ const NavBar = () => {
 
     }
     return (
-        <nav className="md:border-b-textColor-600 md:border-b-[.03rem]">
+        <nav className="border-b-[.02rem] pb-2 md:pb-0 mb-[.4rem] md:mb-0">
             <div className="flex justify-between items-center md:w-[90%] md:m-auto md:max-w-[1200px] pt-4 px-2 md:pt-[1rem] md:pb-[.5rem]">
                 <section className="flex items-center gap-2">
                     <HiBars3CenterLeft className="md:hidden w-[1.6rem] h-[1.6rem]" onClick={handleOpenToggle}/>
@@ -46,7 +46,7 @@ const NavBar = () => {
                             <div className="relative">
                             <CiHeart className="nav-icon"/>
                             {
-                                wishList.length !== 0 && <div className="absolute text-textColor-400 bg-secondary-700 text-[.7rem] md:text-[.9rem] px-[.5rem] py-[.1rem] rounded-[1.9rem] md:rounded-[1.9rem] top-[-7px] md:top-[-13px] right-[-12px] md:right-[-14px]">{wishList.length}</div>
+                                wishList.length !== 0 && <div className="absolute text-textColor-400 bg-secondary-700 text-[.7rem] md:text-[.9rem] px-[.4rem] md:px-[.5rem] py-[.1rem] rounded-[1.9rem] md:rounded-[1.9rem] top-[-7px] md:top-[-13px] right-[-7px] md:right-[-14px]">{wishList.length}</div>
                             }
                             </div>
                         </NavLink>
@@ -54,7 +54,7 @@ const NavBar = () => {
                             <div className="relative">
                             <CiShoppingCart className="nav-icon"/>
                             {
-                                cart.length !== 0 && <div className="absolute text-textColor-400 bg-secondary-700 text-[.7rem] md:text-[.9rem] px-[.5rem] py-[.1rem] rounded-[1.9rem] md:rounded-[1.9rem] top-[-7px] md:top-[-13px] right-[-12px] md:right-[-14px]">{cartQuantity}</div>
+                                cart.length !== 0 && <div className="absolute text-textColor-400 bg-secondary-700 text-[.7rem] md:text-[.9rem] px-[.4rem] md:px-[.5rem] py-[.1rem]  rounded-[1.9rem] md:rounded-[1.9rem] top-[-7px] md:top-[-13px] right-[-7px] md:right-[-14px]">{cartQuantity}</div>
                             }
                             </div>
                         </NavLink>
