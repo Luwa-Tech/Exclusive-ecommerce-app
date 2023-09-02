@@ -25,7 +25,7 @@ const Product = ({...items}: ProductType) => {
                         <div className="flex flex-col ">
                             <p className="mt-[.4rem] text-[.7rem] md:text-[.9rem] font-medium md:leading-[1.5rem] text-textColor-600">
                                 {
-                                    items.name.length > 15 ? `${items.name.substring(0, 17)}..` : items.name
+                                    items.name.length > 12 ? `${items.name.substring(0, 13)}..` : items.name
                                 }
                             </p>
                             <div>

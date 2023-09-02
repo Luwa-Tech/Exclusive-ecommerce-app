@@ -172,7 +172,7 @@ const Home = () => {
                       <button className="cursor-pointer rounded-[0.25rem] bg-buttonColor-500 text-textColor-400 text-[.7rem] md:text-[1rem] font-medium md:leading-[1.5rem] md:max-w-[20%] max-w-[35%] py-[.4rem] px-[.5rem] md:py-[.7rem] md:px-[1.2rem]">Buy Now!</button>
                     </article>
           
-                      <LazyLoadImage className="ml-[10rem] md:ml-auto w-[15rem] md:w-auto " src={boombox} effect="blur"/>
+                      <LazyLoadImage className="ml-[10rem] md:ml-auto w-[15rem] md:w-auto " src={boombox} width="240px" effect="blur"/>
             </section>
 
             <section className="pl-[.4rem] flex flex-col mb-[3rem] md:mb-0 md:pl-0 md:mt-[2rem] md:w-[90%] md:mx-auto mt-[2rem] relative">

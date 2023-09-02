@@ -42,7 +42,7 @@ const WishListItem = (props: wishListType) => {
                             {/*  refactor (remove 0) */}
                                 {
                                     
-                                    item?.name?.length || 0 > 15 ? `${item?.name.substring(0, 17)}..` : item?.name
+                                    item?.name?.length || 0 > 13 ? `${item?.name.substring(0, 14)}..` : item?.name
                                 }
                             </p>
                             <button onClick={addWishlistItemToCart} className="text-textColor-400 hover:opacity-[0.6] bg-textColor-600 px-[.4rem] py-[.3rem] w-full">Add To Cart</button>

@@ -58,27 +58,27 @@ const About = () => {
             <div className="flex flex-col items-center justify-center gap-[.4rem] border-[.1rem] rounded-[.3rem] px-[1.2rem] py-[1.3rem]">
                 <div className="bg-secondary-500 px-[.7rem] py-[.7rem] rounded-[1.8rem]">
                     <div className="bg-buttonColor-400 px-[.65rem] py-[.65rem] rounded-[1.4rem]">
-                        <LazyLoadImage className="w-[1.4rem]" src={iconShop} effect="blur"/>
+                        <img className="w-[1.4rem]" src={iconShop} />
                     </div>
                 </div>
                 <p className="text-textColor-600 md:text-[2rem] font-bold md:leading-[1.875rem] md:tracking-[0.08rem]">10.5k</p>
                 <p className="text-textColor-600 text-[.74rem] md:text-[1rem] font-normal md:leading-[1.5rem]">Active sellers on our site</p>
             </div>
 
-            <div className="flex` flex-col items-center justify-center border-[.1rem] gap-[.4rem]  rounded-[.3rem] px-[1.2rem] py-[1.3rem]">
-                <div className="bg-secondary-500 px-[.7rem] py-[.7rem] rounded-[1.8rem]">
+            <div className="flex flex-col items-center justify-center border-[.1rem] gap-[.4rem] rounded-[.3rem] px-[1.2rem] py-[1.3rem]">
+                <div className="bg-secondary-500 px-[.7rem] py-[.7rem] rounded-[1.8rem] ">
                     <div className="bg-buttonColor-400 px-[.65rem] py-[.65rem] rounded-[1.4rem]">
-                        <LazyLoadImage className="w-[1.4rem] filter-image" src={iconSale} effect="blur"/>
+                        <img className="w-[1.4rem] filter-image" src={iconSale} />
                     </div>
                 </div>
-                <p className="text-textColor-600 md:text-[2rem] font-bold md:leading-[1.875rem] md:tracking-[0.08rem]">33k</p>
-                <p className="text-textColor-600 text-[.74rem] md:text-[1rem] font-normal md:leading-[1.5rem]">Monthly product sales</p>
+                <p className="text-textColor-600 md:text-[2rem] font-bold md:leading-[1.875rem]  md:tracking-[0.08rem]">33k</p>
+                <p className="text-textColor-600 text-[.74rem] md:text-[1rem] font-normal  md:leading-[1.5rem]">Monthly product sales</p>
             </div>
 
             <div className="flex flex-col items-center justify-center border-[.1rem] gap-[.4rem]  rounded-[.3rem] px-[1.2rem] py-[1.3rem]">
                 <div className="bg-secondary-500 px-[.7rem] py-[.7rem] rounded-[1.8rem]">
                     <div className="bg-buttonColor-400 px-[.65rem] py-[.65rem] rounded-[1.4rem]">
-                        <LazyLoadImage className="w-[1.4rem]" src={iconShopping} effect="blur"/>
+                        <img className="w-[1.4rem]" src={iconShopping} />
                     </div>
                 </div>
                 <p className="text-textColor-600 md:text-[2rem] font-bold md:leading-[1.875rem] md:tracking-[0.08rem]">45.5k</p>
@@ -88,7 +88,7 @@ const About = () => {
             <div className="flex flex-col items-center justify-center border-[.1rem] gap-[.4rem] rounded-[.3rem] px-[1.2rem] py-[1.3rem]">
                 <div className="bg-secondary-500 px-[.74rem] py-[.7rem] rounded-[1.8rem]">
                     <div className="bg-buttonColor-400 px-[.65rem] py-[.65rem] rounded-[1.4rem]">
-                        <LazyLoadImage className="w-[1.4rem]" src={iconMoneyBag} effect="blur" />
+                        <img className="w-[1.4rem]" src={iconMoneyBag}  />
                     </div>
                 </div>
                 <p className="text-textColor-600 md:text-[2rem] font-bold md:leading-[1.875rem] md:tracking-[0.08rem]">25k</p>
