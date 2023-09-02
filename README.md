@@ -1,6 +1,6 @@
 # Exclusive E-commerce App
 
-Exlusive is an e-commerce web app that utilizes the stripe test api, which simulates the functionalities of a real-world e-commerce scenario.
+Exclusive is an e-commerce web app that utilizes the stripe test api, which simulates the functionalities of a real-world e-commerce scenario.
 
 [Live Site URL](https://exclusive-ecommerce-app.netlify.app)
 
