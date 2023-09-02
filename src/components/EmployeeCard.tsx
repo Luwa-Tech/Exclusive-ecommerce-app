@@ -2,7 +2,6 @@ import {AiOutlineTwitter, AiOutlineInstagram} from "react-icons/ai"
 import {BiLogoLinkedin} from "react-icons/bi"
 
 import { LazyLoadImage } from "react-lazy-load-image-component"
-import "react-lazy-load-image-component/src/effects/blur.css"
 
 type EmployeeCardType = {
     id: number,
@@ -13,8 +12,8 @@ type EmployeeCardType = {
 
 const EmployeeCard = (props: EmployeeCardType) => {
     return (
-        <div className="w-[8.5rem] md:w-[23.125rem]">
-            <div className="bg-secondary-500 px-[1.5rem] py-[2.4rem] flex items-center w-[10.5rem] h-[13rem] md:w-auto md:h-auto justify-center mb-[1rem]"> 
+        <div className="w-[8rem] md:w-[23.125rem]">
+            <div className="bg-secondary-500 px-[1.5rem] py-[2.4rem] flex items-center w-[9rem] h-[13rem] md:w-auto md:h-auto justify-center mb-[1rem]"> 
             <LazyLoadImage className="md:w-[18.375rem] md:h-[24.8125rem] object-contain" src={props.image} effect="blur" alt="product image" />
             </div>
            <div className="text-textColor-600">

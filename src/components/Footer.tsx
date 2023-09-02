@@ -4,7 +4,6 @@ import {BiLogoLinkedin} from "react-icons/bi"
 import { NavLink } from "react-router-dom"
 
 import { LazyLoadImage } from "react-lazy-load-image-component"
-import "react-lazy-load-image-component/src/effects/blur.css"
 
 import qrCode from "../assets/icons/Qr Code.png"
 import googlePlayStore from "../assets/icons/png-transparent-google-play-store-logo-google-play-app-store-android-wallets-text-label-logo.png"
@@ -43,7 +42,7 @@ const Footer = () => {
                             </div>
                         </section>
                     </div>
-                    <div className="flex flex-col md:flex-row gap-4">
+                    <div className="flex flex-col md:flex-row gap-4 md:gap-10">
                         <section className="mb-[1rem] md:mb-0">
                             <h2 className="text-[1.1rem] md:text-[1.25rem] mb-[.3rem] md:mb-[1rem] font-medium leading-[1.75rem] text-textColor-400">Quick Link</h2>
                             <p className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem]">Privacy Policy</p>

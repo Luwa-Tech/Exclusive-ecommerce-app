@@ -1,7 +1,7 @@
 import ProductSlider from "../components/product-slider/ProductSlider"
 import useStoreProducts from "../hooks/useStoreProducts"
 import Product, { ProductType } from "../components/Product"
-import Services from "../components/Categories"
+import Services from "../components/Services"
 import useRenderHook from "../hooks/useRenderHook"
 import usePreventMobileScroll, {CustomEventListenerOptions} from "../hooks/usePreventMobileScroll"
 import { MobileScroll, DesktopScroll } from "../components/ScrollToTop"
@@ -12,13 +12,10 @@ import { Link } from "react-router-dom"
 import { JSX } from "react/jsx-runtime"
 
 import Slider from "react-slick"
-
 import { LazyLoadImage } from "react-lazy-load-image-component"
-import "react-lazy-load-image-component/src/effects/blur.css"
-
-import HeroImage from "../assets/images/hero/hero_endframe__cvklg0xk3w6e_large 2.png"
 
 import { AiFillApple } from "react-icons/ai"
+import HeroImage from "../assets/images/hero/hero_endframe__cvklg0xk3w6e_large 2.png"
 import boombox from "../assets/images/shop now/JBL_BOOMBOX_2_HERO_020_x1 (1) 1.png"
 import playstation from "../assets/images/shop now/ps5-slim-goedkope-playstation_large 1.png"
 import attractiveWoman from "../assets/images/shop now/attractive-woman-wearing-hat-posing-black-background 1.png"
@@ -169,14 +166,13 @@ const Home = () => {
             </section>
 
             <section className="flex flex-row justify-between bg-buttonColor-400 py-[2.5rem] px-[1.4rem] md:py-[3rem] md:px-[3rem] md:h-[28rem] md:mt-[2rem] md:w-[90%] md:mx-auto mt-[2rem] relative">
-                    <article className="absolute md:static flex flex-col gap-[.8rem] md:gap-[1.2rem] md:w-[60%]">
+                    <article className="absolute md:static flex flex-col gap-[.8rem] z-[10] md:z-auto md:gap-[1.2rem] md:w-[60%]">
                       <p className="text-buttonColor-500 md:text-[1rem] md:leading-[1.25rem] font-semiBold">Categories</p>
                       <h2 className="text-textColor-400 text-[1.4rem] max-w-[60%] md:text-[3rem] font-semibold leading-[1.7rem] md:leading-[3.75rem] md:tracking-[0.12rem] md:max-w-[90%]">Enhance Your Music Experience</h2>
                       <button className="cursor-pointer rounded-[0.25rem] bg-buttonColor-500 text-textColor-400 text-[.7rem] md:text-[1rem] font-medium md:leading-[1.5rem] md:max-w-[20%] max-w-[35%] py-[.4rem] px-[.5rem] md:py-[.7rem] md:px-[1.2rem]">Buy Now!</button>
                     </article>
-                    <div className="ml-[10rem] md:ml-auto w-[15rem] md:w-auto ">
-                      <LazyLoadImage src={boombox} effect="blur"/>
-                    </div>
+          
+                      <LazyLoadImage className="ml-[10rem] md:ml-auto w-[15rem] md:w-auto " src={boombox} effect="blur"/>
             </section>
 
             <section className="pl-[.4rem] flex flex-col mb-[3rem] md:mb-0 md:pl-0 md:mt-[2rem] md:w-[90%] md:mx-auto mt-[2rem] relative">
@@ -205,27 +201,27 @@ const Home = () => {
               </div>
               <h2 className="text-[1.2rem] md:text-[2rem] font-semibold md:leading-[3rem] md:tracking-[0.09rem] text-textColor-600 md:mb-[0.4rem]">New Arrival</h2>
 
-              <section className="grid grid-cols-4 grid-rows-2 gap-4">
-                <div className="bg-buttonColor-400 pl-[1.2rem]  pt-[6.6rem] relative col-span-2 row-span-2">
+              <section className="grid grid-cols-4 grid-rows-2 gap-4 min-h-[20rem]">
+                <div className="bg-buttonColor-400 pl-[1.2rem]  relative col-span-2 row-span-2">
                   <div className="absolute z-[10] bottom-[20px] flex flex-col gap-[.7rem] items-start">
                     <h2 className="text-[1.5rem] font-semiBold leading-[1.5rem] tracking-[0.045rem] text-textColor-400">Playstation 5</h2>
                     <p className="text-[0.875rem] font-normal leading=[1.3125rem] text-textColor-400 max-w-[15rem]">Black and White version of the PS5 coming out on sale.</p>
                     <button className="text-textColor-400 text-[1rem] font-medium leading-[1.5rem] hover:underline">Shop Now</button>
                   </div>
-                    <div className="max-w-[33rem]">
-                      <LazyLoadImage className="object-cover" src={playstation} effect="blur"/>
-                    </div>
+                    
+                      <LazyLoadImage className="object-cover w-full h-full mt-[7.8rem]" src={playstation} effect="blur"/>
+                    
                 </div>
 
-                <div className="darkGray relative col-span-2 pl-[5.5rem] pt-[.4rem]">
+                <div className="darkGray relative col-span-2 pl-[5.5rem] pt-[1.2rem]">
                   <div className="absolute z-[10] bottom-[20px] flex flex-col gap-[.7rem] items-start left-[10px]">
                     <h2 className="text-[1.5rem] font-semiBold leading-[1.5rem] tracking-[0.045rem] text-textColor-400">Women's Collection</h2>
                     <p className="text-[0.875rem] font-normal leading=[1.3125rem] text-textColor-400 max-w-[15rem]">Featured women collections that give you another vibe.</p>
                     <button className="text-textColor-400 text-[1rem] font-medium leading-[1.5rem] hover:underline">Shop Now</button>
                   </div>
-                    <div className="max-w-[100%]">
-                      <LazyLoadImage src={attractiveWoman} effect="blur"/>
-                    </div>
+                    
+                      <LazyLoadImage className="w-full h-full" src={attractiveWoman} effect="blur"/>
+                   
                 </div>
 
                 <div className="lightGray relative pl-[3.4rem] py-[1.4rem]">
@@ -234,9 +230,9 @@ const Home = () => {
                     <p className="text-[0.875rem] font-normal leading=[1.3125rem] text-textColor-400">Amazing wireless speakers</p>
                     <button className="text-textColor-400 text-[1rem] font-medium leading-[1.5rem] hover:underline">Shop Now</button>
                   </div>
-                    <div>
-                      <LazyLoadImage src={amazonEcho} effect="blur"/>
-                    </div>
+                    
+                      <LazyLoadImage className="w-full h-full" src={amazonEcho} effect="blur"/>
+                    
                 </div>
 
                 <div className="lightGray relative pl-[3.2rem] py-[1.4rem]">
@@ -245,9 +241,9 @@ const Home = () => {
                     <p className="text-[0.875rem] font-normal leading=[1.3125rem] text-textColor-400">GUCCI INTENSE OUD EDP</p>
                     <button className="text-textColor-400 text-[1rem] font-medium leading-[1.5rem] hover:underline">Shop Now</button>
                   </div>
-                    <div>
-                      <LazyLoadImage src={perfume} effect="blur"/>
-                    </div>
+                    
+                      <LazyLoadImage className="w-full h-full" src={perfume} effect="blur"/>
+                    
                 </div>
               </section>
               </section>

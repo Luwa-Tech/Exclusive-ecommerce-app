@@ -6,12 +6,10 @@ import iconMoneyBag from "../assets/icons/Icon-Moneybag.png"
 
 import { employeeData } from "../data/employeeData"
 import EmployeeCard from "../components/EmployeeCard"
-import Services from "../components/Categories"
+import Services from "../components/Services"
 
 import Slider from "react-slick"
-
 import { LazyLoadImage } from "react-lazy-load-image-component"
-import "react-lazy-load-image-component/src/effects/blur.css"
 
 const About = () => {
 
@@ -29,15 +27,17 @@ const About = () => {
             settings: {
               slidesToShow: 4,
               slidesToScroll: 1             
-               // initialSlide: 2
             }
           },
           {
             breakpoint: 480,
             settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1,
-              dots: false
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                arrows: false,
+                className: "center",
+                centerMode: true,
+                dots: false
             }
           }
         ]
@@ -51,7 +51,7 @@ const About = () => {
                 <p className="text-textColor-600 text-[1rem] font-normal md:leading-[1.625rem] text-justify md:text-left">Exclusive has more than 1 Million products to offer, growing at a very fast. Exclusive offers a diverse assotment in categories ranging from consumer.</p>
             </article>
          
-                <LazyLoadImage className="w-full h-[21rem] md:w-[37rem] md:h-[30rem]" src={aboutImagePortrait} alt="about image" effect="blur"/>
+                <LazyLoadImage className="w-full h-[23.5rem] md:w-[37rem] md:h-[30rem]" src={aboutImagePortrait} alt="about image" effect="blur"/>
         </section>
 
         <section className="px-[.55rem] md:px-0 mt-[.7rem] mb-[3rem] md:mb-[5rem] md:mt-[2.4rem] md:w-[90%] md:mx-auto grid grid-cols-2 md:grid-cols-4 md:gap-[2.5rem] gap-[.4rem]">
@@ -65,7 +65,7 @@ const About = () => {
                 <p className="text-textColor-600 text-[.74rem] md:text-[1rem] font-normal md:leading-[1.5rem]">Active sellers on our site</p>
             </div>
 
-            <div className="flex flex-col items-center justify-center border-[.1rem] gap-[.4rem]  rounded-[.3rem] px-[1.2rem] py-[1.3rem]">
+            <div className="flex` flex-col items-center justify-center border-[.1rem] gap-[.4rem]  rounded-[.3rem] px-[1.2rem] py-[1.3rem]">
                 <div className="bg-secondary-500 px-[.7rem] py-[.7rem] rounded-[1.8rem]">
                     <div className="bg-buttonColor-400 px-[.65rem] py-[.65rem] rounded-[1.4rem]">
                         <LazyLoadImage className="w-[1.4rem] filter-image" src={iconSale} effect="blur"/>
