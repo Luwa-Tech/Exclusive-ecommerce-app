@@ -54,10 +54,10 @@ const Footer = () => {
                             <h2 className="md:text-[1.25rem] mb-[.3rem] md:mb-[1rem] font-medium leading-[1.75rem] text-textColor-400">Download App</h2>
                             <p className="text-[0.75rem] font-medium leading-[1.125rem] text-textColor-400">Save $3 with App New User Only</p>
                             <div className="flex gap-1 mt-[.4rem] items-center">
-                                <LazyLoadImage src={qrCode} />
+                                <LazyLoadImage src={qrCode} className="h-[5rem] w-[5rem]" />
                                 <div>
-                                    <LazyLoadImage src={googlePlayStore} />
-                                    <LazyLoadImage src={appStore} />
+                                    <LazyLoadImage src={googlePlayStore} className="h-[2rem] w-[6.5rem]"/>
+                                    <LazyLoadImage src={appStore} className="h-[2.2rem] w-[6.6rem]"/>
                                 </div>
                             </div>
                             <div className="text-textColor-400 flex gap-[1.7rem] items-center mt-[.7rem]">
