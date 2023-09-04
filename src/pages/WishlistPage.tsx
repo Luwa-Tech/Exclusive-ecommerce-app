@@ -44,7 +44,7 @@ const WishlistPage = () => {
 
     if(wishList.length === 0) {
         return (
-            <main className="mt-[3.5rem] mb-[4rem] md:mb-[5.95rem]">
+            <main className="mt-[3.5rem] mb-[4rem] md:mb-[6.5rem]">
             <section className="px-[.4rem] text-center flex flex-col gap-[1.5rem] md:max-w-[50%] md:mx-auto">
                 <h1 className="text-[1.5rem] md:text-[2.5rem]">Your wishlist is currently empty</h1>
                 <NavLink to="/">

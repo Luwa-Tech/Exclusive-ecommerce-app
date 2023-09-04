@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom"
 
 const Success = () => {
     return (
-        <main className="mt-[3rem] mb-[2rem] md:mb-[3rem]">
+        <main className="mt-[3rem] mb-[3.5rem] md:mb-[6.5rem]">
             <section className="px-[.4rem] text-center flex flex-col gap-[1.5rem] md:max-w-[50%] md:mx-auto">
                 <h1 className="text-[1.8rem] md:text-[2.5rem] uppercase">
                     thank you for your purchase
