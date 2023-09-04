@@ -111,12 +111,12 @@ const Home = () => {
               {isMobile && <SearchBar />}
       
             <div className="bg-textColor-600 md:flex md:gap-2 md:items-center md:justify-center py-[2.5rem] px-[1.4rem] h-[16rem] mt-[.2rem] md:w-full md:min-h-[24.5rem] md:py-4 md:px-[13rem] relative">
-                <article className="text-textColor-400 absolute bottom-[50px] left-[20px] md:static">
+                <article className="text-textColor-400 absolute bottom-[50px] left-[20px] md:static md:w-[70%]">
                     <div className="flex gap-2 items-center">
                         <AiFillApple />
                         <p className="text-[.85rem] md:text-[1rem] font-normal md:leading-[1.5rem]">iphone 14 Series</p>
                     </div>
-                    <h1 className="text-[1.8rem] w-[80%] md:text-[3rem] font-semibold md:leading-[3.75rem] md:tracking-[0.12rem] md:w-[70%]">Up to 10% off voucher</h1>
+                    <h1 className="text-[1.8rem] w-[80%] md:text-[3rem] font-semibold md:leading-[3.3rem] md:tracking-[0.12rem] md:w-[360px] md:mb-[1.2rem]">Up to 10% off voucher</h1>
                     <span className="text-[.85rem] md:text-[1rem] font-medium md:leading-[1.5rem] hover:underline cursor-pointer">Shop Now</span>
                 </article>
 
@@ -165,7 +165,7 @@ const Home = () => {
                 </div>
             </section>
 
-            <section className="flex flex-row justify-between bg-buttonColor-400 py-[2.5rem] px-[1.4rem] md:py-[3rem] md:px-[3rem] md:h-[28rem] md:mt-[2rem] md:w-[90%] md:mx-auto mt-[2rem] relative">
+            <section className="flex flex-row justify-between bg-buttonColor-400 py-[2.5rem] px-[1.4rem] md:py-[3rem] md:px-[3rem] md:h-[27rem] md:mt-[2rem] md:w-[90%] md:mx-auto mt-[2rem] relative">
                     <article className="absolute md:static flex flex-col gap-[.8rem] z-[10] md:z-auto md:gap-[1.2rem] md:w-[60%]">
                       <p className="text-buttonColor-500 md:text-[1rem] md:leading-[1.25rem] font-semiBold">Categories</p>
                       <h2 className="text-textColor-400 text-[1.4rem] max-w-[60%] md:text-[3rem] font-semibold leading-[1.7rem] md:leading-[3.75rem] md:tracking-[0.12rem] md:max-w-[90%]">Enhance Your Music Experience</h2>
@@ -209,7 +209,7 @@ const Home = () => {
                     <button className="text-textColor-400 text-[1rem] font-medium leading-[1.5rem] hover:underline">Shop Now</button>
                   </div>
                     
-                      <LazyLoadImage className="object-cover w-full h-full mt-[7.8rem]" src={playstation} effect="blur"/>
+                      <LazyLoadImage className="h-[32rem] mt-[7.8rem]" src={playstation} effect="blur"/>
                     
                 </div>
 
@@ -220,7 +220,7 @@ const Home = () => {
                     <button className="text-textColor-400 text-[1rem] font-medium leading-[1.5rem] hover:underline">Shop Now</button>
                   </div>
                     
-                      <LazyLoadImage className="w-full h-full" src={attractiveWoman} effect="blur"/>
+                      <LazyLoadImage className="h-[18rem]" src={attractiveWoman} effect="blur"/>
                    
                 </div>
 
@@ -231,7 +231,7 @@ const Home = () => {
                     <button className="text-textColor-400 text-[1rem] font-medium leading-[1.5rem] hover:underline">Shop Now</button>
                   </div>
                     
-                      <LazyLoadImage className="w-full h-full" src={amazonEcho} effect="blur"/>
+                      <LazyLoadImage className="h-[14rem]" src={amazonEcho} effect="blur"/>
                     
                 </div>
 
@@ -242,7 +242,7 @@ const Home = () => {
                     <button className="text-textColor-400 text-[1rem] font-medium leading-[1.5rem] hover:underline">Shop Now</button>
                   </div>
                     
-                      <LazyLoadImage className="w-full h-full" src={perfume} effect="blur"/>
+                      <LazyLoadImage className="h-[13rem]" src={perfume} effect="blur"/>
                     
                 </div>
               </section>

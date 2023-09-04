@@ -14,7 +14,7 @@ const WishListItem = (props: wishListType) => {
     const {storeProducts} = useStoreProducts()
 
     const item = storeProducts.find(i => i.id === props.id)
-    console.log(item)
+   
     if(item === null) return null
 
     if(item === undefined) {

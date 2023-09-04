@@ -37,13 +37,9 @@ export const WishListContextProvider = ({children}: ChildrenType) => {
     }
 
     const RemoveFromWishList = (id:string) => {
-        setWishList(currItems => {
-            try {
-                return currItems.filter(item => item.id !== id)
-            } finally {
-                toast.success("Product removed from wishlist!")
-            }
-        })
+        setWishList(currItems =>        
+             currItems.filter(item => item.id !== id)
+        )
     }
 
     return (
