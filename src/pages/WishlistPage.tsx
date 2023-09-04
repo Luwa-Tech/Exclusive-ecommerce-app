@@ -19,13 +19,13 @@ const WishlistPage = () => {
     const sliderRef = useRef<Slider | null>(null)
 
 
-    const prev = () => {
+    const GoToPrev = () => {
       if (sliderRef.current) {
         sliderRef.current.slickPrev()
       }
     }
 
-    const next = () => {
+    const GoToNext = () => {
       if (sliderRef.current) {
         sliderRef.current.slickNext()
       }
@@ -44,7 +44,7 @@ const WishlistPage = () => {
 
     if(wishList.length === 0) {
         return (
-            <main className="mt-[3rem] mb-[2rem] md:mb-[3rem]">
+            <main className="mt-[3.5rem] mb-[4rem] md:mb-[5.95rem]">
             <section className="px-[.4rem] text-center flex flex-col gap-[1.5rem] md:max-w-[50%] md:mx-auto">
                 <h1 className="text-[1.5rem] md:text-[2.5rem]">Your wishlist is currently empty</h1>
                 <NavLink to="/">
@@ -59,7 +59,6 @@ const WishlistPage = () => {
         dots: false,
         infinite: true,
         autoplay: false,
-        arrows: true,
         speed: 500,
         slidesToShow: 5,
         slidesToScroll: 1,
@@ -102,8 +101,8 @@ const WishlistPage = () => {
         </section>
 
         <section className="md:mt-[4rem] mt-[2rem]">
-            <ProductSlider sectionCaption="Just For You"  prev={() => prev()} next={() => next()}/>
-                <Slider {...settings}>
+            <ProductSlider sectionCaption="Just For You" prev={() => GoToPrev()} next={() => GoToNext()}/>
+                <Slider ref={sliderRef} {...settings}>
                     {
                         storeProducts.map(items => {
                             return <Product key={items.id} {...items} />
