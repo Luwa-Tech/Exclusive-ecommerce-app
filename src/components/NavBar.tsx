@@ -1,5 +1,5 @@
 import React from "react"
-import {NavLink} from "react-router-dom"
+import {NavLink, useLocation} from "react-router-dom"
 import SearchBar from "./SearchBar"
 import {HiBars3CenterLeft } from "react-icons/hi2"
 import { CiShoppingCart, CiHeart} from "react-icons/ci"
@@ -9,9 +9,12 @@ import { WishListContext } from "../context/WishListContext"
 import { useContext } from "react"
 
 
+const RoutesWithoutFooter = ["/signin", "/signup"]
+
 const NavBar = () => {
     const {cart, cartQuantity} = useContext(CartContext)
     const {wishList} = useContext(WishListContext)
+    const {pathname} = useLocation()
 
     const [isOpen, setIsOpen] = React.useState<boolean>(false)
     const handleOpenToggle = () => {
@@ -27,6 +30,11 @@ const NavBar = () => {
         textDecoration: "underline",
 
     }
+
+    if (RoutesWithoutFooter.some((item) => pathname.includes(item))) {
+    return null
+    }
+    
     return (
         <nav className="border-b-[.02rem] pb-2 md:pb-0 mb-[.4rem] md:mb-0">
             <div className="flex justify-between items-center md:w-[90%] md:m-auto md:max-w-[1200px] pt-4 px-2 md:pt-[1rem] md:pb-[.5rem]">
@@ -38,6 +46,7 @@ const NavBar = () => {
                     <NavLink to="/" className="nav-link" onClick={handleCloseToggle}>Home</NavLink>
                     <NavLink to="/contact" className="nav-link" style={({isActive}) => isActive ? isActiveStyles : undefined} onClick={handleCloseToggle}>Contact</NavLink>
                     <NavLink to="/about" className="nav-link" style={({isActive}) => isActive ? isActiveStyles : undefined} onClick={handleCloseToggle}>About</NavLink>
+                    <NavLink to="/signup" className="nav-link" style={({isActive}) => isActive ? isActiveStyles : undefined} onClick={handleCloseToggle}>Sign Up</NavLink>
                 </section>
                 <section className="flex items-center gap-[1.8rem]">
                     {isDesktop && <SearchBar/>}

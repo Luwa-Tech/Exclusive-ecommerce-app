@@ -1,7 +1,7 @@
 import {FaFacebookF} from "react-icons/fa"
 import {AiOutlineTwitter, AiOutlineInstagram, AiOutlineSend} from "react-icons/ai"
 import {BiLogoLinkedin} from "react-icons/bi"
-import { NavLink } from "react-router-dom"
+import { NavLink, useLocation } from "react-router-dom"
 
 import { LazyLoadImage } from "react-lazy-load-image-component"
 
@@ -9,7 +9,16 @@ import qrCode from "../assets/icons/Qr Code.png"
 import googlePlayStore from "../assets/icons/png-transparent-google-play-store-logo-google-play-app-store-android-wallets-text-label-logo.png"
 import appStore from "../assets/icons/AppStore.png"
 
+
+const RoutesWithoutFooter = ["/signin", "/signup"]
+
 const Footer = () => {
+    const {pathname} = useLocation()
+
+    if (RoutesWithoutFooter.some((item) => pathname.includes(item))) {
+        return null
+    }
+
     return (
         <section className="bg-buttonColor-400 pt-[1.5rem] pb-[1.2rem] px-[.8rem] md:px-0 md:pt-[5rem] md:pb-[1.5rem]">
             <div className="md:w-[90%] md:mx-auto md:flex md:justify-between">
