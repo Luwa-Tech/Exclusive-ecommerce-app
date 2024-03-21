@@ -9,7 +9,7 @@ import { WishListContext } from "../context/WishListContext"
 import { useContext } from "react"
 
 
-const RoutesWithoutFooter = ["/signin", "/signup"]
+const RoutesWithoutNavBar = ["/signin", "/signup", "/product-form"]
 
 const NavBar = () => {
     const {cart, cartQuantity} = useContext(CartContext)
@@ -31,7 +31,7 @@ const NavBar = () => {
 
     }
 
-    if (RoutesWithoutFooter.some((item) => pathname.includes(item))) {
+    if (RoutesWithoutNavBar.some((item) => pathname.includes(item))) {
     return null
     }
     
