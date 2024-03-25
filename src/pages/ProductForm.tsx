@@ -44,7 +44,7 @@ const ProductForm = () => {
         let fieldValue
 
         if (fieldName === "image") {
-            fieldValue = event.target.files[0]
+            fieldValue = event.target.files ? event.target.files[0] : null
         } else {
             fieldValue = event.target.value
         }
