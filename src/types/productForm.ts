@@ -5,7 +5,7 @@ export interface FormDataType {
     stripeID: string;
     discount?: number;
     discountPrice?: number;
-    rating?: float;
+    rating?: number;
     category?: string;
 }
 
