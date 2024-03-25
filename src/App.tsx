@@ -9,6 +9,7 @@ import Contact from "./pages/Contact"
 import About from "./pages/About"
 import Signup from "./pages/Signup"
 import Signin from "./pages/Signin"
+import ProductForm from "./pages/ProductForm"
 import PageNotFound from "./pages/404"
 import CartPage from "./pages/CartPage"
 import WishlistPage from "./pages/WishlistPage"
@@ -38,6 +39,7 @@ const App = () => {
                                     <Route path="/about" element={<About />} />
                                     <Route path="/signup" element={<Signup />} />
                                     <Route path="/signin" element={<Signin />} />
+                                    <Route path="/product-form" element={<ProductForm />} />
                                     <Route path="/cart" element={<CartPage />} />
                                     <Route path="/cart/success" element={<Success />} />
                                     <Route path="/cart/cancel" element={<Cancel />} />

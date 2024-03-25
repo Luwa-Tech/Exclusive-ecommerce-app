@@ -10,7 +10,7 @@ import googlePlayStore from "../assets/icons/png-transparent-google-play-store-l
 import appStore from "../assets/icons/AppStore.png"
 
 
-const RoutesWithoutFooter = ["/signin", "/signup"]
+const RoutesWithoutFooter = ["/signin", "/signup", "/product-form"]
 
 const Footer = () => {
     const {pathname} = useLocation()
