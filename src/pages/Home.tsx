@@ -56,9 +56,10 @@ const Home = () => {
     }
     
     const {storeProducts} = useStoreProducts()
-    const flashSalesProducts = storeProducts.filter((item: { discount: string }) => item.discount !== "")
+    const flashSalesProducts = storeProducts.filter((item: { discount: number | null }) => item.discount !== null)
 
-    const bestSellingProducts = storeProducts.filter((item: { discount: string; id: string }) => item.discount === "" && (parseInt(item.id) > 7 && parseInt(item.id) <= 15))
+    // Filter based on product rating
+    const bestSellingProducts = storeProducts.filter((item: { discount: number | null, id: string }) => item.discount === null && (parseInt(item._id) > 7 && parseInt(item._id) <= 15))
 
 
     useEffect(() => {
@@ -131,7 +132,7 @@ const Home = () => {
                     {
                         flashSalesProducts.map((items: JSX.IntrinsicAttributes & ProductType) => {
                             return (
-                                <Product key={items.id} {...items}/>
+                                <Product key={items._id} {...items}/>
                             )
                         })
                     }
@@ -158,7 +159,7 @@ const Home = () => {
                   {
                     bestSellingProducts.map((items: JSX.IntrinsicAttributes & ProductType) => {
                       return (
-                        <Product key={items.id} {...items}/>
+                        <Product key={items._id} {...items}/>
                       )
                     })
                   }
@@ -181,7 +182,7 @@ const Home = () => {
                     {
                         storeProducts.map((items: JSX.IntrinsicAttributes & ProductType) => {
                             return (
-                                <Product key={items.id} {...items}/>
+                                <Product key={items._id} {...items}/>
                             )
                         })
                     }

@@ -1,7 +1,5 @@
-import { WishListContext } from "../context/WishListContext"
-import {useContext, useEffect, useRef} from "react"
-import WishListItem from "../components/wishlist/WishListItem"
-
+import {useEffect, useRef} from "react"
+import useWishlist from "../hooks/useWishlist"
 import Slider from "react-slick"
 
 import useStoreProducts from "../hooks/useStoreProducts"
@@ -9,10 +7,15 @@ import Product from "../components/Product"
 import ProductSlider from "../components/product-slider/ProductSlider"
 import { NavLink } from "react-router-dom"
 import usePreventMobileScroll, {CustomEventListenerOptions} from "../hooks/usePreventMobileScroll"
+import WishListItem from "../components/wishlist/WishListItem"
 
 
 const WishlistPage = () => {
-    const { wishList } = useContext(WishListContext)
+    const {
+      wishList,
+      getWishlist
+    } = useWishlist()
+
     const {touchStart, preventTouch} = usePreventMobileScroll()
 
     const {storeProducts} = useStoreProducts()
@@ -30,6 +33,11 @@ const WishlistPage = () => {
         sliderRef.current.slickNext()
       }
     }
+
+    // TODO: Update wishlist state when database updates
+    useEffect(() => {
+      getWishlist()
+    }, [])
 
     useEffect(() => {
       window.addEventListener("touchstart", touchStart)
@@ -94,7 +102,7 @@ const WishlistPage = () => {
             <ul className="grid md:grid-cols-6 grid-cols-3 gap-2 md:gap-4">
                 {
                     wishList.map(items => {
-                        return <WishListItem key={items.id} {...items}/>
+                        return <WishListItem key={items._id} {...items}/>
                     })
                 }
             </ul>
@@ -105,7 +113,7 @@ const WishlistPage = () => {
                 <Slider ref={sliderRef} {...settings}>
                     {
                         storeProducts.map(items => {
-                            return <Product key={items.id} {...items} />
+                            return <Product key={items._id} {...items} />
                         })
                     }
                 </Slider>

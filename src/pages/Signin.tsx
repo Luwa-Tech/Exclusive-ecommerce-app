@@ -1,9 +1,10 @@
 import { NavLink } from "react-router-dom"
 import signImage from "../assets/signimage.png"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 import axios from "axios"
-import { UserLoginDataType } from "../types/signin";
+import { UserLoginDataType } from "../types/signin"
+import useAuth from "../hooks/useAuth"
 
 const initUserInputState: UserLoginDataType = {
     email: "",
@@ -13,6 +14,7 @@ const initUserInputState: UserLoginDataType = {
 const Signin = () => {
     const [userInput, setUserInput] = useState(initUserInputState)
     const [error, setError] = useState<string>("")
+    const {setIsUser} = useAuth()
     const navigate = useNavigate()
 
     const onFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -25,7 +27,10 @@ const Signin = () => {
             })
     
             console.log(response)
+
+            // TODO: Fix status code
             if (response.status === 202) {
+                setIsUser(prev => !prev)
                 // Return user to previous location
                 //navigate(-1)
                 console.log("logged in")
