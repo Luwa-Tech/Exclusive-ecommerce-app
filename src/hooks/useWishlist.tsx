@@ -1,14 +1,17 @@
 import { useState } from "react"
-import { StoreProductType } from "../context/StoreContext"
 import axios from "axios"
 import { toast } from "react-toastify"
 
+type WishListType = {
+    id: string,
+}
+
 const useWishlist = () => {
-    const [wishList, setWishList] = useState<StoreProductType[]>([])
+    const [wishList, setWishList] = useState<WishListType[]>([])
 
     const getWishlist = async () => {
         try {
-            const response = await axios.get("http://localhost:3500/user/wishlist")
+            const response = await axios.get("http://localhost:3500/api/user/wishlist")
             setWishList(response.data)
         } catch(err) {
             console.log(err)
@@ -17,7 +20,7 @@ const useWishlist = () => {
 
     const addToWishlist = async (id: string) => {
         try {
-            const response = await axios.put("http://localhost:3500/user/wishlist/add", {
+            const response = await axios.put("http://localhost:3500/api/user/wishlist/add", {
                 productId: id
             })
             if (response.status === 200) {
@@ -31,7 +34,7 @@ const useWishlist = () => {
 
     const removeFromWishlist = async (id: string) => {
         try {
-            const response = await axios.put("http://localhost:3500/user/wishlist/remove", {
+            const response = await axios.put("http://localhost:3500/api/user/wishlist/remove", {
                 productId: id
             })
             if (response.status === 200) {
