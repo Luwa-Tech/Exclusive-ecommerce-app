@@ -1,24 +1,25 @@
-import Cart from "../components/cart/Cart"
-import { CartContext } from "../context/CartContext"
-import { useContext } from "react"
+
 import { DesktopCartSummary, MobileCartSummary } from "../components/cart/CartSummary"
 import useRenderHook from "../hooks/useRenderHook"
 import useStoreProducts from "../hooks/useStoreProducts"
 import { formatCurrency } from "../utils"
 import { NavLink } from "react-router-dom"
+import useCart from "../hooks/useCart"
+import Cart from "../components/cart/Cart"
 
 
 const CartPage = () => {
-    const {cart} = useContext(CartContext)
+    const {userCart} = useCart()
     const {storeProducts} = useStoreProducts()
     const {isMobile, isDesktop} = useRenderHook()
 
-    const totalPrice = cart.reduce((total, cartItem) => {
-        const item = storeProducts.find(i => i.id === cartItem.id)
-        return total + (item?.price || 0) * cartItem.qty
+    const totalPrice = userCart.reduce((total, cartItem) => {
+        const item = storeProducts.find(i => i._id === cartItem.id)
+        return total + (item?.price || 0) * cartItem.quantity
     }, 0)
 
 
+    // TODO: Refactor checkoutHandler
     const checkoutHandler = async () => {
         await fetch("https://exclusive-ecommerce-api.glitch.me/checkout", {
             method: "POST",
@@ -26,7 +27,7 @@ const CartPage = () => {
                 "Content-Type": "application/json"
             },
             credentials: "same-origin",
-            body: JSON.stringify({items: cart})
+            body: JSON.stringify({items: userCart})
         }).then(response => {
             return response.json();
         }).then(response => {
@@ -36,7 +37,7 @@ const CartPage = () => {
         })
     }
 
-        if(cart.length === 0) {
+        if(userCart.length === 0) {
         return (
             <main className="mt-[3rem] mb-[2rem] md:mb-[3rem]">
                 <section className="px-[.4rem] text-center flex flex-col gap-[1.5rem] md:max-w-[50%] md:mx-auto">

@@ -1,9 +1,8 @@
 import CartLineItem from "./CartLineItem"
-import { CartContext } from "../../context/CartContext"
-import { useContext } from "react"
+import useCart from "../../hooks/useCart"
 
 const Cart = () => {
-    const {cart, cartQuantity} = useContext(CartContext)
+    const {userCart, cartQuantity} = useCart()
     
 
     return (
@@ -14,7 +13,7 @@ const Cart = () => {
             </div>
         <ul>
             {
-                cart.map(items => <CartLineItem key={items.id} {...items} />)
+                userCart.map(items => <CartLineItem key={items.id} {...items} />)
             }
         </ul>
         </div>

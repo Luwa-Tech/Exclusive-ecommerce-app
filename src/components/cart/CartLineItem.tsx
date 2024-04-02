@@ -1,23 +1,22 @@
 import {MdOutlineDelete } from "react-icons/md"
 import useStoreProducts from "../../hooks/useStoreProducts"
-import { CartContext } from "../../context/CartContext"
-import { useContext } from "react"
+import useCart from "../../hooks/useCart"
 
 type CartLineItemType = {
     id: string,
-    qty: number 
+    quantity: number 
 }
 
-const CartLineItem = ({id, qty}: CartLineItemType) => {
+const CartLineItem = ({id, quantity}: CartLineItemType) => {
     const {            
         removeFromCart,
-        increaseItemQuantity,
-        decreaseItemQuantity
-        } = useContext(CartContext)
+        addToCart,
+        decreaseItemQty
+        } = useCart()
 
 
     const {storeProducts} = useStoreProducts()
-    const item = storeProducts.find(product => product.id === id)
+    const item = storeProducts.find(product => product._id === id)
     if(item === null) return null
     
     if(item === undefined) {
@@ -49,9 +48,9 @@ const CartLineItem = ({id, qty}: CartLineItemType) => {
                     <button onClick={() => removeFromCart(id)} className="uppercase border-none">remove</button>
                 </div>
                 <div className="overflow-hidden items-center flex justify-between w-[8rem]">
-                    <button onClick={() => decreaseItemQuantity(id)} className="bg-secondary-700 text-textColor-400 px-[.75rem] py-[.1rem] text-[1.3rem] hover:opacity-[0.6]">-</button>
-                    <span className="px-[1.1rem] md:px-[1.4rem]">{qty}</span>
-                    <button onClick={() => increaseItemQuantity(id, item.stripeID)} className="bg-secondary-700 text-textColor-400 px-[.65rem] py-[.1rem] text-[1.3rem] hover:opacity-[0.6]">+</button>
+                    <button onClick={() => decreaseItemQty(id)} className="bg-secondary-700 text-textColor-400 px-[.75rem] py-[.1rem] text-[1.3rem] hover:opacity-[0.6]">-</button>
+                    <span className="px-[1.1rem] md:px-[1.4rem]">{quantity}</span>
+                    <button onClick={() => addToCart(id)} className="bg-secondary-700 text-textColor-400 px-[.65rem] py-[.1rem] text-[1.3rem] hover:opacity-[0.6]">+</button>
                 </div>
             </section>
         </li>
