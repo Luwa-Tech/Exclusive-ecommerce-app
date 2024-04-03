@@ -56,10 +56,13 @@ const Home = () => {
     }
     
     const {storeProducts} = useStoreProducts()
-    const flashSalesProducts = storeProducts.filter((item: { discount: number | null }) => item.discount !== null)
+    const flashSalesProducts = storeProducts.filter((item: { discount: number | null }) => {
+       return item.discount !== null
+    })
 
-    // Filter based on product rating
-    const bestSellingProducts = storeProducts.filter((item: { discount: number | null, id: string }) => item.discount === null && (parseInt(item._id) > 7 && parseInt(item._id) <= 15))
+    const bestSellingProducts = storeProducts.filter(item => {
+      return item.rating >= 4.5
+    })
 
 
     useEffect(() => {
