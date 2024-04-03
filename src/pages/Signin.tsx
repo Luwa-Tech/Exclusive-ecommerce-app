@@ -1,7 +1,7 @@
-import { NavLink } from "react-router-dom"
+import { Link } from "react-router-dom"
 import signImage from "../assets/signimage.png"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import axios from "axios"
 import { UserLoginDataType } from "../types/signin"
 import useAuth from "../hooks/useAuth"
@@ -15,7 +15,10 @@ const Signin = () => {
     const [userInput, setUserInput] = useState(initUserInputState)
     const [error, setError] = useState<string>("")
     const {setIsUser} = useAuth()
+    const location = useLocation()
     const navigate = useNavigate()
+
+    const from = location.state?.from?.pathname || "/"
 
     const onFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -27,18 +30,14 @@ const Signin = () => {
             })
     
             console.log(response)
-
-            // TODO: Fix status code
             if (response.status === 202) {
                 setIsUser(prev => !prev)
                 // Return user to previous location
-                //navigate(-1)
-                console.log("logged in")
+                navigate(from, {replace: true})
             }
 
         } catch(err) {
-            console.log(err)
-            setError(err.response.data.message)
+            setError((err as any).response.data.message)
         }
 
     }
@@ -63,7 +62,7 @@ const Signin = () => {
                     {error && <p className="text-red-700 my-2 underline">{error}</p>}
                     <button className="bg-secondary-700 px-4 py-4 text-white mb-4 hover:bg-opacity-[0.8]" type="submit">Log In</button>
                 </form>
-                <p className="text-[.95rem] text-center">Don't have account? <NavLink to="/signup" className="underline">Sign Up</NavLink></p>
+                <p className="text-[.95rem] text-center">Don't have account? <Link to="/signup" state={from} className="underline">Sign Up</Link></p>
             </section>
         </main>
     )

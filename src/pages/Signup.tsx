@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom"
 import signImage from "../assets/signimage.png"
 import {UserInputType} from "../types/siginup"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import axios from "axios"
 import useAuth from "../hooks/useAuth"
 
@@ -18,6 +18,9 @@ const Signup = () => {
     const [error, setError] = useState<string>("")
     const {setIsUser} = useAuth()
     const navigate = useNavigate()
+    const location = useLocation()
+    
+    const { from } = location.state || { from: { pathname: '/' } }
 
     const onFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -30,15 +33,14 @@ const Signup = () => {
                 password: userInput.password
             })
             console.log(response)
-            if (response.status === 202) {
+            if (response.status === 201) {
                 setIsUser(prev => !prev)
                 // Return user to previous location
-                console.log("sigined up and logged in")
+                navigate(from, {replace: true})
             }
 
         } catch(err) {
-            console.log(err)
-            setError(err.response.data.message)
+            setError((err as any).response.data.message)
         }
     }
 
