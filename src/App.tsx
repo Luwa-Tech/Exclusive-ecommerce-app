@@ -19,16 +19,12 @@ import SearchResults from "./pages/SearchResults"
 import Success from "./pages/Success"
 import Cancel from "./pages/Cancel"
 import StoreProductsProvider from "./context/StoreContext"
-import { CartContextProvider } from "./context/CartContext"
-import { WishListContextProvider } from "./context/WishListContext"
 import ResetScroll from "./components/ResetScroll"
 
 
 const App = () => {
     return (
         <StoreProductsProvider>
-            <CartContextProvider>
-                <WishListContextProvider>
                         <BrowserRouter>
                                 <ResetScroll />
                                 <Routes>
@@ -50,15 +46,11 @@ const App = () => {
                                     <Route path="/results" element={<SearchResults />} />
                                     <Route path="/results/:id" element={< ProductDetail/>} />
 
-
-                                
                                     <Route path="*" element={<PageNotFound />} />
                                 </Route>
                                 
                                 </Routes>
                         </BrowserRouter>
-                </WishListContextProvider>
-            </CartContextProvider>
         </StoreProductsProvider>
     )
 }

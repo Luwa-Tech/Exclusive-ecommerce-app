@@ -3,9 +3,8 @@ import useStoreProducts from "../hooks/useStoreProducts"
 import { CiHeart } from "react-icons/ci"
 import { TbTruckDelivery } from "react-icons/tb"
 import { GiReturnArrow } from "react-icons/gi"
-import { CartContext } from "../context/CartContext"
-import { useContext } from "react"
 import useWishlist from "../hooks/useWishlist"
+import useCart from "../hooks/useCart"
 // import { formatCurrency } from "../utils"
 import useAuth from "../hooks/useAuth"
 
@@ -23,11 +22,11 @@ const ProductDetail = () => {
     const {wishList, addToWishlist} = useWishlist()
 
     const {
-        increaseItemQuantity,
-        decreaseItemQuantity,
+        addToCart,
+        decreaseItemQty,
         getItemQuantity
 
-    } = useContext(CartContext)
+    } = useCart()
 
     if (id === undefined) {
         return (
@@ -36,7 +35,7 @@ const ProductDetail = () => {
     }
     const quantity = getItemQuantity(id)
     const product = storeProducts.find(item => item._id === id)
-    const itemInList = wishList.find(item => item._id === id)
+    const itemInList = wishList.find(item => item.id === id)
     if (product === undefined) {
         return (
             <h1>An Error occured when fetching product details</h1>
@@ -59,14 +58,14 @@ const ProductDetail = () => {
                     </div>
                     <div className="flex items-center gap-2 mt-[1.2rem]">
                         {
-                            quantity === 0 && <button onClick={() => increaseItemQuantity(id, product.stripeID)} className="bg-secondary-700 rounded-[0.25ren] text-textColor-400 px-[1rem] py-[.6rem] md:px-[3rem] md:py-[0.625rem] w-[90%] md:w-auto hover:opacity-[0.6]">Add To Cart</button>
+                            quantity === 0 && <button onClick={() => addToCart(id)} className="bg-secondary-700 rounded-[0.25ren] text-textColor-400 px-[1rem] py-[.6rem] md:px-[3rem] md:py-[0.625rem] w-[90%] md:w-auto hover:opacity-[0.6]">Add To Cart</button>
                         }
 
                         {
                             quantity > 0 && <div className="items-center flex justify-between w-[8rem]">
-                                <button onClick={() => decreaseItemQuantity(id)} className="bg-secondary-700 text-textColor-400 px-[.75rem] py-[.1rem] text-[1.3rem] hover:opacity-[0.6]">-</button>
+                                <button onClick={() => decreaseItemQty(id)} className="bg-secondary-700 text-textColor-400 px-[.75rem] py-[.1rem] text-[1.3rem] hover:opacity-[0.6]">-</button>
                                 <span className="px-[1.1rem] md:px-[1.4rem]">{quantity}</span>
-                                <button onClick={() => increaseItemQuantity(id, product.stripeID)} className="bg-secondary-700 text-textColor-400 px-[.65rem] py-[.1rem] text-[1.3rem] hover:opacity-[0.6]">+</button>
+                                <button onClick={() => addToCart(id)} className="bg-secondary-700 text-textColor-400 px-[.65rem] py-[.1rem] text-[1.3rem] hover:opacity-[0.6]">+</button>
                             </div>
                         }
 

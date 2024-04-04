@@ -1,7 +1,8 @@
-import {FaFacebookF} from "react-icons/fa"
-import {AiOutlineTwitter, AiOutlineInstagram, AiOutlineSend} from "react-icons/ai"
-import {BiLogoLinkedin} from "react-icons/bi"
+import { FaFacebookF } from "react-icons/fa"
+import { AiOutlineTwitter, AiOutlineInstagram, AiOutlineSend } from "react-icons/ai"
+import { BiLogoLinkedin } from "react-icons/bi"
 import { NavLink, useLocation } from "react-router-dom"
+import useAuth from "../hooks/useAuth"
 
 import { LazyLoadImage } from "react-lazy-load-image-component"
 
@@ -13,7 +14,8 @@ import appStore from "../assets/icons/AppStore.png"
 const RoutesWithoutFooter = ["/signin", "/signup", "/product-form"]
 
 const Footer = () => {
-    const {pathname} = useLocation()
+    const { pathname } = useLocation()
+    const { isUser } = useAuth()
 
     if (RoutesWithoutFooter.some((item) => pathname.includes(item))) {
         return null
@@ -27,9 +29,9 @@ const Footer = () => {
                     <p className="text-[1.1rem] md:text-[1.25rem] font-medium leading-[1.75rem] text-textColor-400 mb-[.6rem]">Subscribe</p>
                     <p className="text-textColor-400 text-[1rem] font-normal leading-[1.5rem] mb-[.3rem]">Get 10% off your first order</p>
                     <div className="border-[1.5px] text-textColor-400 flex items-center py-[.4rem] px-[.6rem] gap-[.4rem] md:gap-0 rounded-[0.25rem] max-w-[65%] md:max-w-[100%]">
-                        <input className="bg-transparent w-full outline-none" type="text" placeholder="Enter your email"/>
+                        <input className="bg-transparent w-full outline-none" type="text" placeholder="Enter your email" />
                         <div className="cursor-pointer">
-                        <AiOutlineSend />
+                            <AiOutlineSend />
                         </div>
                     </div>
                 </section>
@@ -46,7 +48,7 @@ const Footer = () => {
                             <h2 className="text-[1.1rem] md:text-[1.25rem] mb-[.3rem] md:mb-[1rem] font-medium leading-[1.75rem] text-textColor-400">Account</h2>
                             <div className="flex flex-col gap-1">
                                 <NavLink to="/cart" className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem] hover:underline">Cart</NavLink>
-                                <NavLink to="/wishlist" className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem] hover:underline">Wishlist</NavLink>
+                                {isUser && <NavLink to="/wishlist" className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem] hover:underline">Wishlist</NavLink>}
                                 <NavLink to="/" className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem] hover:underline">Shop</NavLink>
                             </div>
                         </section>
@@ -65,8 +67,8 @@ const Footer = () => {
                             <div className="flex gap-1 mt-[.4rem] items-center">
                                 <LazyLoadImage src={qrCode} className="h-[5rem] w-[5rem]" />
                                 <div>
-                                    <LazyLoadImage src={googlePlayStore} className="h-[2rem] w-[6.5rem]"/>
-                                    <LazyLoadImage src={appStore} className="h-[2.2rem] w-[6.6rem]"/>
+                                    <LazyLoadImage src={googlePlayStore} className="h-[2rem] w-[6.5rem]" />
+                                    <LazyLoadImage src={appStore} className="h-[2.2rem] w-[6.6rem]" />
                                 </div>
                             </div>
                             <div className="text-textColor-400 flex gap-[1.7rem] items-center mt-[.7rem]">

@@ -4,17 +4,16 @@ import SearchBar from "./SearchBar"
 import { HiBars3CenterLeft } from "react-icons/hi2"
 import { CiShoppingCart, CiHeart } from "react-icons/ci"
 import useRenderHook from "../hooks/useRenderHook"
-import { CartContext } from "../context/CartContext"
-import { WishListContext } from "../context/WishListContext"
-import { useContext } from "react"
 import useAuth from "../hooks/useAuth"
+import useCart from "../hooks/useCart"
+import useWishlist from "../hooks/useWishlist"
 
 
 const RoutesWithoutNavBar = ["/signin", "/signup", "/product-form"]
 
 const NavBar = () => {
-    const { cart, cartQuantity } = useContext(CartContext)
-    const { wishList } = useContext(WishListContext)
+    const { userCart, cartQuantity } = useCart()
+    const { wishList } = useWishlist()
     const { isUser } = useAuth()
     const { pathname } = useLocation()
 
@@ -65,7 +64,7 @@ const NavBar = () => {
                             <div className="relative">
                                 <CiShoppingCart className="nav-icon" />
                                 {
-                                    cart.length !== 0 && <div className="absolute text-textColor-400 bg-secondary-700 text-[.7rem] md:text-[.9rem] px-[.4rem] md:px-[.5rem] py-[.1rem]  rounded-[1.9rem] md:rounded-[1.9rem] top-[-7px] md:top-[-13px] right-[-7px] md:right-[-14px]">{cartQuantity}</div>
+                                    userCart.length !== 0 && <div className="absolute text-textColor-400 bg-secondary-700 text-[.7rem] md:text-[.9rem] px-[.4rem] md:px-[.5rem] py-[.1rem]  rounded-[1.9rem] md:rounded-[1.9rem] top-[-7px] md:top-[-13px] right-[-7px] md:right-[-14px]">{cartQuantity}</div>
                                 }
                             </div>
                         </NavLink>

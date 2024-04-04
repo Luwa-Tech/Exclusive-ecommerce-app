@@ -16,7 +16,7 @@ export type ProductType = {
 const Product = ({...items}: ProductType) => {
     
     return (
-        <div className="w-[9.5rem] h-[15rem] md:w-[11rem] relative">
+        <div className="w-[9.5rem] h-[15rem] md:w-[11rem] relative md:hover:border-[1.5px] md:transition-all-[0.15] md:px-1">
             <NavLink to={`${items._id}`}>
                             {items.discount !== null && <div className="bg-secondary-700 text-textColor-400 py-[0.25rem] px-[0.75rem] absolute left-[5px] top-[8px]  text-[0.6rem] md:text-[0.75rem] font-normal md:leading-[1.125rem]">{items.discount}%</div>}
                             <div className="px-[1.5rem] py-[2.4rem] flex items-center justify-center"> 
@@ -29,7 +29,7 @@ const Product = ({...items}: ProductType) => {
                                 }
                             </p>
                             <div>
-                                <span className={`text-[.7rem] md:text-[.9rem] font-medium md:leading-[1.5rem] ${items.discountPrice ? "text-textColor-600 line-through" : "text-secondary-700"} mr-[0.4rem] opacity-[0.5]`}>${items.price}</span>
+                                <span className={`text-[.7rem] md:text-[.9rem] font-medium md:leading-[1.5rem] ${items.discountPrice ? "text-textColor-600 line-through opacity-[0.5]" : "text-secondary-700"} mr-[0.4rem]`}>${items.price}</span>
                                 {items.discountPrice && <span className="text-secondary-700 text-[.7rem] md:text-[.9rem] font-medium  md:leading-[1.5rem] ">${items.discountPrice}</span>}
                             </div>
                             

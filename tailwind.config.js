@@ -16,7 +16,8 @@ export default {
         secondary: {
           500: '#F5F5F5',
           600: '#FEFAF1',
-          700: '#DB4444'
+          700: '#DB4444',
+          800: '#d4d4d4'
         },
         textColor: {
           400: '#FAFAFA',
