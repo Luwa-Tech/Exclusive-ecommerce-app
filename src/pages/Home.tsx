@@ -63,7 +63,8 @@ const Home = () => {
     const bestSellingProducts = storeProducts.filter(item => {
       return item.rating >= 4.5
     })
-
+    const bestSellingProductsFirstHalfIndex = Math.floor(bestSellingProducts.length / 2) 
+    const bestSellingProductsFirstHalf = bestSellingProducts.slice(0, bestSellingProductsFirstHalfIndex)
 
     useEffect(() => {
       window.addEventListener("touchstart", touchStart)
@@ -158,9 +159,9 @@ const Home = () => {
                 </Link>
                 </div>
 
-                <div className="grid grid-cols-3 gap-3 md:flex md:flex-row md:justify-between">
+                <div className="grid grid-cols-3 gap-3 md:grid-cols-6">
                   {
-                    bestSellingProducts.map((items: JSX.IntrinsicAttributes & ProductType) => {
+                    bestSellingProductsFirstHalf.map((items: JSX.IntrinsicAttributes & ProductType) => {
                       return (
                         <Product key={items._id} {...items}/>
                       )
@@ -170,11 +171,11 @@ const Home = () => {
             </section>
 
             <section className="flex flex-row justify-between bg-buttonColor-400 py-[2.5rem] px-[1.4rem] md:py-[3rem] md:px-[3rem] md:h-[27rem] md:mt-[2rem] md:w-[90%] md:mx-auto mt-[2rem] relative">
-                    <article className="absolute md:static flex flex-col gap-[.8rem] z-[10] md:z-auto md:gap-[1.2rem] md:w-[60%]">
+                    <div className="absolute md:static flex flex-col gap-[.8rem] z-[10] md:z-auto md:gap-[1.2rem] md:w-[60%]">
                       <p className="text-buttonColor-500 md:text-[1rem] md:leading-[1.25rem] font-semiBold">Categories</p>
                       <h2 className="text-textColor-400 text-[1.4rem] max-w-[60%] md:text-[3rem] font-semibold leading-[1.7rem] md:leading-[3.75rem] md:tracking-[0.12rem] md:max-w-[90%]">Enhance Your Music Experience</h2>
                       <button className="cursor-pointer rounded-[0.25rem] bg-buttonColor-500 text-textColor-400 text-[.7rem] md:text-[1rem] font-medium md:leading-[1.5rem] md:max-w-[20%] max-w-[35%] py-[.4rem] px-[.5rem] md:py-[.7rem] md:px-[1.2rem]">Buy Now!</button>
-                    </article>
+                    </div>
           
                       <LazyLoadImage className="ml-[10rem] md:ml-auto w-[15rem] md:w-auto h-[120px] md:h-auto " src={boombox} effect="blur"/>
             </section>
