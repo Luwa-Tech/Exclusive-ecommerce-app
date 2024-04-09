@@ -9,7 +9,7 @@ import useCart from "../hooks/useCart"
 import useWishlist from "../hooks/useWishlist"
 
 
-const RoutesWithoutNavBar = ["/signin", "/signup", "/product-form"]
+const RoutesWithoutNavBar = ["/product-form"]
 
 const NavBar = () => {
     const { userCart, cartQuantity } = useCart()

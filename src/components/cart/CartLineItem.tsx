@@ -11,7 +11,8 @@ const CartLineItem = ({id, quantity}: CartLineItemType) => {
     const {            
         removeFromCart,
         addToCart,
-        decreaseItemQty
+        decreaseItemQty,
+        isLoading
         } = useCart()
 
 
@@ -50,7 +51,7 @@ const CartLineItem = ({id, quantity}: CartLineItemType) => {
                 <div className="overflow-hidden items-center flex justify-between w-[8rem]">
                     <button onClick={() => decreaseItemQty(id)} className="bg-secondary-700 text-textColor-400 px-[.75rem] py-[.1rem] text-[1.3rem] hover:opacity-[0.6]">-</button>
                     <span className="px-[1.1rem] md:px-[1.4rem]">{quantity}</span>
-                    <button onClick={() => addToCart(id)} className="bg-secondary-700 text-textColor-400 px-[.65rem] py-[.1rem] text-[1.3rem] hover:opacity-[0.6]">+</button>
+                    <button onClick={() => addToCart(id, item.stripeID)} className="bg-secondary-700 text-textColor-400 px-[.65rem] py-[.1rem] text-[1.3rem] hover:opacity-[0.6]">+</button>
                 </div>
             </section>
         </li>

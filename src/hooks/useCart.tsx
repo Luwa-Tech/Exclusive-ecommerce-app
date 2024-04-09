@@ -1,60 +1,84 @@
 import { useState } from "react"
 import axios from "axios"
 import { toast } from "react-toastify"
+import useAuth from "./useAuth"
 
-type CartType = {
+export type CartType = {
     id: string,
-    quantity: number
+    quantity: number,
+    stripeID: string
 }
 
 const useCart = () => {
     const [userCart, setUserCart] = useState<CartType[]>([])
+    const { setIsUser } = useAuth()
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [error, setError] = useState(null)
 
     const getUserCart = async () => {
         try {
+            setIsLoading(true)
             const response = await axios.get("http://localhost:3500/api/user/cart")
             setUserCart(response.data)
-        } catch(err) {
+        } catch (err) {
             console.log(err)
+            if ((err as any).response.status === 401) {
+                setIsUser(prev => !prev)
+            }
+        } finally {
+            setIsLoading(false)
         }
     }
 
-    const addToCart = async (id: string) => {
+    const addToCart = async (id: string, stripeId: string) => {
         try {
+            setIsLoading(true)
             const response = await axios.put("http://localhost:3500/api/user/cart/add", {
-                productId: id
+                productId: id,
+                stripeId: stripeId
             })
-            
+
             if (response.status === 201) {
                 toast.success("Product added to cart")
             } else {
                 toast.success("Product quantity updated")
             }
-            
+
         } catch (err) {
             console.log(err)
+            setError((err as null))
+        } finally {
+            setIsLoading(false)
         }
     }
 
     const decreaseItemQty = async (id: string) => {
         try {
+            setIsLoading(true)
             const response = await axios.put("http://localhost:3500/api/user/cart/decrease-item-qty", {
                 productId: id
             })
             toast.info(response.data.message)
         } catch (err) {
             console.log(err)
+            setError((err as null))
+        } finally {
+            setIsLoading(false)
         }
     }
 
     const removeFromCart = async (id: string) => {
         try {
+            setIsLoading(true)
             const response = await axios.put("http://localhost:3500/api/user/cart/remove", {
                 productId: id
             })
             toast.success(response.data.message)
         } catch (err) {
             console.log(err)
+            setError((err as null))
+        } finally {
+            setIsLoading(false)
         }
     }
 
@@ -74,7 +98,9 @@ const useCart = () => {
         decreaseItemQty,
         removeFromCart,
         cartQuantity,
-        getItemQuantity
+        getItemQuantity,
+        isLoading,
+        error
     }
 }
 

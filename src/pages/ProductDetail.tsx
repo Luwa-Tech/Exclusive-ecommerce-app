@@ -11,17 +11,16 @@ import useAuth from "../hooks/useAuth"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import "react-lazy-load-image-component/src/effects/blur.css"
 
-
-
 // TODO
 // Fetch product details from database
 const ProductDetail = () => {
     const { id } = useParams()
     const { storeProducts } = useStoreProducts()
     const { isUser } = useAuth()
-    const {wishList, addToWishlist} = useWishlist()
+    const { wishList, addToWishlist } = useWishlist()
 
     const {
+        userCart,
         addToCart,
         decreaseItemQty,
         getItemQuantity
@@ -36,6 +35,7 @@ const ProductDetail = () => {
     const quantity = getItemQuantity(id)
     const product = storeProducts.find(item => item._id === id)
     const itemInList = wishList.find(item => item.id === id)
+
     if (product === undefined) {
         return (
             <h1>An Error occured when fetching product details</h1>
@@ -57,17 +57,17 @@ const ProductDetail = () => {
                         <p className="text-textColor-600 md:text-[1.5rem] mt-[1.2rem] font-normal md:leading-[1.5rem] md:tracking-[0.045rem]">${product.price}.00</p>
                     </div>
                     <div className="flex items-center gap-2 mt-[1.2rem]">
-                        {
-                            quantity === 0 && <button onClick={() => addToCart(id)} className="bg-secondary-700 rounded-[0.25ren] text-textColor-400 px-[1rem] py-[.6rem] md:px-[3rem] md:py-[0.625rem] w-[90%] md:w-auto hover:opacity-[0.6]">Add To Cart</button>
-                        }
+                        {/* TODO: Refactor quantity === 0  */}
 
-                        {
+                        <button disabled={quantity > 0} onClick={() => addToCart(id, product.stripeID)} className={` rounded-[0.25rem] text-textColor-400 ${quantity > 0 ? "bg-textColor-600 bg-opacity-[0.5]" : "bg-secondary-700"} px-[1rem] py-[.6rem] md:px-[3rem] md:py-[0.625rem] w-[90%] md:w-auto hover:opacity-[0.6]`}>{quantity > 0 ? "Added to cart" : "Add to cart"}</button>
+
+                        {/* {
                             quantity > 0 && <div className="items-center flex justify-between w-[8rem]">
                                 <button onClick={() => decreaseItemQty(id)} className="bg-secondary-700 text-textColor-400 px-[.75rem] py-[.1rem] text-[1.3rem] hover:opacity-[0.6]">-</button>
                                 <span className="px-[1.1rem] md:px-[1.4rem]">{quantity}</span>
                                 <button onClick={() => addToCart(id)} className="bg-secondary-700 text-textColor-400 px-[.65rem] py-[.1rem] text-[1.3rem] hover:opacity-[0.6]">+</button>
                             </div>
-                        }
+                        } */}
 
                         {isUser && <button onClick={() => addToWishlist(id)} className={`focus:bg-secondary-700 border-[.1rem] px-[.65rem] py-[.3rem] hover:opacity-[0.6] focus:text-textColor-400 ${itemInList ? "bg-secondary-700 text-textColor-400" : ""}`}>
                             <CiHeart className="w-[1.2rem] h-[1.6rem]" />
