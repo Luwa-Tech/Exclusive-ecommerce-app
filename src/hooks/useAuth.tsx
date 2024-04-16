@@ -1,12 +1,8 @@
-import { useState } from "react"
+import { useContext } from "react"
+import {AuthContext} from "../context/AuthContext"
 
 const useAuth = () => {
-    const [isUser, setIsUser] = useState<boolean>(false)
-
-    return {
-        isUser,
-        setIsUser
-    }
+    return useContext(AuthContext)
 }
 
 export default useAuth

@@ -14,7 +14,7 @@ const RoutesWithoutNavBar = ["/product-form"]
 const NavBar = () => {
     const { userCart, cartQuantity } = useCart()
     const { wishList } = useWishlist()
-    const { isUser } = useAuth()
+    const { auth } = useAuth()
     const { pathname } = useLocation()
 
     const [isOpen, setIsOpen] = React.useState<boolean>(false)
@@ -52,7 +52,7 @@ const NavBar = () => {
                 <section className="flex items-center gap-[1.8rem]">
                     {isDesktop && <SearchBar />}
                     <div className="flex items-center gap-[0.8rem]">
-                        { isUser && <NavLink to="/wishlist">
+                        { auth?.id && <NavLink to="/wishlist">
                             <div className="relative">
                                 <CiHeart className="nav-icon" />
                                 {

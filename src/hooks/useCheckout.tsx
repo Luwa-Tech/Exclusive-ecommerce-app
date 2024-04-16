@@ -3,12 +3,12 @@ import axios from "axios"
 import { CartType } from "./useCart"
 
 const useCheckout = () => {
-    const [isLoading, setIsLoading] = useState(false)
-    const [error, setError] = useState(null)
+    const [isCheckoutLoading, setIsCheckoutLoading] = useState(false)
+    const [checkoutError, setCheckoutError] = useState(null)
 
     const checkoutHandler = async (cart: CartType | CartType[]) => {
         try {
-            setIsLoading(true)
+            setIsCheckoutLoading(true)
             const response = await axios.post("https://exclusive-ecommerce-api.glitch.me/checkout", {
                 items: cart
             })
@@ -17,16 +17,16 @@ const useCheckout = () => {
             }
         } catch (err) {
             console.log(err) 
-            setError((err as any))
+            setCheckoutError((err as any))
         } finally {
-            setIsLoading(false)
+            setIsCheckoutLoading(false)
         }
     }
 
     return {
         checkoutHandler,
-        isLoading,
-        error
+        isCheckoutLoading,
+        checkoutError
     }
 }
 

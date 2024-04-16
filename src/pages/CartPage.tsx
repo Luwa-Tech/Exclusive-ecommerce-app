@@ -9,6 +9,7 @@ import Cart from "../components/cart/Cart"
 import { useEffect } from "react"
 import useAuth from "../hooks/useAuth"
 import useCheckout from "../hooks/useCheckout"
+import {ImSpinner} from "react-icons/im"
 
 const CartPage = () => {
     const { 
@@ -16,41 +17,24 @@ const CartPage = () => {
         getUserCart,
         isLoading
      } = useCart()
-    const { checkoutHandler } = useCheckout()
-    const { isUser } = useAuth() 
+    const { 
+        checkoutHandler,
+        isCheckoutLoading
+     } = useCheckout()
+    const { auth } = useAuth() 
     const { storeProducts } = useStoreProducts()
     const { isMobile, isDesktop } = useRenderHook()
 
     const totalPrice = userCart.reduce((total, cartItem) => {
         const item = storeProducts.find(i => i._id === cartItem.id)
         return total + (item?.price || 0) * cartItem.quantity
-    }, 0)
-
-    // TODO: Refactor checkoutHandler
-    // const checkoutHandler = async () => {
-    //     await fetch("https://exclusive-ecommerce-api.glitch.me/checkout", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         credentials: "same-origin",
-    //         body: JSON.stringify({ items: userCart })
-    //     }).then(response => {
-    //         return response.json()
-    //     }).then(response => {
-    //         if (response.url) {
-    //             window.location.assign(response.url)
-    //         }
-    //     })
-    // }
+    }, 0) 
 
     useEffect(() => {
-        async () => {
-            await getUserCart()
-        }
+        getUserCart()
     }, [])
 
-    if (!isUser) {
+    if (!auth?.id) {
         return (
             <main className="mt-[3rem] mb-[2rem] md:mb-[3rem]">
                 <section className="px-[.4rem] text-center flex flex-col gap-[1.5rem] md:max-w-[50%] md:mx-auto">
@@ -88,13 +72,14 @@ const CartPage = () => {
                 </div>
                 <div className="md:flex md:flex-col md:gap-4 md:w-[25%]">
                     {
-                        isMobile && <button onClick={() => checkoutHandler(userCart)} className="bg-secondary-700 text-textColor-400 px-[.5rem] py-[.4rem] rounded-[.2rem] uppercase mt-2 w-[100%] hover:opacity-[0.6]">Checkout {formatCurrency(totalPrice)}</button>
+                        isMobile && <button onClick={() => checkoutHandler(userCart)} className="bg-secondary-700 text-textColor-400 px-[.5rem] py-[.4rem] rounded-[.2rem] uppercase mt-2 w-[100%] hover:opacity-[0.6]">{isCheckoutLoading ? <ImSpinner className="animate-spin h-3 w-3"/> : `Checkout ${formatCurrency(totalPrice)}`}</button>
                     }
                     {
                         isDesktop && <DesktopCartSummary 
                         totalPrice={totalPrice} 
                         checkoutHandler={checkoutHandler}
                         userCart={userCart} 
+                        isCheckoutLoading={isCheckoutLoading}
                         />
                     }
                     <div className="border-[.1rem] mt-[.7rem] md:mt-0 px-[.3rem] py-[.3rem]">

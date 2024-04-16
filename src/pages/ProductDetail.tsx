@@ -16,7 +16,7 @@ import "react-lazy-load-image-component/src/effects/blur.css"
 const ProductDetail = () => {
     const { id } = useParams()
     const { storeProducts } = useStoreProducts()
-    const { isUser } = useAuth()
+    const { auth } = useAuth()
     const { wishList, addToWishlist } = useWishlist()
 
     const {
@@ -69,7 +69,7 @@ const ProductDetail = () => {
                             </div>
                         } */}
 
-                        {isUser && <button onClick={() => addToWishlist(id)} className={`focus:bg-secondary-700 border-[.1rem] px-[.65rem] py-[.3rem] hover:opacity-[0.6] focus:text-textColor-400 ${itemInList ? "bg-secondary-700 text-textColor-400" : ""}`}>
+                        {auth?.id && <button onClick={() => addToWishlist(id)} className={`focus:bg-secondary-700 border-[.1rem] px-[.65rem] py-[.3rem] hover:opacity-[0.6] focus:text-textColor-400 ${itemInList ? "bg-secondary-700 text-textColor-400" : ""}`}>
                             <CiHeart className="w-[1.2rem] h-[1.6rem]" />
                         </button>}
                     </div>

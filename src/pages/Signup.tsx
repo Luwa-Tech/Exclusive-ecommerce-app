@@ -17,7 +17,7 @@ const Signup = () => {
     const [userInput, setUserInput] = useState(initUserInputState)
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [error, setError] = useState<string>("")
-    const { setIsUser } = useAuth()
+    const { setAuth } = useAuth()
     const navigate = useNavigate()
     const location = useLocation()
 
@@ -35,10 +35,15 @@ const Signup = () => {
                 password: userInput.password
             })
             console.log(response)
-            if (response.status === 201) {
-                setIsUser(prev => !prev)
+            if (response) {
+
+                setAuth({
+                    id: response.data.user._id,
+                    name: response.data.user.name,
+                    email: response.data.user.email
+                })
                 // Return user to previous location
-                navigate(from, { replace: true })
+                navigate(from)
             }
 
         } catch (err) {

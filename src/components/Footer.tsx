@@ -15,7 +15,7 @@ const RoutesWithoutFooter = ["/product-form"]
 
 const Footer = () => {
     const { pathname } = useLocation()
-    const { isUser } = useAuth()
+    const { auth } = useAuth()
 
     if (RoutesWithoutFooter.some((item) => pathname.includes(item))) {
         return null
@@ -48,7 +48,7 @@ const Footer = () => {
                             <h2 className="text-[1.1rem] md:text-[1.25rem] mb-[.3rem] md:mb-[1rem] font-medium leading-[1.75rem] text-textColor-400">Account</h2>
                             <div className="flex flex-col gap-1">
                                 <NavLink to="/cart" className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem] hover:underline">Cart</NavLink>
-                                {isUser && <NavLink to="/wishlist" className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem] hover:underline">Wishlist</NavLink>}
+                                {auth?.id && <NavLink to="/wishlist" className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem] hover:underline">Wishlist</NavLink>}
                                 <NavLink to="/" className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem] hover:underline">Shop</NavLink>
                             </div>
                         </section>

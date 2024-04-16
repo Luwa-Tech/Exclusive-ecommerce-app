@@ -22,11 +22,18 @@ import attractiveWoman from "../assets/images/shop now/attractive-woman-wearing-
 import amazonEcho from "../assets/images/shop now/69-694768_amazon-echo-png-clipart-transparent-amazon-echo-png 1.png"
 import perfume from "../assets/images/shop now/652e82cd70aa6522dd785109a455904c.png"
 
+import useAuth from "../hooks/useAuth"
+
 
 
 const Home = () => {
     const {isDesktop, isMobile} = useRenderHook()
     const {touchStart, preventTouch} = usePreventMobileScroll()
+
+    //TESTING AUTH
+    const {auth} = useAuth()
+    console.log(auth)
+
 
     const sliderRef1 = useRef<Slider | null>(null)
     const sliderRef2 = useRef<Slider | null>(null)

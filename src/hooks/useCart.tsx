@@ -11,7 +11,7 @@ export type CartType = {
 
 const useCart = () => {
     const [userCart, setUserCart] = useState<CartType[]>([])
-    const { setIsUser } = useAuth()
+    const { setAuth } = useAuth()
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [error, setError] = useState(null)
 
@@ -22,9 +22,7 @@ const useCart = () => {
             setUserCart(response.data)
         } catch (err) {
             console.log(err)
-            if ((err as any).response.status === 401) {
-                setIsUser(prev => !prev)
-            }
+            setError((err as null))
         } finally {
             setIsLoading(false)
         }
@@ -82,10 +80,7 @@ const useCart = () => {
         }
     }
 
-    const cartQuantity = userCart.reduce(
-        (qty, item) => item.quantity + qty,
-        0
-    )
+    const cartQuantity = userCart.reduce((qty, item) => item.quantity + qty, 0)
 
     const getItemQuantity = (id: string) => {
         return userCart.find(item => item.id === id)?.quantity || 0
