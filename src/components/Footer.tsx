@@ -2,7 +2,7 @@ import { FaFacebookF } from "react-icons/fa"
 import { AiOutlineTwitter, AiOutlineInstagram, AiOutlineSend } from "react-icons/ai"
 import { BiLogoLinkedin } from "react-icons/bi"
 import { NavLink, useLocation } from "react-router-dom"
-import useAuth from "../hooks/useAuth"
+import { useAuth0 } from "@auth0/auth0-react"
 
 import { LazyLoadImage } from "react-lazy-load-image-component"
 
@@ -15,7 +15,7 @@ const RoutesWithoutFooter = ["/product-form"]
 
 const Footer = () => {
     const { pathname } = useLocation()
-    const { auth } = useAuth()
+    const { isAuthenticated } = useAuth0();
 
     if (RoutesWithoutFooter.some((item) => pathname.includes(item))) {
         return null
@@ -48,7 +48,7 @@ const Footer = () => {
                             <h2 className="text-[1.1rem] md:text-[1.25rem] mb-[.3rem] md:mb-[1rem] font-medium leading-[1.75rem] text-textColor-400">Account</h2>
                             <div className="flex flex-col gap-1">
                                 <NavLink to="/cart" className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem] hover:underline">Cart</NavLink>
-                                {auth?.id && <NavLink to="/wishlist" className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem] hover:underline">Wishlist</NavLink>}
+                                {isAuthenticated && <NavLink to="/wishlist" className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem] hover:underline">Wishlist</NavLink>}
                                 <NavLink to="/" className="text-textColor-400 text-[.95rem] md:text-[1rem] font-normal leading-[1.5rem] hover:underline">Shop</NavLink>
                             </div>
                         </section>

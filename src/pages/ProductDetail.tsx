@@ -6,7 +6,7 @@ import { GiReturnArrow } from "react-icons/gi"
 import useWishlist from "../hooks/useWishlist"
 import useCart from "../hooks/useCart"
 // import { formatCurrency } from "../utils"
-import useAuth from "../hooks/useAuth"
+import {useAuth0} from "@auth0/auth0-react"
 
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import "react-lazy-load-image-component/src/effects/blur.css"
@@ -16,7 +16,7 @@ import "react-lazy-load-image-component/src/effects/blur.css"
 const ProductDetail = () => {
     const { id } = useParams()
     const { storeProducts } = useStoreProducts()
-    const { auth } = useAuth()
+    const {isAuthenticated} = useAuth0()
     const { wishList, addToWishlist } = useWishlist()
 
     const {
@@ -69,7 +69,7 @@ const ProductDetail = () => {
                             </div>
                         } */}
 
-                        {auth?.id && <button onClick={() => addToWishlist(id)} className={`focus:bg-secondary-700 border-[.1rem] px-[.65rem] py-[.3rem] hover:opacity-[0.6] focus:text-textColor-400 ${itemInList ? "bg-secondary-700 text-textColor-400" : ""}`}>
+                        {isAuthenticated && <button onClick={() => addToWishlist(id)} className={`focus:bg-secondary-700 border-[.1rem] px-[.65rem] py-[.3rem] hover:opacity-[0.6] focus:text-textColor-400 ${itemInList ? "bg-secondary-700 text-textColor-400" : ""}`}>
                             <CiHeart className="w-[1.2rem] h-[1.6rem]" />
                         </button>}
                     </div>

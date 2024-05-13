@@ -7,8 +7,6 @@ import Layout from "./components/Layout"
 import Home from "./pages/Home"
 import Contact from "./pages/Contact"
 import About from "./pages/About"
-import Signup from "./pages/Signup"
-import Signin from "./pages/Signin"
 import ProductForm from "./pages/ProductForm"
 import PageNotFound from "./pages/404"
 import CartPage from "./pages/CartPage"
@@ -20,14 +18,14 @@ import Success from "./pages/Success"
 import Cancel from "./pages/Cancel"
 import StoreProductsProvider from "./context/StoreContext"
 import ResetScroll from "./components/ResetScroll"
-import { AuthProvider } from "./context/AuthContext"
+import Auth0ProviderWithHistory from "./auth/Auth0ProviderWithHistory"
 
 
 const App = () => {
     return (
         <StoreProductsProvider>
-            <AuthProvider>
-                <BrowserRouter>
+            <BrowserRouter>
+                <Auth0ProviderWithHistory>
                     <ResetScroll />
                     <Routes>
                         <Route path="/" element={<Layout />}>
@@ -35,8 +33,6 @@ const App = () => {
                             <Route path="/:id" element={<ProductDetail />} />
                             <Route path="/contact" element={<Contact />} />
                             <Route path="/about" element={<About />} />
-                            <Route path="/signup" element={<Signup />} />
-                            <Route path="/signin" element={<Signin />} />
                             <Route path="/product-form" element={<ProductForm />} />
                             <Route path="/cart" element={<CartPage />} />
                             <Route path="/cart/success" element={<Success />} />
@@ -52,8 +48,8 @@ const App = () => {
                         </Route>
 
                     </Routes>
-                </BrowserRouter>
-            </AuthProvider>
+                </Auth0ProviderWithHistory>
+            </BrowserRouter>
         </StoreProductsProvider>
     )
 }

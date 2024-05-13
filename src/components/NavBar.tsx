@@ -4,18 +4,25 @@ import SearchBar from "./SearchBar"
 import { HiBars3CenterLeft } from "react-icons/hi2"
 import { CiShoppingCart, CiHeart } from "react-icons/ci"
 import useRenderHook from "../hooks/useRenderHook"
-import useAuth from "../hooks/useAuth"
 import useCart from "../hooks/useCart"
 import useWishlist from "../hooks/useWishlist"
+import SignupButton from "./SignupButton"
+import { useAuth0 } from "@auth0/auth0-react"
 
 
 const RoutesWithoutNavBar = ["/product-form"]
 
+// TODO:
+// 1. Implement login and signup component
+// 2. Customize auth0 universal login/signup page
+// 3. Test implementation
+// 4. Integrate API with auth0
+
 const NavBar = () => {
     const { userCart, cartQuantity } = useCart()
     const { wishList } = useWishlist()
-    const { auth } = useAuth()
     const { pathname } = useLocation()
+    const { isAuthenticated } = useAuth0()
 
     const [isOpen, setIsOpen] = React.useState<boolean>(false)
     const handleOpenToggle = () => {
@@ -47,12 +54,12 @@ const NavBar = () => {
                     <NavLink to="/" className="nav-link" onClick={handleCloseToggle}>Home</NavLink>
                     <NavLink to="/contact" className="nav-link" style={({ isActive }) => isActive ? isActiveStyles : undefined} onClick={handleCloseToggle}>Contact</NavLink>
                     <NavLink to="/about" className="nav-link" style={({ isActive }) => isActive ? isActiveStyles : undefined} onClick={handleCloseToggle}>About</NavLink>
-                    <NavLink to="/signup" className="nav-link" style={({ isActive }) => isActive ? isActiveStyles : undefined} onClick={handleCloseToggle}>Sign Up</NavLink>
+                    {!isAuthenticated && <SignupButton />}
                 </section>
                 <section className="flex items-center gap-[1.8rem]">
                     {isDesktop && <SearchBar />}
                     <div className="flex items-center gap-[0.8rem]">
-                        { auth?.id && <NavLink to="/wishlist">
+                        {isAuthenticated && <NavLink to="/wishlist">
                             <div className="relative">
                                 <CiHeart className="nav-icon" />
                                 {

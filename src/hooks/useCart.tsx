@@ -1,7 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
 import { toast } from "react-toastify"
-import useAuth from "./useAuth"
 
 export type CartType = {
     id: string,
@@ -11,7 +10,6 @@ export type CartType = {
 
 const useCart = () => {
     const [userCart, setUserCart] = useState<CartType[]>([])
-    const { setAuth } = useAuth()
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [error, setError] = useState(null)
 

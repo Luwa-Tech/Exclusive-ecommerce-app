@@ -7,9 +7,10 @@ import { NavLink } from "react-router-dom"
 import useCart from "../hooks/useCart"
 import Cart from "../components/cart/Cart"
 import { useEffect } from "react"
-import useAuth from "../hooks/useAuth"
+import { useAuth0 } from "@auth0/auth0-react"
 import useCheckout from "../hooks/useCheckout"
 import {ImSpinner} from "react-icons/im"
+import LoginButton from "../components/LoginButton"
 
 const CartPage = () => {
     const { 
@@ -21,7 +22,8 @@ const CartPage = () => {
         checkoutHandler,
         isCheckoutLoading
      } = useCheckout()
-    const { auth } = useAuth() 
+
+    const {isAuthenticated} = useAuth0()
     const { storeProducts } = useStoreProducts()
     const { isMobile, isDesktop } = useRenderHook()
 
@@ -34,14 +36,12 @@ const CartPage = () => {
         getUserCart()
     }, [])
 
-    if (!auth?.id) {
+    if (!isAuthenticated) {
         return (
             <main className="mt-[3rem] mb-[2rem] md:mb-[3rem]">
                 <section className="px-[.4rem] text-center flex flex-col gap-[1.5rem] md:max-w-[50%] md:mx-auto">
                     <h1 className="md:text-[1rem] text-[.8rem]">Please login to view your cart</h1>
-                    <NavLink to="/signin">
-                        <button className="bg-secondary-700 text-textColor-400 px-[.8rem] py-[.5rem] rounded-[.2rem] uppercase md:hover:opacity-[0.6]">Go to login</button>
-                    </NavLink>
+                    <LoginButton />
                 </section>
             </main>
         )
