@@ -1,4 +1,4 @@
-import React from "react"
+import {useState} from "react"
 import { NavLink, useLocation } from "react-router-dom"
 import SearchBar from "./SearchBar"
 import { HiBars3CenterLeft } from "react-icons/hi2"
@@ -12,19 +12,13 @@ import { useAuth0 } from "@auth0/auth0-react"
 
 const RoutesWithoutNavBar = ["/product-form"]
 
-// TODO:
-// 1. Implement login and signup component
-// 2. Customize auth0 universal login/signup page
-// 3. Test implementation
-// 4. Integrate API with auth0
-
 const NavBar = () => {
     const { userCart, cartQuantity } = useCart()
-    const { wishList } = useWishlist()
+    const { wishlist } = useWishlist()
     const { pathname } = useLocation()
     const { isAuthenticated } = useAuth0()
 
-    const [isOpen, setIsOpen] = React.useState<boolean>(false)
+    const [isOpen, setIsOpen] = useState<boolean>(false)
     const handleOpenToggle = () => {
         setIsOpen(prev => !prev)
     }
@@ -63,7 +57,7 @@ const NavBar = () => {
                             <div className="relative">
                                 <CiHeart className="nav-icon" />
                                 {
-                                    wishList.length !== 0 && <div className="absolute text-textColor-400 bg-secondary-700 text-[.7rem] md:text-[.9rem] px-[.4rem] md:px-[.5rem] py-[.1rem] rounded-[1.9rem] md:rounded-[1.9rem] top-[-7px] md:top-[-13px] right-[-7px] md:right-[-14px]">{wishList.length}</div>
+                                    wishlist.length !== 0 && <div className="absolute text-textColor-400 bg-secondary-700 text-[.7rem] md:text-[.9rem] px-[.4rem] md:px-[.5rem] py-[.1rem] rounded-[1.9rem] md:rounded-[1.9rem] top-[-7px] md:top-[-13px] right-[-7px] md:right-[-14px]">{wishlist.length}</div>
                                 }
                             </div>
                         </NavLink>}

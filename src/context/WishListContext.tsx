@@ -1,54 +1,98 @@
-import { ReactElement, ReactNode, createContext } from "react"
-import { useLocalStorage } from "../hooks/useLocalStorage"
-import { toast } from 'react-toastify'
+import { ReactElement, ReactNode, createContext, useState } from "react"
+import axios from "axios"
+import { toast } from "react-toastify"
+import { useAuth0 } from "@auth0/auth0-react"
 
-type WishListType = {
+type WishlistType = {
     id: string,
 }
 
-type WishListContextType = {
-    AddToWishList: (id: string) => void,
-    RemoveFromWishList: (id: string) => void,
-    wishList: WishListType[]
+export type WishlistContextType = {
+    wishlist: WishlistType[]
+    getWishlist: () => void,
+    addToWishlist: (id: string) => void,
+    removeFromWishlist: (id: string) => void,
+
 }
 
 type ChildrenType = {
     children: ReactElement | ReactElement[] | ReactNode
 }
 
-export const WishListContext = createContext({} as WishListContextType)
+export const WishlistContext = createContext({} as WishlistContextType)
 
-export const WishListContextProvider = ({children}: ChildrenType) => {
-    const [wishList, setWishList] = useLocalStorage<WishListType[]>("wishlist-items", [])
+export const WishlistContextProvider = ({children}: ChildrenType) => {
+    const { user, getAccessTokenSilently } = useAuth0()
+    const [wishlist, setWishlist] = useState<WishlistType[]>([])
 
-    const AddToWishList = (id: string) => {
-        setWishList(currItems => {
-            if(currItems.find(item => item.id === id)) {
-                return [...currItems]
-            }else {
-                try {
-                    return [...currItems, {id}]
-                } finally {
-                    toast.success("Product added to wishlist!")
+    const getWishlist = async () => {
+        try {
+            const token = await getAccessTokenSilently()
+
+            const response = await axios.get("http://localhost:3500/api/user/wishlist", {
+                params: {
+                    email: user?.email
+                },
+                headers: {
+                    Authorization: `Bearer ${token}`
                 }
-                
-            }
-        })
+            })
+
+            setWishlist(response.data.items)
+        } catch (err) {
+            console.log(err)
+        }
     }
 
-    const RemoveFromWishList = (id:string) => {
-        setWishList(currItems =>        
-             currItems.filter(item => item.id !== id)
-        )
+    const addToWishlist = async (id: string) => {
+        try {
+            const token = await getAccessTokenSilently()
+
+            const response = await axios.put("http://localhost:3500/api/user/wishlist/add", {
+                productId: id,
+                email: user?.email
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            if (response.status === 200) {
+                toast.success(response.data.message)
+            }
+        } catch (err) {
+            console.log(err)
+        }
+
+    }
+
+    const removeFromWishlist = async (id: string) => {
+        try {
+            const token = await getAccessTokenSilently()
+
+            const response = await axios.put("http://localhost:3500/api/user/wishlist/remove", {
+                productId: id,
+                email: user?.email
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            if (response.status === 200) {
+                toast.success(response.data.message)
+            }
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     return (
-        <WishListContext.Provider value={{
-            AddToWishList,
-            RemoveFromWishList,
-            wishList
+        <WishlistContext.Provider value={{
+            wishlist,
+            getWishlist,
+            addToWishlist,
+            removeFromWishlist
         }}>
             {children}
-        </WishListContext.Provider>
+        </WishlistContext.Provider>
     )
 }

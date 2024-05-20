@@ -19,38 +19,46 @@ import Cancel from "./pages/Cancel"
 import StoreProductsProvider from "./context/StoreContext"
 import ResetScroll from "./components/ResetScroll"
 import Auth0ProviderWithHistory from "./auth/Auth0ProviderWithHistory"
+import { CartContextProvider } from "./context/CartContext"
+import { WishlistContextProvider } from "./context/WishListContext"
 
 
 const App = () => {
     return (
-        <StoreProductsProvider>
-            <BrowserRouter>
-                <Auth0ProviderWithHistory>
-                    <ResetScroll />
-                    <Routes>
-                        <Route path="/" element={<Layout />}>
-                            <Route index element={<Home />} />
-                            <Route path="/:id" element={<ProductDetail />} />
-                            <Route path="/contact" element={<Contact />} />
-                            <Route path="/about" element={<About />} />
-                            <Route path="/product-form" element={<ProductForm />} />
-                            <Route path="/cart" element={<CartPage />} />
-                            <Route path="/cart/success" element={<Success />} />
-                            <Route path="/cart/cancel" element={<Cancel />} />
-                            <Route path="/wishlist" element={<WishlistPage />} />
-                            <Route path="/wishlist/:id" element={<ProductDetail />} />
-                            <Route path="/allProducts" element={<SeeAllProductsPage />} />
-                            <Route path="/allProducts/:id" element={<ProductDetail />} />
-                            <Route path="/results" element={<SearchResults />} />
-                            <Route path="/results/:id" element={< ProductDetail />} />
 
-                            <Route path="*" element={<PageNotFound />} />
-                        </Route>
+        <BrowserRouter>
+            <Auth0ProviderWithHistory>
+                <StoreProductsProvider>
+                    <CartContextProvider>
+                        <WishlistContextProvider>
+                            <ResetScroll />
+                            <Routes>
+                                <Route path="/" element={<Layout />}>
+                                    <Route index element={<Home />} />
+                                    <Route path="/:id" element={<ProductDetail />} />
+                                    <Route path="/contact" element={<Contact />} />
+                                    <Route path="/about" element={<About />} />
+                                    <Route path="/product-form" element={<ProductForm />} />
+                                    <Route path="/cart" element={<CartPage />} />
+                                    <Route path="/cart/success" element={<Success />} />
+                                    <Route path="/cart/cancel" element={<Cancel />} />
+                                    <Route path="/wishlist" element={<WishlistPage />} />
+                                    <Route path="/wishlist/:id" element={<ProductDetail />} />
+                                    <Route path="/allProducts" element={<SeeAllProductsPage />} />
+                                    <Route path="/allProducts/:id" element={<ProductDetail />} />
+                                    <Route path="/results" element={<SearchResults />} />
+                                    <Route path="/results/:id" element={< ProductDetail />} />
 
-                    </Routes>
-                </Auth0ProviderWithHistory>
-            </BrowserRouter>
-        </StoreProductsProvider>
+                                    <Route path="*" element={<PageNotFound />} />
+                                </Route>
+
+                            </Routes>
+                        </WishlistContextProvider>
+                    </CartContextProvider>
+                </StoreProductsProvider>
+            </Auth0ProviderWithHistory>
+        </BrowserRouter>
+
     )
 }
 

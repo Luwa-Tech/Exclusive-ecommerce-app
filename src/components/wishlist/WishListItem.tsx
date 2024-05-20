@@ -4,7 +4,7 @@ import useWishlist from "../../hooks/useWishlist"
 //import { CartContext } from "../../context/CartContext"
 
 type wishListType = {
-    _id: string
+    id: string
 }
 
 const WishListItem = (props: wishListType) => {
@@ -14,7 +14,7 @@ const WishListItem = (props: wishListType) => {
     //const {increaseItemQuantity} = useContext(CartContext)
     const { storeProducts } = useStoreProducts()
 
-    const item = storeProducts.find(i => i._id === props._id)
+    const item = storeProducts.find(i => i._id === props.id)
 
     if (item === null) return null
 
@@ -32,7 +32,7 @@ const WishListItem = (props: wishListType) => {
     return (
         <>
             <li className="relative w-[7.5rem] h-[15rem] md:w-[11rem]">
-                <button onClick={() => removeFromWishlist(props._id)} className="absolute top-[15px] right-[10px]">
+                <button onClick={() => removeFromWishlist(props.id)} className="absolute top-[15px] right-[10px]">
                     <MdOutlineDelete />
                 </button>
                 <div className="bg-secondary-500 px-[1.5rem] py-[2.4rem] flex items-center justify-center">

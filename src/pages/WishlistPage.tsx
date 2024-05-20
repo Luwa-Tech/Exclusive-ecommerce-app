@@ -12,7 +12,7 @@ import WishListItem from "../components/wishlist/WishListItem"
 
 const WishlistPage = () => {
     const {
-      wishList,
+      wishlist,
       getWishlist
     } = useWishlist()
 
@@ -50,7 +50,7 @@ const WishlistPage = () => {
     }, [preventTouch, touchStart])
 
 
-    if(wishList.length === 0) {
+    if(wishlist.length === 0) {
         return (
             <main className="mt-[3.5rem] mb-[4rem] md:mb-[6.5rem]">
             <section className="px-[.4rem] text-center flex flex-col gap-[1.5rem] md:max-w-[50%] md:mx-auto">
@@ -98,11 +98,11 @@ const WishlistPage = () => {
     return (
        <main className="px-4 md:px-0 md:mt-[2rem] md:w-[80%] md:mx-auto mb-[4rem]">
         <section>
-            <h2 className="mb-[2rem]">{`Wishlist (${wishList.length})`}</h2>
+            <h2 className="mb-[2rem]">{`Wishlist (${wishlist.length})`}</h2>
             <ul className="grid md:grid-cols-6 grid-cols-3 gap-2 md:gap-4">
                 {
-                    wishList.map(items => {
-                        return <WishListItem key={items._id} {...items}/>
+                    wishlist.map(items => {
+                        return <WishListItem key={items.id} {...items}/>
                     })
                 }
             </ul>
