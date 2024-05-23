@@ -2,7 +2,13 @@ import CartLineItem from "./CartLineItem"
 import useCart from "../../hooks/useCart"
 
 const Cart = () => {
-    const {userCart, cartQuantity} = useCart()
+    const {
+        userCart, 
+        cartQuantity,
+        isRemoveFromCartLoading,
+        isDecreaseItmQtyLoading,
+        isIncreaseItmQtyLoading,
+    } = useCart()
     
 
     return (
@@ -13,7 +19,13 @@ const Cart = () => {
             </div>
         <ul>
             {
-                userCart.map(items => <CartLineItem key={items.id} {...items} />)
+                userCart.map(items => <CartLineItem 
+                key={items.id} 
+                {...items} 
+                isRemoveFromCartLoading={isRemoveFromCartLoading}
+                isDecreaseItmQtyLoading={isDecreaseItmQtyLoading}
+                isIncreaseItmQtyLoading={isIncreaseItmQtyLoading}
+                />)
             }
         </ul>
         </div>

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
-import { CartType } from "./useCart"
+import { CartType } from "../context/CartContext"
 import { useAuth0 } from "@auth0/auth0-react"
 
 const useCheckout = () => {
@@ -14,7 +14,9 @@ const useCheckout = () => {
 
             const token = await getAccessTokenSilently()
 
-            const response = await axios.post("https://exclusive-ecommerce-api.glitch.me/checkout", {
+           // https://exclusive-ecommerce-api.glitch.me
+
+            const response = await axios.post("http://localhost:3500/api/user/checkout", {
                 items: cart
             }, {
                 headers: {

@@ -23,12 +23,21 @@ export type CartContextType = {
     getUserCart: () => void,
     userCart: CartType[],
     addToCart: (id: string, stripeID: string) => void,
+    increaseItemQty: (id: string) => void,
     decreaseItemQty: (id: string) => void,
     removeFromCart: (id: string) => void,
     cartQuantity: number,
     getItemQuantity: (id: string) => number,
-    isLoading: boolean,
-    error: null
+    isUserCartLoading: boolean,
+    isUserCartError: null,
+    isAddToCartLoading: boolean,
+    isAddToCartError: null,
+    isRemoveFromCartLoading: boolean,
+    isRemoveFromCartError: null,
+    isIncreaseItmQtyLoading: boolean,
+    isIncreaseItmQtyError: null
+    isDecreaseItmQtyLoading: boolean,
+    isDecreaseItmQtyError: null
 }
 
 export const CartContext = createContext({} as CartContextType)
@@ -39,12 +48,26 @@ export const CartContextProvider = ({children}: ChildrenType) => {
 
     const [userCart, setUserCart] = useState<CartType[]>([])
 
-    const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [error, setError] = useState(null)
+    // Refactor
+    const [isUserCartLoading, setIsUserCartLoading] = useState<boolean>(false)
+    const [isUserCartError, setIsUserCartError] = useState(null)
+
+    const [isAddToCartLoading, setIsAddToCartLoading] = useState<boolean>(false)
+    const [isAddToCartError, setIsAddToCartError] = useState(null)
+
+    const [isRemoveFromCartLoading, setIsRemoveFromCartLoading] = useState<boolean>(false)
+    const [isRemoveFromCartError, setIsRemoveFromCartError] = useState(null)
+
+    const [isIncreaseItmQtyLoading, setIsIncreaseItmQtyLoading] = useState<boolean>(false)
+    const [isIncreaseItmQtyError, setIsIncreaseItmQtyError] = useState(null)
+
+    const [isDecreaseItmQtyLoading, setIsDecreaseItmQtyLoading] = useState<boolean>(false)
+    const [isDecreaseItmQtyError, setIsDecreaseItmQtyError] = useState(null)
+    
 
     const getUserCart = async () => {
         try {
-            setIsLoading(true)
+            setIsUserCartLoading(true)
 
             const token = await getAccessTokenSilently()
             console.log(token)
@@ -62,15 +85,15 @@ export const CartContextProvider = ({children}: ChildrenType) => {
             console.log(userCart)
         } catch (err) {
             console.log(err)
-            setError((err as null))
+            setIsUserCartError((err as null))
         } finally {
-            setIsLoading(false)
+            setIsUserCartLoading(false)
         }
     }
 
     const addToCart = async (id: string, stripeId: string) => {
         try {
-            setIsLoading(true)
+            setIsAddToCartLoading(true)
 
             const token = await getAccessTokenSilently()
 
@@ -83,6 +106,10 @@ export const CartContextProvider = ({children}: ChildrenType) => {
                     Authorization: `Bearer ${token}`
                 }
             })
+            console.log(response)
+
+            // Refetch userCart
+            await getUserCart()
 
             if (response.status === 201) {
                 toast.success("Product added to cart")
@@ -92,15 +119,40 @@ export const CartContextProvider = ({children}: ChildrenType) => {
 
         } catch (err) {
             console.log(err)
-            setError((err as null))
+            setIsAddToCartError((err as null))
         } finally {
-            setIsLoading(false)
+            setIsAddToCartLoading(false)
+        }
+    }
+
+    const increaseItemQty = async (id: string) => {
+        try {
+            setIsIncreaseItmQtyLoading(true)
+
+            const token = await getAccessTokenSilently()
+
+            const response = await axios.put("http://localhost:3500/api/user/cart/increase-item-qty", {
+                productId: id,
+                email: user?.email
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+
+            await getUserCart()
+            toast.info(response.data.message)
+        } catch (err) {
+            console.log(err)
+            setIsIncreaseItmQtyError((err as null))
+        } finally {
+            setIsIncreaseItmQtyLoading(false)
         }
     }
 
     const decreaseItemQty = async (id: string) => {
         try {
-            setIsLoading(true)
+            setIsDecreaseItmQtyLoading(true)
 
             const token = await getAccessTokenSilently()
 
@@ -112,18 +164,20 @@ export const CartContextProvider = ({children}: ChildrenType) => {
                     Authorization: `Bearer ${token}`
                 }
             })
+
+            await getUserCart()
             toast.info(response.data.message)
         } catch (err) {
             console.log(err)
-            setError((err as null))
+            setIsDecreaseItmQtyError((err as null))
         } finally {
-            setIsLoading(false)
+            setIsDecreaseItmQtyLoading(false)
         }
     }
 
     const removeFromCart = async (id: string) => {
         try {
-            setIsLoading(true)
+            setIsRemoveFromCartLoading(true)
 
             const token = await getAccessTokenSilently()
 
@@ -136,13 +190,14 @@ export const CartContextProvider = ({children}: ChildrenType) => {
                 }
             })
 
+            await getUserCart()
             toast.success(response.data.message)
 
         } catch (err) {
-            setError((err as null))
+            setIsRemoveFromCartError((err as null))
 
         } finally {
-            setIsLoading(false)
+            setIsRemoveFromCartLoading(false)
         }
     }
 
@@ -157,12 +212,22 @@ export const CartContextProvider = ({children}: ChildrenType) => {
             getUserCart,
             userCart,
             addToCart,
+            increaseItemQty,
             decreaseItemQty,
             removeFromCart,
             cartQuantity,
             getItemQuantity,
-            isLoading,
-            error
+            isUserCartLoading,
+            isUserCartError,
+            isAddToCartLoading,
+            isAddToCartError,
+            isRemoveFromCartLoading,
+            isRemoveFromCartError,
+            isIncreaseItmQtyLoading,
+            isIncreaseItmQtyError,
+            isDecreaseItmQtyLoading,
+            isDecreaseItmQtyError
+
         }}>
             {children}
         </CartContext.Provider>

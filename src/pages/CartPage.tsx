@@ -15,8 +15,7 @@ import LoginButton from "../components/LoginButton"
 const CartPage = () => {
     const { 
         userCart,
-        getUserCart,
-        isLoading
+        getUserCart
      } = useCart()
     const { 
         checkoutHandler,
@@ -52,9 +51,9 @@ const CartPage = () => {
             <main className="mt-[3rem] mb-[2rem] md:mb-[3rem]">
                 <section className="px-[.4rem] text-center flex flex-col gap-[1.5rem] md:max-w-[50%] md:mx-auto">
                     <h1 className="text-[2rem] md:text-[2.5rem]">Your cart is currently empty</h1>
-                    <p className="md:text-[1rem] text-[.8rem]">Before you proceed to checkout, you must add some products to your cart. You will find a lot of interesting products on our "Shop" page.</p>
+                    <p className="md:text-[1rem] text-[.8rem]">Before you proceed to checkout, you must add some products to your cart. You will find a lot of interesting products on our store page.</p>
                     <NavLink to="/">
-                        <button className="bg-secondary-700 text-textColor-400 px-[.8rem] py-[.5rem] rounded-[.2rem] uppercase md:hover:opacity-[0.6]">return to shop</button>
+                        <button className="bg-secondary-700 text-textColor-400 px-[.8rem] py-[.5rem] rounded-[.2rem] uppercase md:hover:opacity-[0.6]">Return to store</button>
                     </NavLink>
                 </section>
             </main>

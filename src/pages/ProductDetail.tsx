@@ -6,7 +6,7 @@ import { GiReturnArrow } from "react-icons/gi"
 import useWishlist from "../hooks/useWishlist"
 import useCart from "../hooks/useCart"
 // import { formatCurrency } from "../utils"
-import {useAuth0} from "@auth0/auth0-react"
+import { useAuth0 } from "@auth0/auth0-react"
 
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import "react-lazy-load-image-component/src/effects/blur.css"
@@ -16,13 +16,14 @@ import "react-lazy-load-image-component/src/effects/blur.css"
 const ProductDetail = () => {
     const { id } = useParams()
     const { storeProducts } = useStoreProducts()
-    const {isAuthenticated} = useAuth0()
-    const { wishList, addToWishlist } = useWishlist()
+    const { isAuthenticated } = useAuth0()
+    const { wishlist, addToWishlist } = useWishlist()
 
     const {
         userCart,
         addToCart,
         decreaseItemQty,
+        increaseItemQty,
         getItemQuantity
 
     } = useCart()
@@ -34,7 +35,7 @@ const ProductDetail = () => {
     }
     const quantity = getItemQuantity(id)
     const product = storeProducts.find(item => item._id === id)
-    const itemInList = wishList.find(item => item.id === id)
+    const itemInList = wishlist.find(item => item.id === id)
 
     if (product === undefined) {
         return (

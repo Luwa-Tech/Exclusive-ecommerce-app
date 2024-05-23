@@ -12,7 +12,12 @@ export type WishlistContextType = {
     getWishlist: () => void,
     addToWishlist: (id: string) => void,
     removeFromWishlist: (id: string) => void,
-
+    isUserWishlistLoading: boolean,
+    isUserWishlistError: null,
+    isAddToWishlistLoading: boolean,
+    isAddToWishlistError: null,
+    isRemoveFromWishlistLoading: boolean,
+    isRemoveFromWishlistError: null
 }
 
 type ChildrenType = {
@@ -25,8 +30,18 @@ export const WishlistContextProvider = ({children}: ChildrenType) => {
     const { user, getAccessTokenSilently } = useAuth0()
     const [wishlist, setWishlist] = useState<WishlistType[]>([])
 
+    const [isUserWishlistLoading, setIsUserWishlistLoading] = useState<boolean>(false)
+    const [isUserWishlistError, setIsUserWishlistError] = useState(null)
+
+    const [isAddToWishlistLoading, setIsAddToWishlistLoading] = useState<boolean>(false)
+    const [isAddToWishlistError, setIsAddToWishlistError] = useState(null)
+
+    const [isRemoveFromWishlistLoading, setIsRemoveFromWishlistLoading] = useState<boolean>(false)
+    const [isRemoveFromWishlistError, setIsRemoveFromWishlistError] = useState(null)
+
     const getWishlist = async () => {
         try {
+            setIsUserWishlistLoading(true)
             const token = await getAccessTokenSilently()
 
             const response = await axios.get("http://localhost:3500/api/user/wishlist", {
@@ -40,12 +55,15 @@ export const WishlistContextProvider = ({children}: ChildrenType) => {
 
             setWishlist(response.data.items)
         } catch (err) {
-            console.log(err)
+            setIsUserWishlistError((err as null))
+        } finally {
+            setIsUserWishlistLoading(false)
         }
     }
 
     const addToWishlist = async (id: string) => {
         try {
+            setIsAddToWishlistLoading(true)
             const token = await getAccessTokenSilently()
 
             const response = await axios.put("http://localhost:3500/api/user/wishlist/add", {
@@ -56,17 +74,22 @@ export const WishlistContextProvider = ({children}: ChildrenType) => {
                     Authorization: `Bearer ${token}`
                 }
             })
+            // Refetch user wishlist
+            await getWishlist()
             if (response.status === 200) {
                 toast.success(response.data.message)
             }
         } catch (err) {
-            console.log(err)
+            setIsAddToWishlistError((err as null))
+        } finally {
+            setIsAddToWishlistLoading(false)
         }
 
     }
 
     const removeFromWishlist = async (id: string) => {
         try {
+            setIsRemoveFromWishlistLoading(true)
             const token = await getAccessTokenSilently()
 
             const response = await axios.put("http://localhost:3500/api/user/wishlist/remove", {
@@ -77,11 +100,14 @@ export const WishlistContextProvider = ({children}: ChildrenType) => {
                     Authorization: `Bearer ${token}`
                 }
             })
+            await getWishlist()
             if (response.status === 200) {
                 toast.success(response.data.message)
             }
         } catch (err) {
-            console.log(err)
+            setIsRemoveFromWishlistError((err as null))
+        } finally {
+            setIsRemoveFromWishlistLoading(false)
         }
     }
 
@@ -90,7 +116,13 @@ export const WishlistContextProvider = ({children}: ChildrenType) => {
             wishlist,
             getWishlist,
             addToWishlist,
-            removeFromWishlist
+            removeFromWishlist,
+            isUserWishlistLoading,
+            isUserWishlistError,
+            isAddToWishlistLoading,
+            isAddToWishlistError,
+            isRemoveFromWishlistLoading,
+            isRemoveFromWishlistError
         }}>
             {children}
         </WishlistContext.Provider>
