@@ -1,8 +1,10 @@
 import CartLineItem from "./CartLineItem"
-import useCart from "../../hooks/useCart"
+import useCartApiQuery from "../../hooks/query/useCartApiQuery"
 
 const Cart = () => {
-    const {userCart, cartQuantity} = useCart()
+    const {getCachedData} = useCartApiQuery()
+    const userCart = getCachedData()
+    const cartQuantity = userCart?.reduce((qty, item) => item.quantity + qty, 0)
     
 
     return (
@@ -13,7 +15,7 @@ const Cart = () => {
             </div>
         <ul>
             {
-                userCart.map(items => <CartLineItem key={items.id} {...items} />)
+                userCart?.map(items => <CartLineItem key={items.id} {...items} />)
             }
         </ul>
         </div>

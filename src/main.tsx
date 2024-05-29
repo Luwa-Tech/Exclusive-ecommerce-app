@@ -4,7 +4,7 @@ import App from './App.tsx'
 import './index.css'
 
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+// import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -34,6 +34,5 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       pauseOnHover
       theme="light"
     />
-    <ReactQueryDevtools initialIsOpen/>
   </React.StrictMode>,
 )

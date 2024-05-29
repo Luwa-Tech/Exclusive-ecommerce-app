@@ -4,7 +4,7 @@ import {ImSpinner} from "react-icons/im"
 
 type CartSummaryType = {
     totalPrice: number,
-    checkoutHandler: (cart: CartType | CartType[]) => void,
+    checkoutHandler: (cart: CartType[]) => void,
     userCart: CartType[],
     isCheckoutLoading: boolean
 }

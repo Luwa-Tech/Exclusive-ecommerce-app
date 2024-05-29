@@ -19,7 +19,7 @@ import Cancel from "./pages/Cancel"
 import StoreProductsProvider from "./context/StoreContext"
 import ResetScroll from "./components/ResetScroll"
 import Auth0ProviderWithHistory from "./auth/Auth0ProviderWithHistory"
-import { CartContextProvider } from "./context/CartContext"
+// import { CartContextProvider } from "./context/CartContext"
 import { WishlistContextProvider } from "./context/WishListContext"
 
 
@@ -29,7 +29,6 @@ const App = () => {
         <BrowserRouter>
             <Auth0ProviderWithHistory>
                 <StoreProductsProvider>
-                    <CartContextProvider>
                         <WishlistContextProvider>
                             <ResetScroll />
                             <Routes>
@@ -54,7 +53,6 @@ const App = () => {
 
                             </Routes>
                         </WishlistContextProvider>
-                    </CartContextProvider>
                 </StoreProductsProvider>
             </Auth0ProviderWithHistory>
         </BrowserRouter>

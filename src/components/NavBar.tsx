@@ -4,7 +4,7 @@ import SearchBar from "./SearchBar"
 import { HiBars3CenterLeft } from "react-icons/hi2"
 import { CiShoppingCart, CiHeart } from "react-icons/ci"
 import useRenderHook from "../hooks/useRenderHook"
-import useCart from "../hooks/useCart"
+import useCartApiQuery from "../hooks/query/useCartApiQuery"
 import useWishlist from "../hooks/useWishlist"
 import SignupButton from "./SignupButton"
 import { useAuth0 } from "@auth0/auth0-react"
@@ -13,7 +13,11 @@ import { useAuth0 } from "@auth0/auth0-react"
 const RoutesWithoutNavBar = ["/product-form"]
 
 const NavBar = () => {
-    const { userCart, cartQuantity } = useCart()
+    const {getCachedData} = useCartApiQuery()
+    const userCart = getCachedData()
+    // Make cartQuantity resuable in both Cart component and here
+    const cartQuantity = userCart?.reduce((qty, item) => item.quantity + qty, 0)
+
     const { wishlist } = useWishlist()
     const { pathname } = useLocation()
     const { isAuthenticated } = useAuth0()
@@ -65,7 +69,7 @@ const NavBar = () => {
                             <div className="relative">
                                 <CiShoppingCart className="nav-icon" />
                                 {
-                                    userCart.length !== 0 && <div className="absolute text-textColor-400 bg-secondary-700 text-[.7rem] md:text-[.9rem] px-[.4rem] md:px-[.5rem] py-[.1rem]  rounded-[1.9rem] md:rounded-[1.9rem] top-[-7px] md:top-[-13px] right-[-7px] md:right-[-14px]">{cartQuantity}</div>
+                                    userCart?.length !== 0 && <div className="absolute text-textColor-400 bg-secondary-700 text-[.7rem] md:text-[.9rem] px-[.4rem] md:px-[.5rem] py-[.1rem]  rounded-[1.9rem] md:rounded-[1.9rem] top-[-7px] md:top-[-13px] right-[-7px] md:right-[-14px]">{cartQuantity}</div>
                                 }
                             </div>
                         </NavLink>

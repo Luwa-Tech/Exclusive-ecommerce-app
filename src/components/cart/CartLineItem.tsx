@@ -1,7 +1,7 @@
 import {MdOutlineDelete } from "react-icons/md"
 import useStoreProducts from "../../hooks/useStoreProducts"
-import useCart from "../../hooks/useCart"
 import {ImSpinner} from "react-icons/im"
+import useCartApiQuery from "../../hooks/query/useCartApiQuery"
 
 type CartLineItemType = {
     id: string,
@@ -9,13 +9,15 @@ type CartLineItemType = {
 }
 
 const CartLineItem = ({id, quantity}: CartLineItemType) => {
-    const {            
-        removeFromCart,
-        addToCart,
-        decreaseItemQty,
-        isLoading
-        } = useCart()
+    const {
+        useIncreaseItmQtyMutation,
+        useDecreaseItmQtyMutation,
+        useRemoveFromCartMutation
+    } = useCartApiQuery()
 
+    const increaseItmQtyMutation = useIncreaseItmQtyMutation(id)
+    const decreaseItmQtyMutation = useDecreaseItmQtyMutation(id)
+    const removeFromCartMutation = useRemoveFromCartMutation(id)
 
     const {storeProducts} = useStoreProducts()
     const item = storeProducts.find(product => product._id === id)
@@ -47,12 +49,12 @@ const CartLineItem = ({id, quantity}: CartLineItemType) => {
             <section className="flex justify-between mt-[.7rem]">
                 <div className="flex gap-3 items-end text-secondary-700 hover:bg-secondary-700 hover:text-textColor-400 px-2 py-1 rounded-[.2rem]">
                     <MdOutlineDelete className="w-[1.5rem] h-[1.6rem]"/>
-                    <button disabled={isLoading} onClick={() => removeFromCart(id)} className="uppercase border-none">{isLoading ? <ImSpinner className="animate-spin h-3 w-3"/> : "remove"}</button>
+                    <button disabled={removeFromCartMutation.isPending} onClick={() => removeFromCartMutation.mutate()} className="uppercase border-none">{removeFromCartMutation.isPending ? <ImSpinner className="animate-spin h-3 w-3"/> : "remove"}</button>
                 </div>
                 <div className="overflow-hidden items-center flex justify-between w-[8rem]">
-                    <button disabled={isLoading || quantity === 1} onClick={() => decreaseItemQty(id)} className={`bg-secondary-700 text-textColor-400 px-[.75rem] py-[.1rem] text-[1.3rem] hover:opacity-[0.6] ${quantity === 1 ? "opacity-[0.7]" : ""}`}>{isLoading ? <ImSpinner className="animate-spin h-3 w-3"/> : "-"}</button>
+                    <button disabled={decreaseItmQtyMutation.isPending || quantity === 1} onClick={ () => decreaseItmQtyMutation.mutate() } className={`bg-secondary-700 text-textColor-400 px-[.75rem] py-[.1rem] text-[1.3rem] hover:opacity-[0.6] ${quantity === 1 ? "opacity-[0.7]" : ""}`}>{decreaseItmQtyMutation.isPending ? <ImSpinner className="animate-spin h-3 w-3"/> : "-"}</button>
                     <span className="px-[1.1rem] md:px-[1.4rem]">{quantity}</span>
-                    <button disabled={isLoading} onClick={() => addToCart(id, item.stripeID)} className="bg-secondary-700 text-textColor-400 px-[.65rem] py-[.1rem] text-[1.3rem] hover:opacity-[0.6]">{isLoading ? <ImSpinner className="animate-spin h-3 w-3"/> : "+"}</button>
+                    <button disabled={increaseItmQtyMutation.isPending} onClick={() => increaseItmQtyMutation.mutate()} className="bg-secondary-700 text-textColor-400 px-[.65rem] py-[.1rem] text-[1.3rem] hover:opacity-[0.6]">{increaseItmQtyMutation.isPending ? <ImSpinner className="animate-spin h-3 w-3"/> : "+"}</button>
                 </div>
             </section>
         </li>

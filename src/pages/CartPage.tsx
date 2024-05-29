@@ -4,38 +4,26 @@ import useRenderHook from "../hooks/useRenderHook"
 import useStoreProducts from "../hooks/useStoreProducts"
 import { formatCurrency } from "../utils"
 import { NavLink } from "react-router-dom"
-import useCart from "../hooks/useCart"
 import Cart from "../components/cart/Cart"
-import { useEffect } from "react"
 import { useAuth0 } from "@auth0/auth0-react"
 import useCheckout from "../hooks/useCheckout"
-import {ImSpinner} from "react-icons/im"
+import { ImSpinner } from "react-icons/im"
 import LoginButton from "../components/LoginButton"
+// import useCartApiQuery from "../hooks/query/useCartApiQuery"
+import Loading from "../components/Loading"
+import React from "react"
+import { useQuery } from "@tanstack/react-query"
+import useCartApi, { CartType } from "../hooks/api/useCartApi"
 
 const CartPage = () => {
-    const { 
-        userCart,
-        getUserCart,
-        isLoading
-     } = useCart()
-    const { 
-        checkoutHandler,
-        isCheckoutLoading
-     } = useCheckout()
-
-    const {isAuthenticated} = useAuth0()
+    const { isAuthenticated } = useAuth0()
     const { storeProducts } = useStoreProducts()
     const { isMobile, isDesktop } = useRenderHook()
+    const { getUserCart } = useCartApi()
+    const { checkoutHandler, isCheckoutLoading } = useCheckout()
 
-    const totalPrice = userCart.reduce((total, cartItem) => {
-        const item = storeProducts.find(i => i._id === cartItem.id)
-        return total + (item?.price || 0) * cartItem.quantity
-    }, 0) 
 
-    useEffect(() => {
-        getUserCart()
-    }, [])
-
+    // Validate user authentication
     if (!isAuthenticated) {
         return (
             <main className="mt-[3rem] mb-[2rem] md:mb-[3rem]">
@@ -47,7 +35,41 @@ const CartPage = () => {
         )
     }
 
-    if (userCart.length === 0) {
+    const {
+        data: userCart,
+        isLoading: isCartLoading,
+        error: cartError
+    } = useQuery<CartType[]>({
+        queryKey: ["userCart"],
+        queryFn: getUserCart
+    })
+
+    console.log(userCart)
+
+    // Implement better loading UI state
+    if (isCartLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (cartError) {
+        return <div>Error: {cartError.message}</div>;
+    }
+
+    if (userCart === undefined) {
+        // Handle undefined cart better: return a jsx instead
+        return (
+            <main>
+                <h1>We are experiencing some issues lately, but we'll fix it soon</h1>
+            </main>
+        )
+    }
+
+    const totalPrice: number = userCart?.reduce((total, cartItem) => {
+        const item = storeProducts.find(i => i._id === cartItem.id)
+        return total + (item?.price || 0) * cartItem.quantity
+    }, 0)
+
+    if (userCart?.length === 0) {
         return (
             <main className="mt-[3rem] mb-[2rem] md:mb-[3rem]">
                 <section className="px-[.4rem] text-center flex flex-col gap-[1.5rem] md:max-w-[50%] md:mx-auto">
@@ -72,15 +94,20 @@ const CartPage = () => {
                 </div>
                 <div className="md:flex md:flex-col md:gap-4 md:w-[25%]">
                     {
-                        isMobile && <button onClick={() => checkoutHandler(userCart)} className="bg-secondary-700 text-textColor-400 px-[.5rem] py-[.4rem] rounded-[.2rem] uppercase mt-2 w-[100%] hover:opacity-[0.6]">{isCheckoutLoading ? <ImSpinner className="animate-spin h-3 w-3"/> : `Checkout ${formatCurrency(totalPrice)}`}</button>
+                        isMobile && <button onClick={() => checkoutHandler(userCart)} className="bg-secondary-700 text-textColor-400 px-[.5rem] py-[.4rem] rounded-[.2rem] uppercase mt-2 w-[100%] hover:opacity-[0.6]">{isCheckoutLoading ? <ImSpinner className="animate-spin h-3 w-3" /> : `Checkout ${formatCurrency(totalPrice)}`}</button>
                     }
                     {
-                        isDesktop && <DesktopCartSummary 
-                        totalPrice={totalPrice} 
-                        checkoutHandler={checkoutHandler}
-                        userCart={userCart} 
-                        isCheckoutLoading={isCheckoutLoading}
-                        />
+
+                        isDesktop && (
+                            <React.Suspense fallback={<Loading />}>
+                                <DesktopCartSummary
+                                    totalPrice={totalPrice}
+                                    checkoutHandler={checkoutHandler}
+                                    userCart={userCart}
+                                    isCheckoutLoading={isCheckoutLoading}
+                                />
+                            </React.Suspense>
+                        )
                     }
                     <div className="border-[.1rem] mt-[.7rem] md:mt-0 px-[.3rem] py-[.3rem]">
                         <p>Returns are easy</p>
