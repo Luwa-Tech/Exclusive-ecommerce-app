@@ -2,7 +2,7 @@ import axios from "axios"
 import { useAuth0 } from "@auth0/auth0-react"
 import { toast } from "react-toastify"
 
-export const serverURL = axios.create({
+const serverURL = axios.create({
     baseURL: import.meta.env.VITE_SERVER_URL
 })
 
@@ -11,12 +11,6 @@ export type CartType = {
     quantity: number,
     stripeID: string
 }
-
-    //Refactor later
-// export interface AddToCartType {
-//         id: string,
-//         stripeId: string
-// }
 
 // TODO:
 // 1. Implement better error handling
@@ -36,8 +30,6 @@ const useCartApi = () => {
             }
         })
 
-        console.log(response.data)
-        console.log(response.data.items)
         return response.data.items
     }
 
@@ -101,6 +93,12 @@ const useCartApi = () => {
 
         toast.success(response.data.message)
     }
+
+    // const cartQuantity = userCart.reduce((qty, item) => item.quantity + qty, 0)
+
+    // const getItemQuantity = (id: string) => {
+    //     return userCart.find(item => item.id === id)?.quantity || 0
+    // }
 
     return {
         getUserCart,

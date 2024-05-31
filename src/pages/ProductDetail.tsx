@@ -3,7 +3,6 @@ import useStoreProducts from "../hooks/useStoreProducts"
 import { CiHeart } from "react-icons/ci"
 import { TbTruckDelivery } from "react-icons/tb"
 import { GiReturnArrow } from "react-icons/gi"
-import useWishlist from "../hooks/useWishlist"
 import useCart from "../hooks/useCart"
 // import { formatCurrency } from "../utils"
 import {useAuth0} from "@auth0/auth0-react"
@@ -11,36 +10,37 @@ import {useAuth0} from "@auth0/auth0-react"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import "react-lazy-load-image-component/src/effects/blur.css"
 
+import useCartApiQuery from "../hooks/query/useCartApiQuery"
+import useWishlistApiQuery from "../hooks/query/useWishlistApiQuery"
+
 // TODO
-// Fetch product details from database
+// 1. Implement wishlist api queries
+// Fetch product details from database (later on)
 const ProductDetail = () => {
-    const { id } = useParams()
+    const {id} = useParams()
     const { storeProducts } = useStoreProducts()
     const {isAuthenticated} = useAuth0()
-    const { wishList, addToWishlist } = useWishlist()
+    const {useAddToCartMutation} = useCartApiQuery()
+    const {useAddToWishlistMutation} = useWishlistApiQuery()
+
+    const product = storeProducts.find(item => item._id === id)
 
     const {
-        userCart,
-        addToCart,
-        decreaseItemQty,
         getItemQuantity
 
     } = useCart()
 
-    if (id === undefined) {
-        return (
-            <h1>cannot access items</h1>
-        )
-    }
-    const quantity = getItemQuantity(id)
-    const product = storeProducts.find(item => item._id === id)
-    const itemInList = wishList.find(item => item.id === id)
 
-    if (product === undefined) {
+    if (id === undefined || product === undefined ) {
         return (
-            <h1>An Error occured when fetching product details</h1>
+            <h1>Cannot access product details</h1>
         )
     }
+
+    const quantity = getItemQuantity(id)
+    const itemInList = wishList.find(item => item.id === id)
+    const addToCartMutation = useAddToCartMutation(id, product?.stripeID)
+    const addToWishlistMutation = useAddToWishlistMutation(id)
 
 
     return (
@@ -59,7 +59,7 @@ const ProductDetail = () => {
                     <div className="flex items-center gap-2 mt-[1.2rem]">
                         {/* TODO: Refactor quantity === 0  */}
 
-                        <button disabled={quantity > 0} onClick={() => addToCart(id, product.stripeID)} className={` rounded-[0.25rem] text-textColor-400 ${quantity > 0 ? "bg-textColor-600 bg-opacity-[0.5]" : "bg-secondary-700"} px-[1rem] py-[.6rem] md:px-[3rem] md:py-[0.625rem] w-[90%] md:w-auto hover:opacity-[0.6]`}>{quantity > 0 ? "Added to cart" : "Add to cart"}</button>
+                        <button disabled={quantity > 0} onClick={() => addToCartMutation.mutate()} className={` rounded-[0.25rem] text-textColor-400 ${quantity > 0 ? "bg-textColor-600 bg-opacity-[0.5]" : "bg-secondary-700"} px-[1rem] py-[.6rem] md:px-[3rem] md:py-[0.625rem] w-[90%] md:w-auto hover:opacity-[0.6]`}>{quantity > 0 ? "Added to cart" : "Add to cart"}</button>
 
                         {/* {
                             quantity > 0 && <div className="items-center flex justify-between w-[8rem]">
@@ -69,7 +69,7 @@ const ProductDetail = () => {
                             </div>
                         } */}
 
-                        {isAuthenticated && <button onClick={() => addToWishlist(id)} className={`focus:bg-secondary-700 border-[.1rem] px-[.65rem] py-[.3rem] hover:opacity-[0.6] focus:text-textColor-400 ${itemInList ? "bg-secondary-700 text-textColor-400" : ""}`}>
+                        {isAuthenticated && <button onClick={() => addToWishlistMutation.mutate()} className={`focus:bg-secondary-700 border-[.1rem] px-[.65rem] py-[.3rem] hover:opacity-[0.6] focus:text-textColor-400 ${itemInList ? "bg-secondary-700 text-textColor-400" : ""}`}>
                             <CiHeart className="w-[1.2rem] h-[1.6rem]" />
                         </button>}
                     </div>

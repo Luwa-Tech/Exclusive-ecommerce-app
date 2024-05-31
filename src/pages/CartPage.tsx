@@ -6,22 +6,18 @@ import { formatCurrency } from "../utils"
 import { NavLink } from "react-router-dom"
 import Cart from "../components/cart/Cart"
 import { useAuth0 } from "@auth0/auth0-react"
-import useCheckout from "../hooks/useCheckout"
 import { ImSpinner } from "react-icons/im"
 import LoginButton from "../components/LoginButton"
-// import useCartApiQuery from "../hooks/query/useCartApiQuery"
-import Loading from "../components/Loading"
-import React from "react"
 import { useQuery } from "@tanstack/react-query"
 import useCartApi, { CartType } from "../hooks/api/useCartApi"
+import useCheckoutApiQuery from "../hooks/query/useCheckoutApiQuery"
 
 const CartPage = () => {
     const { isAuthenticated } = useAuth0()
     const { storeProducts } = useStoreProducts()
     const { isMobile, isDesktop } = useRenderHook()
     const { getUserCart } = useCartApi()
-    const { checkoutHandler, isCheckoutLoading } = useCheckout()
-
+    const {useCheckoutMutation} = useCheckoutApiQuery()
 
     // Validate user authentication
     if (!isAuthenticated) {
@@ -44,13 +40,6 @@ const CartPage = () => {
         queryFn: getUserCart
     })
 
-    console.log(userCart)
-
-    // Implement better loading UI state
-    if (isCartLoading) {
-        return <div>Loading...</div>;
-    }
-
     if (cartError) {
         return <div>Error: {cartError.message}</div>;
     }
@@ -64,10 +53,19 @@ const CartPage = () => {
         )
     }
 
+    const checkoutMutation = useCheckoutMutation(userCart)
     const totalPrice: number = userCart?.reduce((total, cartItem) => {
         const item = storeProducts.find(i => i._id === cartItem.id)
         return total + (item?.price || 0) * cartItem.quantity
     }, 0)
+
+    if (isCartLoading) {
+        return (
+            <main className="flex justify-center items-center my-[5rem]">
+                <ImSpinner className="h-10 w-10 animate-spin" />
+            </main>
+        )
+    }
 
     if (userCart?.length === 0) {
         return (
@@ -94,19 +92,15 @@ const CartPage = () => {
                 </div>
                 <div className="md:flex md:flex-col md:gap-4 md:w-[25%]">
                     {
-                        isMobile && <button onClick={() => checkoutHandler(userCart)} className="bg-secondary-700 text-textColor-400 px-[.5rem] py-[.4rem] rounded-[.2rem] uppercase mt-2 w-[100%] hover:opacity-[0.6]">{isCheckoutLoading ? <ImSpinner className="animate-spin h-3 w-3" /> : `Checkout ${formatCurrency(totalPrice)}`}</button>
+                        isMobile && <button onClick={() => checkoutMutation.mutate()} className="bg-secondary-700 text-textColor-400 px-[.5rem] py-[.4rem] rounded-[.2rem] uppercase mt-2 w-[100%] hover:opacity-[0.6]">{checkoutMutation.isPending ? <ImSpinner className="animate-spin h-3 w-3" /> : `Checkout ${formatCurrency(totalPrice)}`}</button>
                     }
                     {
 
                         isDesktop && (
-                            <React.Suspense fallback={<Loading />}>
                                 <DesktopCartSummary
                                     totalPrice={totalPrice}
-                                    checkoutHandler={checkoutHandler}
-                                    userCart={userCart}
-                                    isCheckoutLoading={isCheckoutLoading}
+                                    checkoutMutation={checkoutMutation}
                                 />
-                            </React.Suspense>
                         )
                     }
                     <div className="border-[.1rem] mt-[.7rem] md:mt-0 px-[.3rem] py-[.3rem]">

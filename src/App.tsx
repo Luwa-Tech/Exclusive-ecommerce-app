@@ -19,9 +19,6 @@ import Cancel from "./pages/Cancel"
 import StoreProductsProvider from "./context/StoreContext"
 import ResetScroll from "./components/ResetScroll"
 import Auth0ProviderWithHistory from "./auth/Auth0ProviderWithHistory"
-// import { CartContextProvider } from "./context/CartContext"
-import { WishlistContextProvider } from "./context/WishListContext"
-
 
 const App = () => {
     return (
@@ -29,7 +26,6 @@ const App = () => {
         <BrowserRouter>
             <Auth0ProviderWithHistory>
                 <StoreProductsProvider>
-                        <WishlistContextProvider>
                             <ResetScroll />
                             <Routes>
                                 <Route path="/" element={<Layout />}>
@@ -52,7 +48,6 @@ const App = () => {
                                 </Route>
 
                             </Routes>
-                        </WishlistContextProvider>
                 </StoreProductsProvider>
             </Auth0ProviderWithHistory>
         </BrowserRouter>
