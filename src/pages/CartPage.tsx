@@ -92,7 +92,7 @@ const CartPage = () => {
                 </div>
                 <div className="md:flex md:flex-col md:gap-4 md:w-[25%]">
                     {
-                        isMobile && <button onClick={() => checkoutMutation.mutate()} className="bg-secondary-700 text-textColor-400 px-[.5rem] py-[.4rem] rounded-[.2rem] uppercase mt-2 w-[100%] hover:opacity-[0.6]">{checkoutMutation.isPending ? <ImSpinner className="animate-spin h-3 w-3" /> : `Checkout ${formatCurrency(totalPrice)}`}</button>
+                        isMobile && <button onClick={() => checkoutMutation.mutate()} className="bg-secondary-700 text-textColor-400 px-[.5rem] py-[.4rem] rounded-[.2rem] uppercase mt-2 w-[100%] hover:opacity-[0.6]">{checkoutMutation.isPending ? <ImSpinner className="animate-spin h-6 w-6 mx-auto" /> : `Checkout ${formatCurrency(totalPrice)}`}</button>
                     }
                     {
 

@@ -24,9 +24,11 @@ const DesktopCartSummary = ({
                 </div>
                 <p className="text-textColor-500 text-[.8rem]">Delivery fees not included yet</p>
             </div>
-            <button onClick={() => checkoutMutation.mutate()} className="bg-secondary-700 text-textColor-400 px-[.5rem] py-[.4rem] rounded-[.2rem] uppercase mt-2 w-[100%] hover:opacity-[0.6]">{checkoutMutation.isPending ? <ImSpinner className="animate-spin h-4 w-4 mx-auto"/> : `Checkout ${formatCurrency(totalPrice)}`}</button>
+            <button onClick={() => checkoutMutation.mutate()} className="bg-secondary-700 text-textColor-400 px-[.5rem] py-[.4rem] rounded-[.2rem] uppercase mt-2 w-[100%] hover:opacity-[0.6]">{checkoutMutation.isPending ? <ImSpinner className="animate-spin h-6 w-6 mx-auto"/> : `Checkout ${formatCurrency(totalPrice)}`}</button>
         </div>
     )
 }
 
 export default DesktopCartSummary
+
+{/* <button onClick={() => props.checkoutHandler(props.userCart)} className="bg-secondary-700 text-textColor-400 px-[.5rem] py-[.4rem] rounded-[.2rem] uppercase mt-2 w-[100%] hover:opacity-[0.6]">{props.isCheckoutLoading ? <ImSpinner className="animate-spin h-6 w-6 mx-auto" /> : `Checkout ${formatCurrency(props.totalPrice)}`}</button> */}
