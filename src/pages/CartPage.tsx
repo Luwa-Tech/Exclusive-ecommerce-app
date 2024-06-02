@@ -12,15 +12,6 @@ import useCheckoutApiQuery from "../hooks/query/useCheckoutApiQuery"
 import useUserStore from "../hooks/useUserStore"
 
 const CartPage = () => {
-    const { 
-        userCart,
-        getUserCart
-     } = useCart()
-    const { 
-        checkoutHandler,
-        isCheckoutLoading
-     } = useCheckout()
-
     const {isAuthenticated} = useAuth0()
     const { storeProducts } = useStoreProducts()
     const { isMobile, isDesktop } = useRenderHook()
@@ -42,7 +33,7 @@ const CartPage = () => {
     if (isCartLoading) {
         return (
             <main className="flex justify-center items-center my-[5rem]">
-                <ImSpinner className="h-10 w-10 animate-spin" />
+                <ImSpinner className="h-7 w-7 animate-spin" />
             </main>
         )
     }
@@ -52,7 +43,6 @@ const CartPage = () => {
     }
 
     if (userCart === undefined) {
-        // Handle undefined cart better: return a jsx instead
         return (
             <main className="md:flex md:justify-center md:items-center px-[.6rem] md:px-0">
                 <h1 className="md:my-[10rem] my-[8rem] text-[1.2rem] text-center md:text-[2.3rem]">We are experiencing some issues lately, but we'll fix it soon</h1>
