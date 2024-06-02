@@ -9,7 +9,6 @@ import { useAuth0 } from "@auth0/auth0-react"
 import { CartType } from "../hooks/api/useCartApi"
 import { WishlistType } from "../hooks/api/useWishlistApi"
 
-
 const RoutesWithoutNavBar = ["/product-form"]
 
 type NavBarType = {

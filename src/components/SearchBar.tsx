@@ -1,10 +1,8 @@
 import { CiSearch } from "react-icons/ci"
-// import useStoreProducts from "../hooks/useStoreProducts"
 import { useState } from "react"
 import { useNavigate } from "react-router"
 
 const SearchBar = () => {
-    // const {storeProducts} = useStoreProducts()
     const [searchTerm, setSearchTerm] = useState("")
     const navigate = useNavigate()
 
@@ -12,10 +10,6 @@ const SearchBar = () => {
         const term = event.target.value
         setSearchTerm(term)
     }
-
-    // const validateSearchTerm = storeProducts?.some((product) => {
-    //     return product.name.toLowerCase().includes(searchTerm.toLowerCase())
-    // })
 
     const handleSearchSubmit = (event: React.FormEvent) => {
         event?.preventDefault()
@@ -30,9 +24,6 @@ const SearchBar = () => {
             <CiSearch  className="w-[1.4rem] h-[1.4rem] md:w-[1.2rem] md:h-[1.2rem] text-primary-500"/>
             </button>
         </form>
-        {/* {
-            validateSearchTerm === false && <p className="bg-secondary-500 py-2 pl-2 z-[10] rounded-[5px] text-[.95rem] absolute bottom-[-43px] right-[7px] left-[7px] md:right-0 md:left-0">results not found</p>
-        } */}
         </div> 
     )
 }

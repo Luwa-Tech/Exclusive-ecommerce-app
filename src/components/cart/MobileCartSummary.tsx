@@ -1,5 +1,4 @@
 import { formatCurrency } from "../../utils"
-// import { CartType } from "../../hooks/useCart"
 
 type CartSummaryType = {
     totalPrice: number

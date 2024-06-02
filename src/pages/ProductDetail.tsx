@@ -18,16 +18,11 @@ const ProductDetail = () => {
     const { id } = useParams()
     const { storeProducts } = useStoreProducts()
     const { isAuthenticated } = useAuth0()
-    const { wishlist, addToWishlist } = useWishlist()
+    const { wishlist, userCart } = useUserStore()
+    const { useAddToCartMutation } = useCartApiQuery()
+    const { useAddToWishlistMutation } = useWishlistApiQuery()
 
-    const {
-        userCart,
-        addToCart,
-        decreaseItemQty,
-        increaseItemQty,
-        getItemQuantity
-
-    } = useCart()
+    const product = storeProducts?.find(item => item._id === id)
 
     if (id === undefined || product === undefined) {
         return (
@@ -36,15 +31,11 @@ const ProductDetail = () => {
         </main>
         )
     }
-    const quantity = getItemQuantity(id)
-    const product = storeProducts.find(item => item._id === id)
-    const itemInList = wishList.find(item => item.id === id)
 
-    if (product === undefined) {
-        return (
-            <h1>An Error occured when fetching product details</h1>
-        )
-    }
+    const quantity = userCart?.find(item => item.id === id)?.quantity || 0
+    const itemInList = wishlist?.find(item => item.id === id)
+    const addToCartMutation = useAddToCartMutation(id, product?.stripeID)
+    const addToWishlistMutation = useAddToWishlistMutation(id)
 
 
     return (
