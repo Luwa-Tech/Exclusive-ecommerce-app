@@ -6,17 +6,13 @@ export type WishlistType = {
     id: string,
 }
 
-const serverURL = axios.create({
-    baseURL: import.meta.env.VITE_SERVER_URL
-})
-
 const useWishlistApi = () => {
     const { user, getAccessTokenSilently } = useAuth0()
 
     const getWishlist = async (): Promise<WishlistType[]> => {
         const token = await getAccessTokenSilently()
 
-        const response = await serverURL.get("/api/user/wishlist", {
+        const response = await axios.get(`${import.meta.env.VITE_SERVER_PROD_URL}/api/user/wishlist`, {
             params: {
                 email: user?.email
             },
@@ -32,7 +28,7 @@ const useWishlistApi = () => {
     const addToWishlist = async (id: string) => {
         const token = await getAccessTokenSilently()
 
-        const response = await serverURL.put("/api/user/wishlist/add", {
+        const response = await axios.put(`${import.meta.env.VITE_SERVER_PROD_URL}/api/user/wishlist/add`, {
             productId: id,
             email: user?.email
         }, {
@@ -48,7 +44,7 @@ const useWishlistApi = () => {
     const removeFromWishlist = async (id: string) => {
         const token = await getAccessTokenSilently()
 
-        const response = await serverURL.put("/api/user/wishlist/remove", {
+        const response = await axios.put(`${import.meta.env.VITE_SERVER_PROD_URL}/api/user/wishlist/remove`, {
             productId: id,
             email: user?.email
         }, {

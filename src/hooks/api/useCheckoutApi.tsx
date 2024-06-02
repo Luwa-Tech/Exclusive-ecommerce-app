@@ -9,7 +9,7 @@ const useCheckoutApi = () => {
         try {
             const token = await getAccessTokenSilently()
 
-            const response = await axios.post("http://localhost:3500/api/user/checkout", {
+            const response = await axios.post(`${import.meta.env.VITE_SERVER_PROD_URL}/api/user/checkout`, {
                 items: cart,
                 email: user?.email
             }, {
