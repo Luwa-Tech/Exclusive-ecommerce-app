@@ -12,16 +12,11 @@ export type StoreProductType = {
     category: string,
 }
 
-const serverURL = axios.create({
-    baseURL: import.meta.env.VITE_SERVER_URL
-})
-
 const useStoreApi = () => {
 
     const getStoreItems = async (): Promise<StoreProductType[]> => {
-        const response = await serverURL.get("/products")
+        const response = await axios.get(`${import.meta.env.VITE_SERVER_PROD_URL}/products`)
         return response.data
-
     }
 
     return {
