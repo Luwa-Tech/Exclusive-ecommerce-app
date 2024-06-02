@@ -2,10 +2,6 @@ import axios from "axios"
 import { useAuth0 } from "@auth0/auth0-react"
 import { toast } from "react-toastify"
 
-const serverURL = axios.create({
-    baseURL: import.meta.env.VITE_SERVER_URL
-})
-
 export type CartType = {
     id: string,
     quantity: number,
@@ -21,7 +17,7 @@ const useCartApi = () => {
     const getUserCart = async (): Promise<CartType[]> => {
         const token = await getAccessTokenSilently()
 
-        const response = await serverURL.get("/api/user/cart", {
+        const response = await axios.get(`${import.meta.env.VITE_SERVER_PROD_URL}/api/user/cart`, {
             params: {
                 email: user?.email
             },
@@ -36,7 +32,7 @@ const useCartApi = () => {
     const addToCart = async (id: string, stripeId: string) => {
         const token = await getAccessTokenSilently()
 
-        const response = await serverURL.put("/api/user/cart/add", {
+        const response = await axios.put(`${import.meta.env.VITE_SERVER_PROD_URL}/api/user/cart/add`, {
             email: user?.email,
             productId: id,
             stripeId: stripeId
@@ -54,7 +50,7 @@ const useCartApi = () => {
     const increaseItemQty = async (id: string) => {
         const token = await getAccessTokenSilently()
 
-        const response = await serverURL.put("/api/user/cart/increase-item-qty", {
+        const response = await axios.put(`${import.meta.env.VITE_SERVER_PROD_URL}/api/user/cart/increase-item-qty`, {
             productId: id,
             email: user?.email
         }, {
@@ -68,7 +64,7 @@ const useCartApi = () => {
     const decreaseItemQty = async (id: string) => {
         const token = await getAccessTokenSilently()
 
-        const response = await serverURL.put("/api/user/cart/decrease-item-qty", {
+        const response = await axios.put(`${import.meta.env.VITE_SERVER_PROD_URL}/api/user/cart/decrease-item-qty`, {
             productId: id,
             email: user?.email
         }, {
@@ -82,7 +78,7 @@ const useCartApi = () => {
     const removeFromCart = async (id: string) => {
         const token = await getAccessTokenSilently()
 
-        const response = await serverURL.put("/api/user/cart/remove", {
+        const response = await axios.put(`${import.meta.env.VITE_SERVER_PROD_URL}/api/user/cart/remove`, {
             productId: id,
             email: user?.email
         }, {
@@ -93,12 +89,6 @@ const useCartApi = () => {
 
         toast.success(response.data.message)
     }
-
-    // const cartQuantity = userCart.reduce((qty, item) => item.quantity + qty, 0)
-
-    // const getItemQuantity = (id: string) => {
-    //     return userCart.find(item => item.id === id)?.quantity || 0
-    // }
 
     return {
         getUserCart,
