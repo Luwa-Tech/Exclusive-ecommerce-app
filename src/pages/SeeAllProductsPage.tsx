@@ -2,6 +2,9 @@ import { useLocation } from "react-router"
 import Product, { ProductType } from "../components/Product"
 import { JSX } from "react/jsx-runtime"
 
+// TODO:
+// 1. Check the render method of `SeeAllProductsPage`, Each child in a list should have a unique "key" prop.
+
 const SeeAllProductsPage = () => {
     const location = useLocation()
     const data = location.state?.data
@@ -12,7 +15,7 @@ const SeeAllProductsPage = () => {
             {
                 data.map((items: JSX.IntrinsicAttributes & ProductType) => {
                     return (
-                        <Product key={items.id} {...items}/>
+                        <Product key={items._id} {...items}/>
                     )
                 })
             }

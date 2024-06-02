@@ -1,23 +1,33 @@
 import {MdOutlineDelete } from "react-icons/md"
 import useStoreProducts from "../../hooks/useStoreProducts"
-import { CartContext } from "../../context/CartContext"
-import { useContext } from "react"
+import useCart from "../../hooks/useCart"
+import {ImSpinner} from "react-icons/im"
+import { IoMdAdd } from "react-icons/io"
+import { IoMdRemove } from "react-icons/io";
 
 type CartLineItemType = {
     id: string,
-    qty: number 
+    quantity: number,
+    isRemoveFromCartLoading: boolean,
+    isDecreaseItmQtyLoading: boolean,
+    isIncreaseItmQtyLoading: boolean,
 }
 
-const CartLineItem = ({id, qty}: CartLineItemType) => {
+const CartLineItem = ({
+    id, 
+    quantity, 
+    isRemoveFromCartLoading, 
+    isDecreaseItmQtyLoading, 
+    isIncreaseItmQtyLoading}: CartLineItemType) => {
     const {            
         removeFromCart,
-        increaseItemQuantity,
-        decreaseItemQuantity
-        } = useContext(CartContext)
+        decreaseItemQty,
+        increaseItemQty,
+        } = useCart()
 
 
     const {storeProducts} = useStoreProducts()
-    const item = storeProducts.find(product => product.id === id)
+    const item = storeProducts.find(product => product._id === id)
     if(item === null) return null
     
     if(item === undefined) {
@@ -46,12 +56,12 @@ const CartLineItem = ({id, qty}: CartLineItemType) => {
             <section className="flex justify-between mt-[.7rem]">
                 <div className="flex gap-3 items-end text-secondary-700 hover:bg-secondary-700 hover:text-textColor-400 px-2 py-1 rounded-[.2rem]">
                     <MdOutlineDelete className="w-[1.5rem] h-[1.6rem]"/>
-                    <button onClick={() => removeFromCart(id)} className="uppercase border-none">remove</button>
+                    <button disabled={isRemoveFromCartLoading} onClick={() => removeFromCart(id)} className="uppercase border-none">{isRemoveFromCartLoading ? <ImSpinner className="animate-spin h-6 w-6"/> : "remove"}</button>
                 </div>
                 <div className="overflow-hidden items-center flex justify-between w-[8rem]">
-                    <button onClick={() => decreaseItemQuantity(id)} className="bg-secondary-700 text-textColor-400 px-[.75rem] py-[.1rem] text-[1.3rem] hover:opacity-[0.6]">-</button>
-                    <span className="px-[1.1rem] md:px-[1.4rem]">{qty}</span>
-                    <button onClick={() => increaseItemQuantity(id, item.stripeID)} className="bg-secondary-700 text-textColor-400 px-[.65rem] py-[.1rem] text-[1.3rem] hover:opacity-[0.6]">+</button>
+                    <button disabled={isDecreaseItmQtyLoading || quantity === 1} onClick={() => decreaseItemQty(id)} className={`bg-secondary-700 text-textColor-400 w-[3rem]  flex justify-center item-center text-[1.5rem] py-[.3rem] hover:opacity-[0.6] ${quantity === 1 ? "opacity-[0.5]" : ""}`}>{isDecreaseItmQtyLoading ? <ImSpinner className="animate-spin h-6 w-6"/> : <IoMdRemove />}</button>
+                    <span className="px-[1.1rem] md:px-[1.4rem]">{quantity}</span>
+                    <button disabled={isIncreaseItmQtyLoading} onClick={() => increaseItemQty(id)} className="bg-secondary-700 text-textColor-400 flex justify-center w-[3rem] item-center text-[1.5rem] py-[.3rem] text-[1.3rem] hover:opacity-[0.6]">{isIncreaseItmQtyLoading ? <ImSpinner className="animate-spin h-6 w-6"/> : <IoMdAdd />}</button>
                 </div>
             </section>
         </li>

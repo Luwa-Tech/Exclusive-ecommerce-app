@@ -1,7 +1,5 @@
-import { WishListContext } from "../context/WishListContext"
-import {useContext, useEffect, useRef} from "react"
-import WishListItem from "../components/wishlist/WishListItem"
-
+import {useEffect, useRef} from "react"
+import useWishlist from "../hooks/useWishlist"
 import Slider from "react-slick"
 
 import useStoreProducts from "../hooks/useStoreProducts"
@@ -9,10 +7,15 @@ import Product from "../components/Product"
 import ProductSlider from "../components/product-slider/ProductSlider"
 import { NavLink } from "react-router-dom"
 import usePreventMobileScroll, {CustomEventListenerOptions} from "../hooks/usePreventMobileScroll"
+import WishListItem from "../components/wishlist/WishListItem"
 
 
 const WishlistPage = () => {
-    const { wishList } = useContext(WishListContext)
+    const {
+      wishlist,
+      getWishlist
+    } = useWishlist()
+
     const {touchStart, preventTouch} = usePreventMobileScroll()
 
     const {storeProducts} = useStoreProducts()
@@ -31,6 +34,11 @@ const WishlistPage = () => {
       }
     }
 
+    // TODO: Update wishlist state when database updates
+    useEffect(() => {
+      getWishlist()
+    }, [])
+
     useEffect(() => {
       window.addEventListener("touchstart", touchStart)
       window.addEventListener("touchmove", preventTouch, {passive: false} as CustomEventListenerOptions )
@@ -42,7 +50,7 @@ const WishlistPage = () => {
     }, [preventTouch, touchStart])
 
 
-    if(wishList.length === 0) {
+    if(wishlist.length === 0) {
         return (
             <main className="mt-[3.5rem] mb-[4rem] md:mb-[6.5rem]">
             <section className="px-[.4rem] text-center flex flex-col gap-[1.5rem] md:max-w-[50%] md:mx-auto">
@@ -90,10 +98,10 @@ const WishlistPage = () => {
     return (
        <main className="px-4 md:px-0 md:mt-[2rem] md:w-[80%] md:mx-auto mb-[4rem]">
         <section>
-            <h2 className="mb-[2rem]">{`Wishlist (${wishList.length})`}</h2>
+            <h2 className="mb-[2rem]">{`Wishlist (${wishlist.length})`}</h2>
             <ul className="grid md:grid-cols-6 grid-cols-3 gap-2 md:gap-4">
                 {
-                    wishList.map(items => {
+                    wishlist.map(items => {
                         return <WishListItem key={items.id} {...items}/>
                     })
                 }
@@ -105,7 +113,7 @@ const WishlistPage = () => {
                 <Slider ref={sliderRef} {...settings}>
                     {
                         storeProducts.map(items => {
-                            return <Product key={items.id} {...items} />
+                            return <Product key={items._id} {...items} />
                         })
                     }
                 </Slider>
