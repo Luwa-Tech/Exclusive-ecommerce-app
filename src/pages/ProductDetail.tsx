@@ -26,7 +26,9 @@ const ProductDetail = () => {
 
     if (id === undefined || product === undefined) {
         return (
-            <h1>Cannot access product details</h1>
+            <main className="md:flex md:justify-center md:items-center px-[.6rem] md:px-0">
+            <h1 className="md:my-[10rem] my-[7rem] text-[1.2rem] md:text-[2.3rem]">Cannot access product details. Please try again later.</h1>
+        </main>
         )
     }
 

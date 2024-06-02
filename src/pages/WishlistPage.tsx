@@ -35,7 +35,7 @@ const WishlistPage = () => {
   if (wishlist === undefined) {
     return (
       <main className="md:flex md:justify-center md:items-center px-[.6rem] md:px-0">
-        <h1 className="md:my-[10rem] my-[8rem] text-[1.7rem] md:text-[2.3rem]">We are experiencing some issues lately, but we'll fix it soon</h1>
+        <h1 className="md:my-[10rem] my-[8rem] text-[1.2rem] md:text-[2.3rem]">We are experiencing some issues lately, but we'll fix it soon</h1>
       </main>
     )
   }
@@ -62,7 +62,7 @@ const WishlistPage = () => {
     return (
       <main className="mt-[3.5rem] mb-[4rem] md:mb-[6.5rem]">
         <section className="px-[.4rem] text-center flex flex-col gap-[1.5rem] md:max-w-[50%] md:mx-auto">
-          <h1 className="text-[1.5rem] md:text-[2.5rem]">Your wishlist is currently empty</h1>
+          <h1 className="text-[1.4rem] md:text-[2.5rem]">Your wishlist is currently empty</h1>
           <NavLink to="/">
             <button className="bg-secondary-700 text-textColor-400 px-[.8rem] py-[.5rem] rounded-[.2rem] uppercase md:hover:opacity-[0.6]">return to shop</button>
           </NavLink>
