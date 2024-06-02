@@ -1,29 +1,23 @@
-import axios from "axios"
-import { createContext, ReactElement, useEffect, useState } from "react"
-
-export type StoreProductType = {
-    _id: string,
-    name: string,
-    price: number,
-    image: string,
-    stripeID: string,
-    discount: number | null,
-    discountPrice: number | null,
-    rating: number,
-    category: string,
-}
+import {
+    useQueryClient,
+    useQuery
+} from "@tanstack/react-query"
+import { createContext, ReactElement } from "react"
+import useStoreApi, { StoreProductType } from "../hooks/api/useStoreApi"
 
 
 export type StoreContextType = {
-    storeProducts: StoreProductType[],
-    loading: boolean,
-    error: string | null
+    storeProducts: StoreProductType[] | undefined
+    isStoreError: Error | null
+    isStorePending: boolean
+    getStoreDataFromCache: () => StoreProductType[] | undefined
 }
 
 const initStoreContext: StoreContextType = {
-    storeProducts: [],
-    loading: false,
-    error: null
+    storeProducts: undefined,
+    isStoreError: null,
+    isStorePending: false,
+    getStoreDataFromCache: () => undefined 
 }
 
 export const storeContext = createContext<StoreContextType>(initStoreContext)
@@ -32,36 +26,36 @@ export type ChildrenType = {
     children?: ReactElement | ReactElement[] | undefined
 }
 
-    // Get all products and store to state
-    // Consume products only in home and wishlist page
-    // Hide the wishlist icon from users not logged in
-
-
 const StoreProductsProvider = ({ children }: ChildrenType) => {
-    const [loading, setLoading] = useState<boolean>(false)
-    const [error, setError] = useState<string | null>(null)
-    const [storeProducts, setStoreProducts] = useState<StoreProductType[]>([])
+    const queryClient = useQueryClient()
+    const { getStoreItems } = useStoreApi()
 
-    const getAllProducts = async () => {
-        setLoading(true)
-        try {
-            const response = await axios.get("http://localhost:3500/products")
-            console.log(response)
-            setStoreProducts(response.data)
-        } catch(err) {
-            // setError(err.message || 'An error occurred while fetching data');
-            console.log(err)
-        } finally {
-            setLoading(false)
+    const {
+        data: storeProducts,
+        isPending: isStorePending,
+        error: isStoreError } = useQuery({
+            queryKey: ["storeProducts"],
+            queryFn: getStoreItems
+        })
+
+    const getStoreDataFromCache = (): StoreProductType[] | undefined => {
+        let store: StoreProductType[] | undefined
+        const storeQuery = queryClient.getQueryState(["storeProducts"])
+
+        if (storeQuery?.status === "success") {
+            store = queryClient.getQueryData(["storeProducts"])
         }
+
+        return store
     }
 
-    useEffect(() => {
-        getAllProducts()
-    }, [])
-
     return (
-        <storeContext.Provider value={{ storeProducts, loading, error }}>
+        <storeContext.Provider value={{
+            storeProducts,
+            isStoreError,
+            isStorePending,
+            getStoreDataFromCache
+        }}>
             {children}
         </storeContext.Provider>
     )

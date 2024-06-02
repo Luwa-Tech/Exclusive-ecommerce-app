@@ -1,6 +1,8 @@
 import { MdOutlineDelete } from "react-icons/md"
 import useStoreProducts from "../../hooks/useStoreProducts"
 import useWishlistApiQuery from "../../hooks/query/useWishlistApiQuery"
+import useCartApiQuery from "../../hooks/query/useCartApiQuery"
+import useUserStore from "../../hooks/useUserStore"
 
 type wishListType = {
     id: string
@@ -8,11 +10,10 @@ type wishListType = {
 
 const WishListItem = (props: wishListType) => {
     const { storeProducts } = useStoreProducts()
-
+    const {userCart} = useUserStore()
     const {useRemoveFromWishlistMutation} = useWishlistApiQuery()
-    const removeFromWishlistMutation = useRemoveFromWishlistMutation(props?.id)
-
-    const item = storeProducts.find(i => i._id === props.id)
+    const {useAddToCartMutation} = useCartApiQuery()
+    const item = storeProducts?.find(i => i._id === props.id)
 
     if (item === null) return null
 
@@ -21,9 +22,9 @@ const WishListItem = (props: wishListType) => {
             <h1>item is undefined</h1>
         )
     }
-
-    //TODO
-    // Implement add to cart from wishlist functionality here
+    const quantity = userCart?.find(item => item.id === props.id)?.quantity || 0
+    const addToCartMutation = useAddToCartMutation(props?.id, item?.stripeID)
+    const removeFromWishlistMutation = useRemoveFromWishlistMutation(props?.id)
 
     return (
         <>
@@ -42,7 +43,7 @@ const WishListItem = (props: wishListType) => {
                             item?.name?.length || 0 > 13 ? `${item?.name.substring(0, 14)}..` : item?.name
                         }
                     </p>
-                    <button className="text-textColor-400 hover:opacity-[0.6] bg-textColor-600 px-[.4rem] py-[.3rem] w-full">Add To Cart</button>
+                    <button disabled={quantity > 0} className={`text-textColor-400 hover:opacity-[0.6] ${quantity > 0 ? "bg-opacity-[0.5]" : ""} bg-textColor-600 px-[.4rem] py-[.3rem] w-full`} onClick={() => addToCartMutation.mutate()}>{quantity > 0 ? "Added to cart" : "Add to cart"}</button>
                     <div>
                         <span className="text-[.7rem] md:text-[.9rem] font-medium md:leading-[1.5rem] text-secondary-700 mr-[0.4rem]">${item?.price}</span>
                         {item?.discountPrice && <span className="text-[.7rem] md:text-[.9rem] font-medium text-textColor-600 md:leading-[1.5rem] opacity-[0.5] line-through">${item?.discountPrice}</span>}

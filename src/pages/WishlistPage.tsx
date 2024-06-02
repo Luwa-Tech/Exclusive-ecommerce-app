@@ -7,14 +7,12 @@ import ProductSlider from "../components/product-slider/ProductSlider"
 import { NavLink } from "react-router-dom"
 import usePreventMobileScroll, { CustomEventListenerOptions } from "../hooks/usePreventMobileScroll"
 import WishListItem from "../components/wishlist/WishListItem"
-import { useQuery } from "@tanstack/react-query"
 import { ImSpinner } from "react-icons/im"
-//import useWishlistApiQuery from "../hooks/query/useWishlistApiQuery"
-import useWishlistApi, { WishlistType } from "../hooks/api/useWishlistApi"
+import useUserStore from "../hooks/useUserStore"
 
 
 const WishlistPage = () => {
-  const { getWishlist } = useWishlistApi()
+  const { wishlist, isWishlistLoading } = useUserStore()
 
   const { touchStart, preventTouch } = usePreventMobileScroll()
 
@@ -34,20 +32,10 @@ const WishlistPage = () => {
     }
   }
 
-  // TODO: Update wishlist state when database updates
-  const {
-    data: wishlist,
-    isLoading: isWishlistLoading,
-    error: wishlistError
-  } = useQuery<WishlistType[]>({
-    queryKey: ["wishlist"],
-    queryFn: getWishlist
-  })
-
   if (wishlist === undefined) {
     return (
-      <main>
-        <h1>We are experiencing some issues lately, but we'll fix it soon</h1>
+      <main className="md:flex md:justify-center md:items-center px-[.6rem] md:px-0">
+        <h1 className="md:my-[10rem] my-[8rem] text-[1.7rem] md:text-[2.3rem]">We are experiencing some issues lately, but we'll fix it soon</h1>
       </main>
     )
   }
@@ -132,7 +120,7 @@ const WishlistPage = () => {
         <ProductSlider sectionCaption="Just For You" prev={() => GoToPrev()} next={() => GoToNext()} />
         <Slider ref={sliderRef} {...settings}>
           {
-            storeProducts.map(items => {
+            storeProducts?.map(items => {
               return <Product key={items._id} {...items} />
             })
           }

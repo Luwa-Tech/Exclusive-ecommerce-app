@@ -1,24 +1,15 @@
 import {
     useMutation,
-    useQueryClient,
-    useQuery
+    useQueryClient
 } from "@tanstack/react-query"
 import useWishlistApi from "../api/useWishlistApi"
 
 const useWishlistApiQuery = () => {
     const queryClient = useQueryClient()
     const {
-        getWishlist,
         addToWishlist,
         removeFromWishlist
     } = useWishlistApi()
-
-    const useGetWishlist = () => {
-        return useQuery({
-            queryKey: ["wishlist"],
-            queryFn: () => getWishlist()
-        })
-    }
 
     const useAddToWishlistMutation = (id: string) => {
         return useMutation({
@@ -43,7 +34,6 @@ const useWishlistApiQuery = () => {
     }
 
     return {
-        useGetWishlist,
         useAddToWishlistMutation,
         useRemoveFromWishlistMutation
     }

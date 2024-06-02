@@ -8,16 +8,15 @@ import Cart from "../components/cart/Cart"
 import { useAuth0 } from "@auth0/auth0-react"
 import { ImSpinner } from "react-icons/im"
 import LoginButton from "../components/LoginButton"
-import { useQuery } from "@tanstack/react-query"
-import useCartApi, { CartType } from "../hooks/api/useCartApi"
 import useCheckoutApiQuery from "../hooks/query/useCheckoutApiQuery"
+import useUserStore from "../hooks/useUserStore"
 
 const CartPage = () => {
     const { isAuthenticated } = useAuth0()
     const { storeProducts } = useStoreProducts()
     const { isMobile, isDesktop } = useRenderHook()
-    const { getUserCart } = useCartApi()
-    const {useCheckoutMutation} = useCheckoutApiQuery()
+    const { userCart, isCartLoading, isCartError } = useUserStore()
+    const { useCheckoutMutation } = useCheckoutApiQuery()
 
     // Validate user authentication
     if (!isAuthenticated) {
@@ -31,17 +30,16 @@ const CartPage = () => {
         )
     }
 
-    const {
-        data: userCart,
-        isLoading: isCartLoading,
-        error: cartError
-    } = useQuery<CartType[]>({
-        queryKey: ["userCart"],
-        queryFn: getUserCart
-    })
+    if (isCartLoading) {
+        return (
+            <main className="flex justify-center items-center my-[5rem]">
+                <ImSpinner className="h-10 w-10 animate-spin" />
+            </main>
+        )
+    }
 
-    if (cartError) {
-        return <div>Error: {cartError.message}</div>;
+    if (isCartError) {
+        return <div>Error: {isCartError.message}</div>;
     }
 
     if (userCart === undefined) {
@@ -55,17 +53,9 @@ const CartPage = () => {
 
     const checkoutMutation = useCheckoutMutation(userCart)
     const totalPrice: number = userCart?.reduce((total, cartItem) => {
-        const item = storeProducts.find(i => i._id === cartItem.id)
+        const item = storeProducts?.find((i: { _id: string }) => i._id === cartItem.id)
         return total + (item?.price || 0) * cartItem.quantity
     }, 0)
-
-    if (isCartLoading) {
-        return (
-            <main className="flex justify-center items-center my-[5rem]">
-                <ImSpinner className="h-10 w-10 animate-spin" />
-            </main>
-        )
-    }
 
     if (userCart?.length === 0) {
         return (
@@ -97,10 +87,10 @@ const CartPage = () => {
                     {
 
                         isDesktop && (
-                                <DesktopCartSummary
-                                    totalPrice={totalPrice}
-                                    checkoutMutation={checkoutMutation}
-                                />
+                            <DesktopCartSummary
+                                totalPrice={totalPrice}
+                                checkoutMutation={checkoutMutation}
+                            />
                         )
                     }
                     <div className="border-[.1rem] mt-[.7rem] md:mt-0 px-[.3rem] py-[.3rem]">

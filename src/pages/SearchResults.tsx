@@ -11,7 +11,7 @@ const SearchResults = () => {
     if (searchQuery === null) return 
     
  
-    const filteredProducts = storeProducts.filter((product) => {
+    const filteredProducts = storeProducts?.filter((product) => {
         return product.name.toLowerCase().includes(searchQuery.toLowerCase())
     })
 
@@ -19,9 +19,9 @@ const SearchResults = () => {
         <main className="mt-[4rem] mb-[6rem]">
             <section className="md:w-[90%] md:mx-auto grid grid-cols-2 md:grid-cols-6 gap-[.9rem] px-[.5rem] md:px-0 md:gap-1">
                 {
-                    filteredProducts.map((items: JSX.IntrinsicAttributes & ProductType) => {
+                    filteredProducts?.map((items: JSX.IntrinsicAttributes & ProductType) => {
                         return (
-                            <Product key={items.id} {...items}/>
+                            <Product key={items._id} {...items}/>
                         )
                     })
                 }

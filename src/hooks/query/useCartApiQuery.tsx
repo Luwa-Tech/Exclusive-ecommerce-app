@@ -1,7 +1,6 @@
 import {
     useMutation,
-    useQueryClient,
-    useQuery
+    useQueryClient
 } from "@tanstack/react-query"
 import useCartApi from "../api/useCartApi"
 import { CartType } from "../api/useCartApi"
@@ -9,19 +8,11 @@ import { CartType } from "../api/useCartApi"
 const useCartApiQuery = () => {
     const queryClient = useQueryClient()
     const {
-        getUserCart,
         addToCart,
         increaseItemQty,
         decreaseItemQty,
         removeFromCart
     } = useCartApi()
-
-    const useGetCart = () => {
-        return useQuery({
-            queryKey: ["userCart"],
-            queryFn: () => getUserCart()
-        })
-    }
 
     const getCachedData = (): CartType[] | undefined => {
         let userCartData: CartType[] | undefined
@@ -86,7 +77,6 @@ const useCartApiQuery = () => {
 
     return {
         getCachedData,
-        useGetCart,
         useAddToCartMutation,
         useIncreaseItmQtyMutation,
         useDecreaseItmQtyMutation,

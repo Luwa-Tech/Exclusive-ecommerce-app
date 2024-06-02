@@ -3,42 +3,35 @@ import useStoreProducts from "../hooks/useStoreProducts"
 import { CiHeart } from "react-icons/ci"
 import { TbTruckDelivery } from "react-icons/tb"
 import { GiReturnArrow } from "react-icons/gi"
-import useCart from "../hooks/useCart"
+
 // import { formatCurrency } from "../utils"
-import {useAuth0} from "@auth0/auth0-react"
+import { useAuth0 } from "@auth0/auth0-react"
 
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import "react-lazy-load-image-component/src/effects/blur.css"
 
 import useCartApiQuery from "../hooks/query/useCartApiQuery"
 import useWishlistApiQuery from "../hooks/query/useWishlistApiQuery"
+import useUserStore from "../hooks/useUserStore"
 
-// TODO
-// 1. Implement wishlist api queries
-// Fetch product details from database (later on)
 const ProductDetail = () => {
-    const {id} = useParams()
+    const { id } = useParams()
     const { storeProducts } = useStoreProducts()
-    const {isAuthenticated} = useAuth0()
-    const {useAddToCartMutation} = useCartApiQuery()
-    const {useAddToWishlistMutation} = useWishlistApiQuery()
+    const { isAuthenticated } = useAuth0()
+    const { wishlist, userCart } = useUserStore()
+    const { useAddToCartMutation } = useCartApiQuery()
+    const { useAddToWishlistMutation } = useWishlistApiQuery()
 
-    const product = storeProducts.find(item => item._id === id)
+    const product = storeProducts?.find(item => item._id === id)
 
-    const {
-        getItemQuantity
-
-    } = useCart()
-
-
-    if (id === undefined || product === undefined ) {
+    if (id === undefined || product === undefined) {
         return (
             <h1>Cannot access product details</h1>
         )
     }
 
-    const quantity = getItemQuantity(id)
-    const itemInList = wishList.find(item => item.id === id)
+    const quantity = userCart?.find(item => item.id === id)?.quantity || 0
+    const itemInList = wishlist?.find(item => item.id === id)
     const addToCartMutation = useAddToCartMutation(id, product?.stripeID)
     const addToWishlistMutation = useAddToWishlistMutation(id)
 

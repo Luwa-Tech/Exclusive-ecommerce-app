@@ -22,7 +22,7 @@ const CartLineItem = ({id, quantity}: CartLineItemType) => {
     const removeFromCartMutation = useRemoveFromCartMutation(id)
 
     const {storeProducts} = useStoreProducts()
-    const item = storeProducts.find(product => product._id === id)
+    const item = storeProducts?.find(product => product._id === id)
     if(item === null) return null
     
     if(item === undefined) {

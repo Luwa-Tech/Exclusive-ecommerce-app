@@ -3,14 +3,15 @@ import { useAuth0 } from "@auth0/auth0-react"
 import { CartType } from "./useCartApi"
 
 const useCheckoutApi = () => {
-    const { getAccessTokenSilently } = useAuth0()
+    const { user, getAccessTokenSilently } = useAuth0()
 
     const checkoutHandler = async (cart: CartType[]) => {
         try {
             const token = await getAccessTokenSilently()
 
-            const response = await axios.post("https://exclusive-ecommerce-api.glitch.me/checkout", {
-                items: cart
+            const response = await axios.post("http://localhost:3500/api/user/checkout", {
+                items: cart,
+                email: user?.email
             }, {
                 headers: {
                     "Authorization": `Bearer ${token}`

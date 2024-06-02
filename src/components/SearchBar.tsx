@@ -13,7 +13,7 @@ const SearchBar = () => {
         setSearchTerm(term)
     }
 
-    const validateSearchTerm = storeProducts.some((product) => {
+    const validateSearchTerm = storeProducts?.some((product) => {
         return product.name.toLowerCase().includes(searchTerm.toLowerCase())
     })
 

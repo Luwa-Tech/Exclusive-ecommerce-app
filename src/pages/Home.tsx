@@ -55,15 +55,15 @@ const Home = () => {
     }
     
     const {storeProducts} = useStoreProducts()
-    const flashSalesProducts = storeProducts.filter((item: { discount: number | null }) => {
+    const flashSalesProducts = storeProducts?.filter((item: { discount: number | null }) => {
        return item.discount !== null
     })
 
-    const bestSellingProducts = storeProducts.filter(item => {
+    const bestSellingProducts = storeProducts?.filter(item => {
       return item.rating >= 4.5
     })
-    const bestSellingProductsFirstHalfIndex = Math.floor(bestSellingProducts.length / 2) 
-    const bestSellingProductsFirstHalf = bestSellingProducts.slice(0, bestSellingProductsFirstHalfIndex)
+    const bestSellingProductsFirstHalfIndex = Math.floor((bestSellingProducts?.length as number) / 2) 
+    const bestSellingProductsFirstHalf = bestSellingProducts?.slice(0, bestSellingProductsFirstHalfIndex)
 
     useEffect(() => {
       window.addEventListener("touchstart", touchStart)
@@ -133,7 +133,7 @@ const Home = () => {
                 <ProductSlider sectionCaption="Today's" sectionTitle="Flashsales" prev={() => goToPrev1()} next={() => goToNext1()}/>
                 <Slider ref={sliderRef1} {...settings}>
                     {
-                        flashSalesProducts.map((items: JSX.IntrinsicAttributes & ProductType) => {
+                        flashSalesProducts?.map((items: JSX.IntrinsicAttributes & ProductType) => {
                             return (
                                 <Product key={items._id} {...items}/>
                             )
@@ -160,7 +160,7 @@ const Home = () => {
 
                 <div className="grid grid-cols-3 gap-3 md:grid-cols-6">
                   {
-                    bestSellingProductsFirstHalf.map((items: JSX.IntrinsicAttributes & ProductType) => {
+                    bestSellingProductsFirstHalf?.map((items: JSX.IntrinsicAttributes & ProductType) => {
                       return (
                         <Product key={items._id} {...items}/>
                       )
@@ -183,7 +183,7 @@ const Home = () => {
             <ProductSlider sectionCaption="Our Products" sectionTitle="Explore Our Products" prev={() => goToPrev2()} next={() => goToNext2()}/>
             <Slider ref={sliderRef2} {...{...settings, rows: 2}}>
                     {
-                        storeProducts.map((items: JSX.IntrinsicAttributes & ProductType) => {
+                        storeProducts?.map((items: JSX.IntrinsicAttributes & ProductType) => {
                             return (
                                 <Product key={items._id} {...items}/>
                             )

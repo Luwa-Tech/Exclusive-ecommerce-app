@@ -25,6 +25,7 @@ const useWishlistApi = () => {
             }
         })
 
+        console.log(response.data)
         return response.data.items
     }
 
@@ -59,6 +60,7 @@ const useWishlistApi = () => {
             toast.success(response.data.message)
         }
     }
+    
     return {
         getWishlist,
         addToWishlist,
