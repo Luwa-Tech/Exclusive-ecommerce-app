@@ -53,7 +53,7 @@ const WishlistPage = () => {
   if (isWishlistLoading) {
     return (
       <main className="flex justify-center items-center my-[5rem]">
-        <ImSpinner className="h-10 w-10 animate-spin" />
+        <ImSpinner className="h-7 w-7 animate-spin" />
       </main>
     )
   }
