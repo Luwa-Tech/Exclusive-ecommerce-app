@@ -1,6 +1,5 @@
 import {ImSpinner} from "react-icons/im"
 
-
 const Loading = () => {
     return (
         <main className="flex justify-center items-center">
