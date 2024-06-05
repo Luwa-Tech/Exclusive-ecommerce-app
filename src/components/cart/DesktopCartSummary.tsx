@@ -30,5 +30,3 @@ const DesktopCartSummary = ({
 }
 
 export default DesktopCartSummary
-
-{/* <button onClick={() => props.checkoutHandler(props.userCart)} className="bg-secondary-700 text-textColor-400 px-[.5rem] py-[.4rem] rounded-[.2rem] uppercase mt-2 w-[100%] hover:opacity-[0.6]">{props.isCheckoutLoading ? <ImSpinner className="animate-spin h-6 w-6 mx-auto" /> : `Checkout ${formatCurrency(props.totalPrice)}`}</button> */}
