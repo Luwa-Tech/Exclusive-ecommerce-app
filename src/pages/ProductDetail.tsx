@@ -54,7 +54,7 @@ const ProductDetail = () => {
                     <div className="flex items-center gap-2 mt-[1.2rem]">
                         {/* TODO: Refactor quantity === 0  */}
 
-                        <button disabled={quantity > 0} onClick={() => addToCartMutation.mutate()} className={` rounded-[0.25rem] text-textColor-400 ${quantity > 0 ? "bg-textColor-600 bg-opacity-[0.5]" : "bg-secondary-700"} px-[1rem] py-[.6rem] md:px-[3rem] md:py-[0.625rem] w-[90%] md:w-auto hover:opacity-[0.6]`}>{quantity > 0 ? "Added to cart" : "Add to cart"}</button>
+                        <button disabled={quantity > 0 || !isAuthenticated} onClick={() => addToCartMutation.mutate()} className={` rounded-[0.25rem] text-textColor-400 ${quantity > 0 || !isAuthenticated ? "bg-textColor-600 bg-opacity-[0.5]" : "bg-secondary-700"} px-[1rem] py-[.6rem] md:px-[3rem] md:py-[0.625rem] w-[90%] md:w-auto hover:opacity-[0.6]`}>{quantity > 0 ? "Added to cart" : "Add to cart"}</button>
 
                         {/* {
                             quantity > 0 && <div className="items-center flex justify-between w-[8rem]">
